@@ -1,0 +1,895 @@
+@media (min-width:320px) and (max-width:767px){
+    .home .box {
+        margin: 0 10px 10px 10px;
+        width: 95% !important;
+    }
+    .h-right-sec .review-sec .media {
+        padding: 10px;
+    }
+    .h-right-sec .white-side {
+        margin: 30px 0 0;
+    }
+
+    .advisor-profile-main .top .right {
+        float: left !important;
+    }
+    #DataTables_Table_0_filter label:after {
+        right: -5px;
+    }
+    .dataTables_filter input {
+        width: 250px !important;
+    }
+    .modal-dialog.modal-lgg.conf {
+        padding: 0 10px !important;
+    }
+    .register-main .form-main {
+        padding: 0;
+    }
+    .register-main .fields {
+        padding: 40px 0 0;
+    }
+    .navbar-container.content.header-top {
+        margin-left: 0 !important;
+        top: unset;
+        position: unset;
+    }
+    .header-top ul.nav.navbar-nav.float-right {
+        align-items: center;
+        flex-direction: column-reverse !important;
+        width: 100%;
+        padding: 0px 0 10px;
+    }
+    .header-top .schedule-text a {
+        margin: 8px auto 0px !important;
+    }
+    .header-top  .dropdown .dropdown-menu {
+        top: 140px !important;
+    }
+    .header-top ul.dropdown-menu.dropdown-menu-media.dropdown-menu-right.show {
+        top: 180px !important;
+    }
+    .navbar-header ul.nav.navbar-nav.flex-row {
+        margin: 30px 0 0;
+    }
+    body.vertical-layout.vertical-menu .navbar .navbar-brand {
+        white-space: nowrap;
+        margin: 0;
+    }
+    .header-top li.call-text {
+        text-align: center;
+    }
+    .header-bottom-nav li {
+        display: block;
+        padding: 0 30px;
+        text-align: center;
+    }
+    .header-banner img {
+        width: 100%;
+        height: 100px;
+    }
+    .header-banner h2 {
+        font-size: 30px;
+    }
+    .user h1 {
+        float: none;
+        text-align: center;
+        line-height: 30px;
+        font-size: 22px;
+    }
+    .user h1 a {
+        float: left;
+        width: auto;
+        margin: 0;
+    }
+    .footer-bottom .copyright {
+        padding: 15px 0 10px;
+    }
+    .footer-bottom .copyright p {
+        text-align: center;
+    }
+    .footer-bottom .social ul{
+        margin: 10px auto 15px;
+        float: none;
+        display: table;
+    }
+    .footer-bottom .social ul li {
+        padding: 0 5px;
+    }
+    .footer-sec {
+        padding: 80px 0 50px;
+        background: linear-gradient(90deg, rgba(95,49,113,1) 0%, rgba(131,86,155,1) 40%, rgba(127,95,168,1) 100%);
+    }
+    div#DataTables_Table_0_filter {
+        margin: 0;
+    }
+    div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+        justify-content: center;
+        margin: 10px auto 0 !important;
+    }
+    .advisor-card-main {
+        padding: 0 0 20px;
+    }
+    .app-detail .admin-profile .modal .modal-dialog.modal-lgg.conf {
+        max-width: 350px;
+    }
+    .user .payment-modal-inner {
+        padding: 40px !important;
+        margin: 0;
+    }
+    .app-request button {
+        margin: auto;
+        display: table;
+    }
+    .ask-question.app-request.app-detail .col-lg-6.col-xl-6.col-sm-12.mt-3 {
+        margin: 30px 0 0 !important;
+    }
+    .ask-question.app-request h3 {
+        margin: 0 auto;
+        float: none;
+        display: table;
+    }
+    .contact-admin label {
+        color: #999999;
+        font-weight: 500;
+    }
+    .contact-admin .contact-info-main {
+        padding: 30px 0 0px;
+    }
+    .contact-info li:before {
+        margin: 0 8px 0 0;
+    }
+    .contact-info li a {
+        font-size: 14px;
+    }
+    .user-detail-t .user-detail-head {
+        flex-direction: column;
+    }
+    .user-detail-t.add-user h1 {
+        font-size: 23px;
+        margin: 0px 0 10px !important;
+    }
+    .ask-now-sec .col-12.d-flex.justify-content-between.align-items-center {
+        padding: 15px 30px;
+    }
+    .ask-now-sec h2 {
+        font-size: 20px;
+        width: 100%;
+    }
+    .current-app .media i {
+        margin: 0 auto 5px !important;
+        display: table;
+    }
+    .current-app .c100 {
+        margin: 0 auto 0 !important;
+    }
+    .current-app .top .media h4 {
+        font-size: 18px;
+        margin: 10px 0 !important;
+    }
+    .current-app .media.media-body.mt-3 {
+        margin-top: 20px !important;
+    }
+    .current-app .top .media img {
+        margin: auto;
+    }
+    .payment-d .top .media img {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 0;
+    }
+    .payment-d .top .media h5 {
+        font-size: 14px;
+    }
+    .project-fee .top .media img {
+        width: 50px;
+        height: 50px;
+        margin: 0 10px 0 0;
+    }
+    .project-fee .payment-d .top {
+        margin: 0 0 0;
+        border: 0;
+        padding: 0;
+    }
+    .project-fee .top .media {
+        display: flex;
+        text-align: center;
+    }
+    .payment-d .bottom h2 {
+        margin: 30px 0 0 0;
+    }
+    .all-advisors ul.pagination {
+        margin: 0 auto 30px !important;
+    }
+    .adv-app-detail .payment-d .top .media {
+        margin: 20px 0 0 0;
+        display: block;
+    }
+    .adv-app-detail .ask-now-sec .time-left-info-inner a, .h-right-sec a {
+        padding: 5px 0;
+        margin: 0 0 0 5px;
+    }
+    .adv-app-detail .current-app .top .media img {
+        margin: auto;
+        display: table;
+    }
+    .adv-app-detail .current-app .media i {
+        margin: 0 0 10px !important;
+        display: table;
+    }
+    .adv-app-detail .current-app .top .media .img-box.mr-3 {
+        margin: 0 !important;
+    }
+    .adv-pay-det .payment-d .top .media {
+        margin: 20px 0 0 0;
+        display: block;
+    }
+    .adv-pay-det  .current-app .media i {
+        margin: 0 0 10px !important;
+        display: table;
+    }
+    .adv-pay-det .current-app .top .media h4 {
+        font-size: 18px;
+        margin: 0px 0 10px !important;
+    }
+    .adv-pay-det .box {
+        margin: 0 10px 0;
+        width: 100% !important;
+    }
+    .header-navbar .navbar-header .navbar-brand {
+        top: 10px;
+    }
+    .det-right-sec .top-text {
+        margin: 30px 0 0;
+    }
+    .det-right-sec .pf-text {
+        margin: 0 0 20px;
+    }
+    .detail-page .det-right-sec .payment-d .top .media h5 {
+        text-align: center;
+    }
+    .detail-page .company-info a {
+        margin: 0 0 20px;
+    }
+    .detail-page .nav.nav-tabs.nav-underline .nav-item a.nav-link {
+        font-size: 14px;
+        padding: 10px 0px;
+    }
+
+
+    .updates-sec .card {
+        padding: 10px;
+    }
+    .updates-sec p {
+        font-size: 12px;
+        margin: 0 0 10px;
+    }
+    .updates-sec p i {
+        margin: 0 5px 0 0;
+    }
+    .detail-page .updates-sec h4 {
+        font-size: 10px;
+    }
+    .discuss-cards .card.rounded {
+        padding: 10px !important;
+    }
+    .wim-home .card.rounded.mr-2 {
+        padding: 10px;
+        margin: 0 10px 20px !important;
+    }
+    .wim-home .media.home-chart.align-items-center {
+        flex-direction: column;
+    }
+    .wim-home .media.home-chart .media-body {
+        width: 100% !important;
+    }
+    .profile .title a {
+        margin: 10px auto 0;
+        display: table;
+        float: none;
+    }
+    .price-card.p-c-red {
+        margin: 0px 0 20px;
+    }
+    .price-card p.m-0 {
+        font-size: 20px;
+    }
+    .price-card h5 {
+        font-size: 30px;
+    }
+    .user .right a {
+    margin: 20px auto 0;
+    display: table;
+    min-width: 165px;
+    text-align: center;
+}
+    .lawyer-profile-main .profile-title-2 h1.pull-left {
+        margin: 20px 0 0 !important;
+    }
+    .project-req-detail .app-rej-btns a {
+        font-size: 10px;
+        display: flex;
+        align-items: center;
+    }
+    .project-req-detail .owners-cards i {
+        margin: 0 5px 0 0;
+    }
+    .owners-cards .app-rej-btns.appr {
+        margin: 20px 0 0;
+    }
+    .project-req-detail .company-info .card {
+        padding: 10px;
+        margin: 0 0 20px 10px !important;
+    }
+    .reject-detail .reject-reason {
+        padding: 0;
+    }
+    .lawyer-profile .from-to label {
+        margin: 0 5px 0 0;
+    }
+    .lawyer-profile-main .media.align-items-center {
+        flex-direction: column;
+    }
+    .profile .attached h2, .profile .attached-details h2 {
+        text-align: center;
+    }
+    ol.breadcrumb {
+        float: none;
+        margin: 15px auto 0;
+        text-align: center;
+    }
+    .lawyer-profile-main .attached {
+        margin: 30px auto 10px !important;
+    }
+    .profile-top .col-12.d-flex.justify-content-between {
+        flex-direction: column;
+        align-items: center;
+    }
+    .profile .profile-top a {
+        margin: 10px 0px 0;
+    }
+    .login-img {
+        display: none;
+    }
+    .register-main {
+        border-radius: 15px;
+    }
+    .login-main .login-right {
+        border-radius: 15px;
+    }
+    .register h2 {
+        margin: 10px 0 0;
+    }
+    .forgot-pass .modal h1 {
+        margin: 0px 0 40px 0 !important;
+    }
+    .my-cal .fc-toolbar .fc-left {
+        float: none;
+        margin: auto;
+        display: table;
+    }
+    .my-cal .fc-toolbar .fc-right {
+        float: none;
+        margin: 15px auto;
+        display: table;
+    }
+    .complete-btns {
+        flex-direction: column;
+    }
+    .complete-btns button {
+        margin: 0 10px 10px;
+        padding: 20px 10px;
+        font-size: 16px;
+    }
+    .time-setting input {
+        border: 1px solid #ebebeb !important;
+        margin: 0;
+        text-align: left;
+        width: 80%;
+    }
+
+    .app-content .wizard > .actions > ul > li {
+    float: none;
+}
+.app-content .wizard > .actions > ul > li + li {
+    margin: 20px 0 0;
+}
+
+.app-content .wizard>.content {
+    padding: 0;
+}
+
+.renew-mem a.cont-por {
+    position: relative;
+    right: 0;
+    bottom: -10px;
+
+}
+
+.video-img::after {
+
+    width: 50px;
+    height: 50px;
+}
+
+.user .modal button {
+    margin: 30px 10px 0;
+}
+.u-register {
+    padding: 100px 0;
+}
+
+.verify-email input.form-control {
+    margin: 15px 0;
+}
+
+}
+@media (min-width:320px) and (max-width:480px){
+    .time-setting h4 {
+        font-size: 12px;
+    }
+    .user-block .payment-modal-inner h3 {
+        font-size: 18px;
+    }
+    .project-listing ul.nav.nav-tabs.nav-underline.no-hover-bg {
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        width: auto;
+        border-bottom: 0;
+    }
+    .project-listing .nav.nav-tabs.nav-underline .nav-item {
+        margin: 10px 0 0 0;
+    }
+    .project-listing .nav.nav-tabs.nav-underline .nav-item a.nav-link {
+        margin: auto;
+        padding: 5px 0;
+    }
+    .detail-page .status-cards .card {
+        padding: 20px;
+        margin: 0 0 20px;
+    }
+    .detail-page .nav.nav-tabs.nav-underline .nav-item a.nav-link {
+        padding: 10px 0px;
+    }
+    .adv-app-detail .current-app .media i {
+        margin: 0 auto 10px !important;
+        display: table;
+    }
+    .adv-app-detail .current-app .top .media .top-info h3 {
+        font-weight: 500;
+        text-align: center;
+    }
+    .adv-pay-det .current-app .media i {
+        margin: 0 auto 10px !important;
+        display: table;
+    }
+    .home .adv-pay-det h4 {
+        margin: 40px 0px 20px 10px;
+    }
+    .noti-content .media {
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+    .all-notifications .noti-content {
+        padding: 30px 30px;
+    }
+    .all-notifications .noti-content p {
+        font-size: 16px;
+        margin: 0 0 20px;
+    }
+    .all-notifications .noti-content i {
+        margin: 0 20px 20px 0 !important;
+    }
+    .all-notifications .notification-title {
+        padding: 20px 30px;
+    }
+    .detail-page ul.nav.nav-tabs.nav-underline.no-hover-bg {
+        display: block;
+    }
+    .detail-page .nav.nav-tabs.nav-underline .nav-item {
+        display: block;
+        width: 100%;
+        margin: 5px 0 0;
+    }
+    .time-setting .media {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    .time-setting label {
+        font-size: 16px;
+        margin: 0 0px 15px;
+        width: 100%;
+    }
+    .settings button {
+        float: left;
+    }
+    .time-setting.heading {
+        display: none;
+    }
+    .req-det-images ul {
+        margin: 0;
+        padding: 0;
+    }
+    .req-det-images li {
+        display: inline-block;
+        margin: 15px 15px 0px 0;
+    }
+}
+@media (min-width:481px) and (max-width:767px){
+    .project-listing .nav.nav-tabs.nav-underline {
+        margin: 0px 0 30px 0;
+        width: 565px;
+    }
+    .pro-req .nav.nav-tabs.nav-underline {
+        width: 250px !important;
+    }
+    .project-listing .nav.nav-tabs.nav-underline .nav-item {
+        margin: 20px 10px 0 0;
+    }
+    .project-listing .nav.nav-tabs.nav-underline .nav-item a.nav-link {
+        font-size: 14px;
+        padding: 15px 0px;
+        width: auto;
+    }
+    .project-listing .nav.nav-tabs.nav-underline .nav-item:last-child {
+        margin: 20px 0 0 0 !important;
+    }
+}
+@media (min-width:768px) and (max-width:991px){
+    .verify-email input.form-control {
+    margin: 15px 0;
+}
+    body.vertical-layout.vertical-menu.menu-collapsed .main-menu .main-menu-content>span.menu-title, body.vertical-layout.vertical-menu.menu-collapsed .main-menu .main-menu-content a.menu-title {
+
+    margin: 20px 0 0 0;
+}
+body.vertical-layout.vertical-menu.menu-collapsed .main-menu  .main-menu-content.ps-container.ps-theme-dark a.menu-title {
+    margin: 0 !important;
+}
+    .time-setting input {
+        width: 85%;
+    }
+    .register-main .checkmark {
+        margin: -5px 0 0 10px;
+    }
+    .register-main  .check {
+        font-size: 12px;
+    }
+    .register-main {
+    padding: 50px 40px 60px !important;
+}
+    .loginn a {
+        font-size: 12px;
+    }
+    .navbar-light .navbar-nav .dropdown-toggle.nav-link::after {
+        right: 8px
+    }
+    .reject-detail .reject-reason {
+        padding: 0;
+    }
+    .project-req-detail .app-rej-btns.appr {
+        margin: 20px 0 0;
+    }
+    .user .right a {
+        margin: 0 0 10px !important;
+        display: inline-block;
+    }
+    .price-card.p-c-red {
+        margin: 0px 0 20px;
+    }
+    .lawyer-profile-main .profile-title-2 h1.pull-left {
+        margin: 20px 0 0 !important;
+    }
+    .discuss-tabs-sec ul.nav.nav-tabs.nav-left.flex-column {
+        margin: 0 0 30px;
+    }
+    .adv-pay-det .current-app .top .media h4 {
+        font-size: 15px;
+    }
+    .adv-app-detail .payment-d .top .media {
+        margin: 20px 0 0 0;
+        display: block;
+    }
+    .adv-app-detail .ask-now-sec .time-left-info-inner a, .h-right-sec a {
+        padding: 5px 0;
+        margin: 0 0 0 5px;
+    }
+    .adv-app-detail .current-app .top .media img {
+        margin: auto;
+        display: table;
+    }
+    .advisor-profile-main .top .right {
+        float: left !important;
+    }
+    .dropdown .dropdown-menu {
+        transition: none !important;
+        top: 65px;
+    }
+    .dataTables_filter input {
+        width: 250px !important;
+    }
+    .footer-sec {
+        padding: 80px 0 50px;
+        background: linear-gradient(90deg, rgba(95,49,113,1) 0%, rgba(131,86,155,1) 40%, rgba(127,95,168,1) 100%);
+    }
+    .header-bottom-nav li {
+        padding: 0 6px;
+    }
+    .header-bottom-nav li a {
+        font-size: 13px;
+    }
+    body.vertical-layout.vertical-menu.menu-expanded .navbar .navbar-header {
+        float: left;
+        width: 150px;
+        height: 5.5rem;
+    }
+    .navbar-header ul.nav.navbar-nav.flex-row {
+        width: 100%;
+    }
+    .navbar-brand img.brand-logo {
+        width: auto;
+        margin: 0 0 0 10px;
+    }
+    body.vertical-layout.vertical-menu.menu-expanded .navbar .navbar-container {
+        margin-left: 140px;
+    }
+    body.vertical-layout.vertical-menu .navbar .navbar-brand {
+        margin: -10px 0 0 0;
+    }
+    .header-top .call-text h2 {
+        font-size: 15px;
+        margin: 0 5px 5px;
+    }
+    .header-top .call-text h2 span {
+        font-size: 9px;
+    }
+    .header-top .schedule-text a {
+        font-size: 12px;
+        padding: 10px;
+        margin: auto 5px;
+    }
+    .header-top ul li:nth-of-type(3) a {
+        margin: 0 10px 0 10px;
+    }
+    .user h1 {
+        width: 100%;
+        margin: auto;
+    }
+    .lawyer-profile-main h1 {
+        width: auto;
+        margin: auto;
+        float: left;
+    }
+    .sc-app .top {
+        margin: 0;
+    }
+    .white-side {
+        margin: 0 0 50px;
+    }
+    .contact-admin .contact-info-main {
+        padding: 0 0 30px;
+    }
+    .ask-question.app-request h3 {
+        display: table;
+        margin: auto;
+        float: none;
+    }
+    .app-request button {
+        display: table;
+        margin: 0 auto 0 !important;
+    }
+    .ask-question.app-request.app-detail {
+        padding: 0 0 30px;
+    }
+    .app-request tbody {
+        display: table;
+        margin: auto;
+    }
+    .app-request .middle .left {
+        width: 100%;
+    }
+    .app-request .middle .left h2 {
+        text-align: center;
+    }
+    .app-detail .left, .sc-app .left {
+        text-align: center;
+        padding: 20px 0;
+    }
+    .all-advisors ul.pagination {
+        margin: 0 auto 30px !important;
+    }
+    .adv-detail .sc-app .bottom h4 {
+        text-align: center;
+    }
+    .adv-detail .sc-app .bottom p {
+        text-align: center;
+    }
+    .adv-detail .bottom {
+        margin: 0;
+        text-align: center;
+    }
+    .h-right-sec .white-side {
+        margin: 30px 0 0;
+    }
+    .price-card p.m-0 {
+        font-size: 20px;
+    }
+    .price-card h5 {
+        font-size: 30px;
+    }
+    .project-listing .nav.nav-tabs.nav-underline {
+        margin: 0px 0 30px 0;
+        width: 610px;
+    }
+    .pro-req .nav.nav-tabs.nav-underline {
+        width: 252px !important;
+    }
+    .project-listing .nav.nav-tabs.nav-underline .nav-item a.nav-link {
+        font-size: 14px;
+        padding: 15px 0px;
+        width: auto;
+    }
+    .project-listing .nav.nav-tabs.nav-underline .nav-item:last-child {
+        margin: 20px 0 0 0 !important;
+    }
+    .req-det-images li {
+        display: inline-block;
+        margin: 10px 15px 0px 0;
+    }
+}
+@media (min-width:992px) and (max-width:1199px){
+    .time-setting input {
+        border: 1px solid #ebebeb !important;
+        margin: 0;
+        text-align: left;
+        width: 80%;
+    }
+    .complete-btns button {
+        margin: 0 10px;
+        padding: 20px 20px;
+    }
+    .user .right a {
+        margin: 0 0 10px !important;
+        display: inline-block;
+    }
+    .navbar-light .navbar-nav .dropdown-toggle.nav-link::after {
+        right: 8px
+    }
+    .project-req-detail .owners-cards .col-xl-6.col-lg-6.col-md-12.col-sm-12 {
+        max-width: 100% !important;
+        width: 100% !important;
+        flex: auto;
+    }
+    .project-req-detail .app-rej-btns.appr {
+        margin: 20px 0 0;
+    }
+    .h-right-sec .time-left-info-inner {
+        justify-content: flex-start;
+    }
+    .h-right-sec .time-left-info-inner h2 {
+        margin: 0 10px 0;
+    }
+    .h-right-sec .white-side {
+        margin: 30px 0 0;
+    }
+    .dropdown .dropdown-menu {
+        transition: none !important;
+        top: 65px;
+    }
+    .footer-sec {
+        padding: 80px 0 50px;
+        background: linear-gradient(90deg, rgba(95,49,113,1) 0%, rgba(131,86,155,1) 40%, rgba(127,95,168,1) 100%);
+    }
+    .header-bottom-nav li {
+        padding: 0 15px;
+    }
+    .header-bottom-nav li a {
+        font-size: 15px;
+    }
+    body.vertical-layout.vertical-menu.menu-expanded .navbar .navbar-header {
+        float: left;
+        width: 200px;
+        height: 5.5rem;
+    }
+    .navbar-header ul.nav.navbar-nav.flex-row {
+        width: 100%;
+    }
+    .navbar-brand img.brand-logo {
+        width: 100%;
+    }
+    body.vertical-layout.vertical-menu.menu-expanded .navbar .navbar-container {
+        margin-left: 140px;
+    }
+    .header-top .call-text h2 {
+        font-size: 22px;
+        margin: 0 5px 5px;
+    }
+    .header-top ul li:nth-of-type(3) a {
+        margin: 0 10px 0 10px;
+    }
+    .all-advisors ul.pagination {
+        margin: 0 auto 30px !important;
+    }
+    .advisor-card-main .btn-box a {
+        width: 180px;
+    }
+    .advisor-profile-main .pad-20 {
+        padding: 20px;
+    }
+    .advisor-profile-main .top h2 {
+        margin: 15px 0 10px 0;
+    }
+    .advisor-profile-main .top a {
+        margin: 10px 0 0 10px;
+    }
+    .adv-app-detail .payment-d .top .media {
+        margin: 20px 0 0 0;
+        display: block;
+    }
+    .adv-app-detail .ask-now-sec .time-left-info-inner a, .h-right-sec a {
+        padding: 5px 0;
+        margin: 0 0 0 5px;
+    }
+    .adv-app-detail .current-app .top .media img {
+        margin:
+    }
+    .project-listing .nav.nav-tabs.nav-underline {
+        margin: 0px 0 30px 0;
+        width: 650px;
+    }
+    .pro-req .nav.nav-tabs.nav-underline {
+        margin: 0px 0 30px 0;
+        width: 269px;
+    }
+    .project-listing .nav.nav-tabs.nav-underline .nav-item a.nav-link {
+        font-size: 15px;
+        padding: 15px 0px;
+        width: auto;
+    }
+    .project-listing .nav.nav-tabs.nav-underline .nav-item:last-child {
+        margin: 20px 0 0 0 !important;
+    }
+
+    .profile.lawyer-profile-main .add-user .pad-20 {
+        padding: 20px;
+    }
+    .price-card p.m-0 {
+        font-size: 20px;
+    }
+    .price-card h5 {
+        font-size: 30px;
+    }
+    .profile.settings .add-user .pad-20 {
+        padding: 20px !important;
+    }
+}
+
+
+
+@media (min-width:1200px) and (max-width:1300px){
+    .my-cal-home .datepicker--nav-title {
+    padding: 0 0px;
+    font-size: 13px;
+}
+
+.datepicker--nav-action {
+    width: 25px;
+}
+
+
+}
+
+@media (min-width:1200px) and (max-width:1500px){
+    .advisor-profile-main .pad-20 {
+        padding: 20px;
+    }
+    .current-app .top .media h4 {
+        font-size: 16px;
+    }
+    .project-req-detail .app-rej-btns a {
+        font-size: 12px;
+    }
+
+
+}
+
