@@ -1,0 +1,30 @@
+Packages
+id,name,description,status, timestamps, price, recurrency, image(nullable)
+
+Services
+id, name, status, timestamps, cancelation Validity, image
+
+Package_services(concerned)
+id, package_id, service_id, timestamps
+
+Service_Bookings
+id,user_id, service_id, status, timestamps, selected_date, time_required, time_slot, quote ,reason(nullable)
+
+Package_Bookings
+id,user_id, package_id, status, timestamps, selected_date, time_required, time_slot, quote ,reason(nullable)
+
+Quote_Requests
+id, user_id, status, timestamps, selected_date, time_required, time_slot, area, recurrency, quote(nullable), reason(nullable) 
+
+Feedback
+id, user_id, subject, message, status
+
+Notifications 
+id, message, link, status, timestamps 
+
+Chat(shall be discussed later)
+
+
+ContactUs
+id, first_name, last_name, email, phone, subject, message
+

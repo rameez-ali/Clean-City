@@ -33,6 +33,9 @@
                                                         class="fa fa-envelope"
                                                     ></i
                                                     ><input
+                                                        v-model="
+                                                            login_details.email
+                                                        "
                                                         spellcheck="true"
                                                         type="text"
                                                         class="form-control"
@@ -44,6 +47,9 @@
                                                 >
                                                     <i class="fa fa-lock"></i
                                                     ><input
+                                                        v-model="
+                                                            login_details.password
+                                                        "
                                                         spellcheck="true"
                                                         type="password"
                                                         class="form-control"
@@ -75,7 +81,7 @@
                                             <button
                                                 type="button"
                                                 class="form-control login-btn"
-                                                onclick="window.open('a-dashboard.html')"
+                                                @click="login"
                                             >
                                                 Login
                                                 <i
@@ -128,25 +134,63 @@ export default {
             login_details: {
                 email: "",
                 password: ""
-            }
+            },
+            error_message: ""
         };
     },
 
     mounted() {
-        $("#cont").on("click", function() {
-            $("#exampleModalCenter").modal("hide");
-            $("#exampleModal").modal("show");
-        });
-        $("#cont2").on("click", function() {
-            $("#exampleModal").modal("hide");
-            $("#exampleModal2").modal("show");
-        });
-        $("#cont3").on("click", function() {
-            $("#exampleModalCenter2").modal("hide");
-            $("#exampleModal3").modal("show");
-        });
+        this.Loggedin();
+        // $("#cont").on("click", function() {
+        //     $("#exampleModalCenter").modal("hide");
+        //     $("#exampleModal").modal("show");
+        // });
+        // $("#cont2").on("click", function() {
+        //     $("#exampleModal").modal("hide");
+        //     $("#exampleModal2").modal("show");
+        // });
+        // $("#cont3").on("click", function() {
+        //     $("#exampleModalCenter2").modal("hide");
+        //     $("#exampleModal3").modal("show");
+        // });
     },
-    methods: {}
+    methods: {
+        login() {
+            if (
+                this.login_details.email == "" ||
+                this.login_details.password == ""
+            ) {
+                this.error_message = "Empty form can't be sibmitted";
+            } else {
+                axios
+                    .post("/api/admin/login", {
+                        email: this.login_details.email,
+                        password: this.login_details.password
+                    })
+                    .then(res => {
+                        localStorage.setItem("token", res.data.token);
+                        if (res.data.isadmin) {
+                            this.$router
+                                .push("/home")
+                                .then(console.log("Logged in Successfully"))
+                                .catch(err => console.log(err));
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err.response);
+                    });
+            }
+        },
+
+        Loggedin() {
+            axios
+                .get("api/admin/verify")
+                .then(res => {
+                    this.$router.push("/home");
+                })
+                .catch(err => {});
+        }
+    }
 };
 </script>
 

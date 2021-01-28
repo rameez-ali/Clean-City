@@ -2,6 +2,14 @@
     <div>
         <topbar-component />
         <sidebar-component />
+        <div class="app-content content view user wim-home">
+            <div class="content-wrapper">
+                <div class="content-body">
+                    <!-- Basic form layout section start -->
+                    <router-view />
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 

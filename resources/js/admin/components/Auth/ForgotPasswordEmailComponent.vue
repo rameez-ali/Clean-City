@@ -91,9 +91,11 @@ export default {
     methods: {
         ResetPasswordEmail() {
             axios
-                .post("api/password/email", this.email)
+                .post("api/password/email", {
+                    email: this.email
+                })
                 .then(res => {
-                    console.log(res);
+                    alert(res.data.message);
                 })
                 .catch(err => {
                     console.log(err.response);

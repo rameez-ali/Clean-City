@@ -20,3 +20,29 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Auth::routes();
+
+
+Route::group(['prefix' => 'admin'], function () {
+
+    Route::post('/login', 'App\Http\Controllers\Admin\UserController@login')->name('login');
+    Route::post('/login', 'App\Http\Controllers\Admin\UserController@login')->name('login');
+
+    Route::group(['middleware' => ['auth:api'], 'namespace' => 'App\Http\Controllers\Admin'], function () {
+
+        Route::get('/verify', 'UserController@verify');
+        Route::get('/userdata', 'UserController@userdata');
+        Route::post('/editUser', 'UserController@update');
+        Route::post('/changepassword', 'UserController@changepassword');
+        Route::post('/profilephoto', 'UserController@profilephoto');
+        Route::get('/getallusers', 'UserController@index');
+        Route::get('/getalluserstofrom', 'UserController@indexToFrom');
+
+
+        
+       
+        
+
+
+
+    });
+});

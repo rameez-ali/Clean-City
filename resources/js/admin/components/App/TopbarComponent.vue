@@ -123,7 +123,7 @@
                                 <!-- <h3>Account</h3> -->
                                 <ul class="">
                                     <li>
-                                        <a href="a-profile.html"
+                                        <a href="admin#/home/profile"
                                             ><i
                                                 class="fa fa-user"
                                                 aria-hidden="true"
@@ -150,7 +150,7 @@
                                         >
                                     </li>
                                     <li>
-                                        <a href="login.html"
+                                        <a @click="logout"
                                             ><i
                                                 class="fa fa-power-off"
                                                 aria-hidden="true"
@@ -189,6 +189,11 @@ export default {
         },
         NotificationChange() {
             this.Notification = !this.Notification;
+        },
+
+        logout() {
+            localStorage.removeItem("token");
+            this.$router.push("/");
         }
     }
 };

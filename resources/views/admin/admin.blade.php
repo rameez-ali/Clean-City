@@ -25,7 +25,7 @@
   <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
   <!-- END Custom CSS-->
 </head>
-<body>
+<body class="vertical-layout vertical-menu 2-columns menu-expanded fixed-navbar" data-open="click" data-menu="vertical-menu" data-col="2-columns">
     <div id="app">
         <app-component />
 
