@@ -86,10 +86,12 @@ export default {
                 "First Name",
                 "Last Name",
                 "Email",
-                "Registration Date"
+                "Registration Date",
+                "Actions"
             ]
         };
     },
+    beforeCreate() {},
     created() {
         this.getUsers();
     },
@@ -98,9 +100,11 @@ export default {
         TableComponent
     },
     mounted() {
-        $(document).ready(() => {
-            $(".dataTables_filter input").attr("placeholder", "Search");
-        });
+        setTimeout(() => {
+            $(document).ready(() => {
+                $(".dataTables_filter input").attr("placeholder", "Search");
+            });
+        }, 2000);
 
         this.datepicker();
     },

@@ -16,10 +16,10 @@
                     >
                 </li>
                 <li class="nav-item">
-                    <a href="admin#/welcome/Memberships"
+                    <a href="admin#/home/user"
                         ><i class="fa fa-user" aria-hidden="true"></i
                         ><span class="menu-title" data-i18n=""
-                            >Memberships</span
+                            >User Management</span
                         ></a
                     >
                 </li>

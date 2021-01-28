@@ -3129,9 +3129,10 @@ __webpack_require__.r(__webpack_exports__);
       datefrom: "",
       dateto: "",
       users: [],
-      thead: ["id", "First Name", "Last Name", "Email", "Registration Date"]
+      thead: ["id", "First Name", "Last Name", "Email", "Registration Date", "Actions"]
     };
   },
+  beforeCreate: function beforeCreate() {},
   created: function created() {
     this.getUsers();
   },
@@ -3139,9 +3140,11 @@ __webpack_require__.r(__webpack_exports__);
     TableComponent: _components_App_TableComponent_vue__WEBPACK_IMPORTED_MODULE_0__.default
   },
   mounted: function mounted() {
-    $(document).ready(function () {
-      $(".dataTables_filter input").attr("placeholder", "Search");
-    });
+    setTimeout(function () {
+      $(document).ready(function () {
+        $(".dataTables_filter input").attr("placeholder", "Search");
+      });
+    }, 2000);
     this.datepicker();
   },
   methods: {
@@ -41860,7 +41863,7 @@ var staticRenderFns = [
               ]),
               _vm._v(" "),
               _c("li", { staticClass: "nav-item" }, [
-                _c("a", { attrs: { href: "admin#/welcome/Memberships" } }, [
+                _c("a", { attrs: { href: "admin#/home/user" } }, [
                   _c("i", {
                     staticClass: "fa fa-user",
                     attrs: { "aria-hidden": "true" }
@@ -41868,7 +41871,7 @@ var staticRenderFns = [
                   _c(
                     "span",
                     { staticClass: "menu-title", attrs: { "data-i18n": "" } },
-                    [_vm._v("Memberships")]
+                    [_vm._v("User Management")]
                   )
                 ])
               ]),
