@@ -18,9 +18,22 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users=User::where('role_id','!=','1')->get();
+        $user="";
+       
+        if($request->blocked=='true')
+        {
+           
+            $users=User::select('id','first_name','last_name','email','created_at')->where('role_id','!=','1')->where('status','=','blocked')->get();
+        }
+        else
+        {
+            
+            $users=User::select('id','first_name','last_name','email','created_at')->where('role_id','!=','1')->where('status','=','active')->get();
+
+
+        }
         return response()->json(["users"=>$users],200);
     }
 
@@ -149,6 +162,13 @@ class UserController extends Controller
     {
         return response()->json(["user"=>$request->user()],200); 
     }
+
+    public function singleUser(Request $request)
+    {
+        $user=User::find($request->id);
+
+        return response()->json(["user"=>$user],200); 
+    }
     
 
 
@@ -161,5 +181,26 @@ class UserController extends Controller
         $user->image = "storage/" . $photo;
         $user->save();
         return response()->json(['status' =>"Picture uploaded" ], 200); 
+    }
+
+    public function blockuser(Request $request){
+        $user=User::find($request->id);
+
+        if($request->status=='block')
+        {
+            $user->status="blocked";
+            $user->save();
+            return response()->json(["status"=>"User Blocked"],200);
+
+        }
+    
+            $user->status="active";
+            $user->save();
+            return response()->json(["status"=>"User Unblocked"],200);
+    
+        
+      
+       
+       
     }
 }

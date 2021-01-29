@@ -7,16 +7,12 @@
         </thead>
         <tbody>
             <tr v-for="row in tRows" :key="row.id">
-                <td>{{ row.id }}</td>
-                <td>
-                    {{ row.first_name }}
+                <td v-for="data in row" :key="data">
+                    {{ data }}
                 </td>
-                <td>{{ row.last_name }}</td>
-                <td>{{ row.email }}</td>
-                <td>{{ row.created_at }}</td>
 
                 <td>
-                    <div class="btn-group mr-1 mb-1">
+                    <div class="btn-group mr-1 mb-1 show">
                         <button
                             type="button"
                             class="btn  btn-drop-table btn-sm"
@@ -32,23 +28,15 @@
                             style="position: absolute; transform: translate3d(4px, 23px, 0px); top: 0px; left: 0px; will-change: transform;"
                         >
                             <a
+                                v-for="action in actions"
+                                :key="action.text"
                                 class="dropdown-item"
-                                href="a-employee-profile.html"
-                                ><i class="fa fa-eye"></i>View
+                                :aria-hidden="action.aria"
+                                :data-toggle="action.toggle"
+                                :data-target="action.target"
+                                :href="action.href + row.id"
+                                ><i :class="action.class"></i>{{ action.text }}
                             </a>
-                            <a
-                                class="dropdown-item"
-                                href="#"
-                                data-toggle="modal"
-                                data-target="#exampleModalCenter"
-                                ><i class="fa fa-ban" aria-hidden="true"></i
-                                >block</a
-                            >
-                            <a
-                                class="dropdown-item"
-                                href="a-employees-ticket-log.html"
-                                ><i class="fa fa-ticket"></i>View Ticket Log</a
-                            >
                         </div>
                     </div>
                 </td>
@@ -61,7 +49,8 @@
 export default {
     props: {
         tHead: Array,
-        tRows: Array
+        tRows: Array,
+        actions: Array
     },
     mounted() {},
     methods: {}

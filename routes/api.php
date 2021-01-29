@@ -36,12 +36,19 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/profilephoto', 'UserController@profilephoto');
         Route::get('/getallusers', 'UserController@index');
         Route::get('/getalluserstofrom', 'UserController@indexToFrom');
+        Route::post('/blockuser', 'UserController@blockuser');
+        Route::get('/user', 'UserController@singleUser');
+
+        //Services 
+
+        
+        Route::get('/getallservices', 'ServiceController@index');
+        Route::get('/service', 'ServiceController@show');
+        Route::post('/addservice', 'ServiceController@index');
+        Route::post('/updateService', 'ServiceController@update');
 
 
         
-       
-        
-
 
 
     });
