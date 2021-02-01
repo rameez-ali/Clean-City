@@ -31,30 +31,6 @@
                             >Settings</span
                         ></a
                     >
-                    <ul class="menu-content">
-                        <li>
-                            <a
-                                class="menu-item"
-                                href="admin#/welcome/generalSettings"
-                                ><i
-                                    class="fa fa-th-large"
-                                    aria-hidden="true"
-                                ></i
-                                >General</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                class="menu-item"
-                                href="admin#/welcome/SliderSettings"
-                                ><i
-                                    class="fa fa-th-large"
-                                    aria-hidden="true"
-                                ></i
-                                >Slider</a
-                            >
-                        </li>
-                    </ul>
                 </li>
             </ul>
         </div>

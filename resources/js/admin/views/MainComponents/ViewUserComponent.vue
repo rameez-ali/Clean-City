@@ -111,7 +111,7 @@ export default {
                     if (this.user == null) {
                         this.$router.push("/home/user");
                     }
-                    console.log(this.user);
+                    // console.log(this.user);
                 })
                 .catch(err => {
                     console.log(err.response);
@@ -126,6 +126,7 @@ export default {
                 })
                 .then(res => {
                     console.log(res.data.status);
+                    this.getUserData();
                 })
                 .catch(err => {
                     console.log(err.response);
@@ -139,6 +140,7 @@ export default {
                 })
                 .then(res => {
                     console.log(res.data.status);
+                    this.getUserData();
                 })
                 .catch(err => {
                     console.log(err.response);

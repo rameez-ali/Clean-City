@@ -39,13 +39,25 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/blockuser', 'UserController@blockuser');
         Route::get('/user', 'UserController@singleUser');
 
-        //Services 
-
-        
+        //Services
         Route::get('/getallservices', 'ServiceController@index');
         Route::get('/service', 'ServiceController@show');
-        Route::post('/addservice', 'ServiceController@index');
+        Route::post('/addservice', 'ServiceController@store');
         Route::post('/updateService', 'ServiceController@update');
+
+        //Package
+        Route::get('/getallpackages', 'PackageController@index');
+        Route::post('/addpackage', 'PackageController@store');
+        Route::get('/package', 'PackageController@show');
+        Route::put('/package', 'PackageController@update');
+
+        //PackageRequests
+        Route::get('/getallPackageRequests','PackageRequestController@index');
+
+
+        
+
+
 
 
         

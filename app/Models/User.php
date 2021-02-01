@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Role;
+use App\Models\PackageRequest;
+
+
 
 
 class User extends Authenticatable
@@ -19,7 +22,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
         'password',
     ];
@@ -58,4 +62,11 @@ class User extends Authenticatable
 
         return strtolower($this->role->id) == 1;
     }
+
+
+    // public function packagerequest()
+    // {
+    //     return $this->hasMany(PackageRequest::class);
+    // }
+    
 }

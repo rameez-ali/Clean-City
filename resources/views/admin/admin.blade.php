@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-  <title>Obsidian Home Maintenance - Employee Profile</title>
+  <title>Clean City LLC</title>
   <link rel="shortcut icon" href="images/favicon.png" />
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
   <!-- BEGIN VENDOR CSS-->

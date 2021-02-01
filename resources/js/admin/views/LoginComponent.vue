@@ -168,12 +168,15 @@ export default {
                         password: this.login_details.password
                     })
                     .then(res => {
-                        localStorage.setItem("token", res.data.token);
                         if (res.data.isadmin) {
+                            localStorage.setItem("token", res.data.token);
+
                             this.$router
                                 .push("/home")
                                 .then(console.log("Logged in Successfully"))
                                 .catch(err => console.log(err));
+                        } else {
+                            alert("you aren't admin");
                         }
                     })
                     .catch(err => {

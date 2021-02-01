@@ -2,7 +2,7 @@ Packages
 id,name,description,status, timestamps, price, recurrency, image(nullable)
 
 Services
-id, name, status, timestamps, cancelation_Validity, image
+id, name, status, timestamps, cancelation_Validity, image, description
 
 
 
@@ -16,7 +16,10 @@ Service_Bookings
 id,user_id, service_id, status, timestamps, selected_date, time_required, time_slot, quote ,reason(nullable)
 
 Package_Bookings
-id,user_id, package_id, status, timestamps, selected_date, time_required, time_slot, quote ,reason(nullable)
+id,user_id, package_id, status, timestamps, selected_date, time_slot  ,reason(nullable)
+ 
+Package_Request
+id, package_id, user_id, status, timestamps, selected_date, time_required, time_slot, recurrency, reason(nullable), payment_status
 
 Quote_Requests
 id, user_id, status, timestamps, selected_date, time_required, time_slot, area, recurrency, quote(nullable), reason(nullable) 

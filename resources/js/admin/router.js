@@ -6,10 +6,18 @@ import ProfileComponent from "./views/MainComponents/ProfileComponent";
 import UserComponent from "./views/MainComponents/UserComponent";
 import BlockedUserComponent from "./views/MainComponents/BlockedUserComponent";
 import ViewUserComponent from "./views/MainComponents/ViewUserComponent";
+//services
 import ServiceComponent from "./views/MainComponents/Service/ServiceComponent";
 import AddServiceComponent from "./views/MainComponents/Service/AddServiceComponent";
 import ViewServiceComponent from "./views/MainComponents/Service/ViewServiceComponent";
 import EditServiceComponent from "./views/MainComponents/Service/EditServiceComponent";
+//packages
+import PackageComponent from "./views/MainComponents/Package/PackageComponent";
+import AddPackageComponent from "./views/MainComponents/Package/AddPackageComponent";
+import ViewPackageComponent from "./views/MainComponents/Package/ViewPackageComponent";
+import EditPackageComponent from "./views/MainComponents/Package/EditPackageComponent";
+import PackageRequestComponent from "./views/MainComponents/PackageRequest/PackageRequestComponent";
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -37,6 +45,7 @@ const routes = [
                 path: "blockeduser",
                 component: BlockedUserComponent
             },
+            //service
             {
                 path: "services",
                 component: ServiceComponent
@@ -52,6 +61,28 @@ const routes = [
             {
                 path: "editservice/:id",
                 component: EditServiceComponent
+            },
+            //package
+            {
+                path: "package",
+                component: PackageComponent
+            },
+            {
+                path: "addpackage",
+                component: AddPackageComponent
+            },
+            {
+                path: "viewpackage/:id",
+                component: ViewPackageComponent
+            },
+            {
+                path: "editpackage/:id",
+                component: EditPackageComponent
+            },
+            //Package Request
+            {
+                path: "packageRequests",
+                component: PackageRequestComponent
             }
         ],
         beforeEnter: (to, from, next) => {
