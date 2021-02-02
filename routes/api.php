@@ -53,6 +53,16 @@ Route::group(['prefix' => 'admin'], function () {
 
         //PackageRequests
         Route::get('/getallPackageRequests','PackageRequestController@index');
+        Route::get('/PackageRequests','PackageRequestController@show');
+        Route::post('/approveRejectPackage','PackageRequestController@acceptOrReject');
+
+        //ServiceBooking
+        Route::get('/getallServiceRequests','ServiceBookingController@index');
+        Route::get('/ServiceRequests','ServiceBookingController@show');
+        Route::post('/approveRejectService','ServiceBookingController@approveReject');
+
+
+
 
 
         

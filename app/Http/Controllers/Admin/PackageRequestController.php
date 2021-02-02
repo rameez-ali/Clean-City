@@ -51,9 +51,9 @@ class PackageRequestController extends Controller
      * @param  \App\Models\PackageRequest  $packageRequest
      * @return \Illuminate\Http\Response
      */
-    public function show(PackageRequest $packageRequest)
+    public function show(Request $request)
     {
-        //
+        return response()->json(["package"=>PackageRequest::find($request->id)->with('user','package')->get()],200);
     }
 
     /**
@@ -88,5 +88,13 @@ class PackageRequestController extends Controller
     public function destroy(PackageRequest $packageRequest)
     {
         //
+    }
+
+    public function acceptOrReject(Request $request)
+    {
+        $package=PackageRequest::find($request->id);
+        $package->status=$request->status;
+
+        return \response()->json(["status"=>$package->save()],200);
     }
 }

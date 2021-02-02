@@ -10,12 +10,6 @@
                 data-menu="menu-navigation"
             >
                 <li class="nav-item">
-                    <a href="admin#/welcome/bid"
-                        ><i class="fa fa-user" aria-hidden="true"></i
-                        ><span class="menu-title" data-i18n="">Bids</span></a
-                    >
-                </li>
-                <li class="nav-item">
                     <a href="admin#/home/user"
                         ><i class="fa fa-user" aria-hidden="true"></i
                         ><span class="menu-title" data-i18n=""
@@ -25,10 +19,36 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="#"
+                    <a href="admin#/home/services"
                         ><i class="fa fa-cog" aria-hidden="true"></i
                         ><span class="menu-title" data-i18n=""
-                            >Settings</span
+                            >Services</span
+                        ></a
+                    >
+                </li>
+                <li class="nav-item">
+                    <a href="admin#/home/servicebookings"
+                        ><i class="fa fa-cog" aria-hidden="true"></i
+                        ><span class="menu-title" data-i18n=""
+                            >Service Bookings</span
+                        ></a
+                    >
+                </li>
+
+                <li class="nav-item">
+                    <a href="admin#/home/package"
+                        ><i class="fa fa-cog" aria-hidden="true"></i
+                        ><span class="menu-title" data-i18n=""
+                            >Packages</span
+                        ></a
+                    >
+                </li>
+
+                <li class="nav-item">
+                    <a href="admin#/home/packageRequests"
+                        ><i class="fa fa-cog" aria-hidden="true"></i
+                        ><span class="menu-title" data-i18n=""
+                            >Package Requests</span
                         ></a
                     >
                 </li>
@@ -41,7 +61,11 @@
 export default {
     data() {
         return {};
-    }
+    },
+    mounted() {
+        console.log(this.$route.path);
+    },
+    methods: {}
 };
 </script>
 

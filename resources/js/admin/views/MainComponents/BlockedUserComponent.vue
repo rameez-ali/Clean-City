@@ -94,7 +94,7 @@ export default {
             actions: [
                 {
                     class: "fa fa-eye",
-                    href: "#",
+                    href: "#/home/viewuser/",
                     text: "View"
                 },
                 {

@@ -16,8 +16,12 @@ import PackageComponent from "./views/MainComponents/Package/PackageComponent";
 import AddPackageComponent from "./views/MainComponents/Package/AddPackageComponent";
 import ViewPackageComponent from "./views/MainComponents/Package/ViewPackageComponent";
 import EditPackageComponent from "./views/MainComponents/Package/EditPackageComponent";
+//package request
 import PackageRequestComponent from "./views/MainComponents/PackageRequest/PackageRequestComponent";
-
+import ViewPackageRequest from "./views/MainComponents/PackageRequest/ViewPackageRequest";
+//service booking
+import ServiceBookingComponent from "./views/MainComponents/ServiceBooking/ServiceBookingComponent";
+import ViewServiceBookingComponent from "./views/MainComponents/ServiceBooking/ViewServiceBookingComponent";
 Vue.use(VueRouter);
 
 const routes = [
@@ -83,6 +87,19 @@ const routes = [
             {
                 path: "packageRequests",
                 component: PackageRequestComponent
+            },
+            {
+                path: "viewpackageRequests/:id",
+                component: ViewPackageRequest
+            },
+            //Service Booking
+            {
+                path: "servicebookings",
+                component: ServiceBookingComponent
+            },
+            {
+                path: "viewservicebookings/:id",
+                component: ViewServiceBookingComponent
             }
         ],
         beforeEnter: (to, from, next) => {

@@ -11,7 +11,7 @@
                                 >
                                     <div class="left">
                                         <h1 class="pull-left">
-                                            Package Requests
+                                            Service Bookings
                                         </h1>
                                     </div>
                                     <div class="right"></div>
@@ -67,15 +67,15 @@
                                     </thead>
                                     <tbody>
                                         <tr
-                                            v-for="data in packageRequests"
+                                            v-for="data in serviceBookings"
                                             :key="data.id"
                                         >
                                             <td>{{ data.id }}</td>
                                             <td>
-                                                {{ data.user.first_name }}
+                                                {{ data.first_name }}
                                             </td>
-                                            <td>{{ data.user.last_name }}</td>
-                                            <td>{{ data.user.email }}</td>
+                                            <td>{{ data.last_name }}</td>
+                                            <td>{{ data.email }}</td>
                                             <td>{{ data.created_at }}</td>
 
                                             <td>{{ data.status }}</td>
@@ -103,7 +103,7 @@
                                                         <a
                                                             class="dropdown-item"
                                                             :href="
-                                                                '#/home/viewpackageRequests/' +
+                                                                '#/home/viewservicebookings/' +
                                                                     data.id
                                                             "
                                                             ><i
@@ -131,59 +131,25 @@
 </template>
 
 <script>
-import TableComponent from "../../../components/App/TableComponent.vue";
-
 export default {
-    components: {
-        TableComponent
-    },
     data() {
         return {
             datefrom: "",
             dateto: "",
-            packageRequests: [],
-            thead: [
-                "Id",
-                "First Name",
-                "Last Added",
-                "Email",
-                "Date",
-                "Status",
-                "Action"
-            ],
-            actions: [
-                {
-                    class: "fa fa-eye",
-                    href: "#/home/viewpackage/",
-                    text: "View"
-                },
-                {
-                    class: "fa fa-ban",
-                    href: "#",
-                    text: "Active/Inactive"
-                },
-                {
-                    class: "fa fa-ticket",
-                    href: "#",
-                    text: "Edit"
-                }
-            ]
+            serviceBookings: []
         };
     },
-    created() {
-        this.getPackageRequests();
-    },
+    created() {},
     mounted() {
-        this.datepicker();
+        this.getServiceRequests();
     },
-
     methods: {
-        getPackageRequests() {
+        getServiceRequests() {
             axios
-                .get("/api/admin/getallPackageRequests")
+                .get("/api/admin/getallServiceRequests")
                 .then(res => {
-                    this.packageRequests = res.data.packageRequests;
-                    //console.dir(res.data.packageRequests);
+                    this.serviceBookings = res.data.services;
+                    //console.dir(res.data.services);
                 })
                 .catch(err => {
                     console.log(err.response);
