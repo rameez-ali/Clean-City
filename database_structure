@@ -22,7 +22,7 @@ Package_Request
 id, package_id, user_id, status, timestamps, selected_date, time_required, time_slot, recurrency, reason(nullable), payment_status
 
 Quote_Requests
-id, user_id, status, timestamps, selected_date, time_required, time_slot, area, recurrency, quote(nullable), reason(nullable) 
+id, user_id, service_id, status, timestamps, selected_date, time_required, time_slot, area, recurrency, quote(nullable), reason(nullable), first_name,last_name,email,phone,address
 
 Feedback
 id, user_id, subject, message, status

@@ -29,6 +29,8 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::group(['middleware' => ['auth:api'], 'namespace' => 'App\Http\Controllers\Admin'], function () {
 
+
+        //UserManagement
         Route::get('/verify', 'UserController@verify');
         Route::get('/userdata', 'UserController@userdata');
         Route::post('/editUser', 'UserController@update');
@@ -50,6 +52,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/addpackage', 'PackageController@store');
         Route::get('/package', 'PackageController@show');
         Route::put('/package', 'PackageController@update');
+        Route::post('/packagestatus', 'PackageController@packagestatus');
 
         //PackageRequests
         Route::get('/getallPackageRequests','PackageRequestController@index');
@@ -60,6 +63,20 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/getallServiceRequests','ServiceBookingController@index');
         Route::get('/ServiceRequests','ServiceBookingController@show');
         Route::post('/approveRejectService','ServiceBookingController@approveReject');
+
+        //PackageBookings
+        Route::get('/getallpackagebookings','PackageBookingController@index');
+        Route::get('/getpackagequote','PackageBookingController@show');
+        Route::post('/rejectQuote','PackageBookingController@reject');
+        Route::post('/generateQuote','PackageBookingController@generateQuote');
+
+        //Feedback
+        Route::get('/getallfeedbacks','FeedbackController@index');
+        Route::get('/getfeedback','FeedbackController@show');
+        Route::post('/deletefeedback','FeedbackController@destroy');
+
+
+
 
 
 

@@ -22,6 +22,12 @@ import ViewPackageRequest from "./views/MainComponents/PackageRequest/ViewPackag
 //service booking
 import ServiceBookingComponent from "./views/MainComponents/ServiceBooking/ServiceBookingComponent";
 import ViewServiceBookingComponent from "./views/MainComponents/ServiceBooking/ViewServiceBookingComponent";
+//Package Bookings
+import QuoteRequestComponent from "./views/MainComponents/PackageQuote/QuoteRequestComponent";
+import ViewQuoteRequestComponent from "./views/MainComponents/PackageQuote/ViewQuoteRequestComponent";
+//feedback
+import FeedbackComponent from "./views/MainComponents/Feedback/FeedbackComponent";
+import ViewFeedbackComponent from "./views/MainComponents/Feedback/ViewFeedbackComponent";
 Vue.use(VueRouter);
 
 const routes = [
@@ -100,6 +106,24 @@ const routes = [
             {
                 path: "viewservicebookings/:id",
                 component: ViewServiceBookingComponent
+            },
+            //Package Bookings
+            {
+                path: "packagebookings",
+                component: QuoteRequestComponent
+            },
+            {
+                path: "quoterequest/:id/:status",
+                component: ViewQuoteRequestComponent
+            },
+            //Feedback
+            {
+                path: "feedbacks",
+                component: FeedbackComponent
+            },
+            {
+                path: "viewfeedback/:id",
+                component: ViewFeedbackComponent
             }
         ],
         beforeEnter: (to, from, next) => {

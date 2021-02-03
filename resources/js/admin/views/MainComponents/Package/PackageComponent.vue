@@ -108,12 +108,14 @@ export default {
                 },
                 {
                     class: "fa fa-ticket",
-
+                    href: "#/home/editpackage/",
                     text: "Edit"
                 }
             ]
         };
     },
+    watch: {},
+    computed() {},
     mounted() {
         this.datepicker();
         this.getPackages();

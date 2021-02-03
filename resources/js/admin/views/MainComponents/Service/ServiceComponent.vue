@@ -106,7 +106,7 @@ export default {
                 },
                 {
                     class: "fa fa-ticket",
-                    href: "#",
+                    href: "#/home/editservice/",
                     text: "Edit"
                 }
             ]

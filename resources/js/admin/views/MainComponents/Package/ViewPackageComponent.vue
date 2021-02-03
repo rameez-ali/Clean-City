@@ -112,9 +112,24 @@
                                             placeholder="Abc"
                                             id=""
                                             class="form-control"
+                                            disabled
                                         />
                                     </div>
                                 </div>
+                                <button
+                                    v-if="packageData.status == 'inactive'"
+                                    class="button"
+                                    @click="activeInactive('active')"
+                                >
+                                    Active
+                                </button>
+                                <button
+                                    class="button"
+                                    v-if="packageData.status == 'active'"
+                                    @click="activeInactive('inactive')"
+                                >
+                                    Inactive
+                                </button>
                             </div>
                             <div class="row edit-btn">
                                 <div class="col-12"></div>
@@ -165,6 +180,20 @@ export default {
                 .catch(err => {
                     console.log(err.response);
                     this.$router.push("/home/package");
+                });
+        },
+        activeInactive(status) {
+            axios
+                .post("/api/admin/packagestatus", {
+                    id: this.id,
+                    status: status
+                })
+                .then(res => {
+                    alert(res.data.status);
+                    this.$router.push("/home/package");
+                })
+                .catch(err => {
+                    console.log(err.response);
                 });
         }
     }

@@ -11,28 +11,17 @@
                                 >
                                     <div class="left">
                                         <h1 class="pull-left">
-                                            Package Booking
+                                            Feedbacks
                                         </h1>
                                     </div>
                                     <div class="right">
-                                        <button
-                                            @click="
-                                                status = 'request';
-                                                getQuotes();
-                                            "
-                                            class="button"
+                                        <a href="admin#/home/addpackage"
+                                            ><i
+                                                class="fa fa-ban"
+                                                aria-hidden="true"
+                                            ></i>
+                                            Add Package</a
                                         >
-                                            Quote Requests
-                                        </button>
-                                        <button
-                                            @click="
-                                                status = 'response';
-                                                getQuotes();
-                                            "
-                                            class="button"
-                                        >
-                                            Quote Response
-                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -70,7 +59,6 @@
                                 </div>
                             </div>
                             <div class="row maain-tabble mt-2">
-                                <!-- Request Table -->
                                 <table
                                     class="table table-striped table-bordered zero-configuration"
                                 >
@@ -80,25 +68,20 @@
                                             <th>First Name</th>
                                             <th>Last Name</th>
                                             <th>Email</th>
+                                            <th>Subject</th>
                                             <th>Date</th>
-                                            <th>Status</th>
-                                            <th>Actions</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr
-                                            v-for="data in packageData"
-                                            :key="data.id"
-                                        >
-                                            <td>{{ data.id }}</td>
-                                            <td>
-                                                {{ data.first_name }}
-                                            </td>
-                                            <td>{{ data.last_name }}</td>
-                                            <td>{{ data.email }}</td>
-                                            <td>{{ data.created_at }}</td>
+                                        <tr v-for="a in feedbacks" :key="a.id">
+                                            <td>{{ a.id }}</td>
+                                            <td>{{ a.user.first_name }}</td>
+                                            <td>{{ a.user.last_name }}</td>
+                                            <td>{{ a.user.email }}</td>
+                                            <td>{{ a.subject }}</td>
 
-                                            <td>{{ data.status }}</td>
+                                            <td>{{ a.created_at }}</td>
 
                                             <td>
                                                 <div
@@ -122,12 +105,7 @@
                                                     >
                                                         <a
                                                             class="dropdown-item"
-                                                            :href="
-                                                                '#/home/quoterequest/' +
-                                                                    data.id +
-                                                                    '/' +
-                                                                    status
-                                                            "
+                                                            href="a-employee-profile.html"
                                                             ><i
                                                                 class="fa fa-eye"
                                                             ></i
@@ -139,9 +117,6 @@
                                         </tr>
                                     </tbody>
                                 </table>
-
-                                <!-- Response Table -->
-
                                 <!-- Modal -->
 
                                 <!--modal end here-->
@@ -160,14 +135,12 @@ export default {
         return {
             datefrom: "",
             dateto: "",
-            packageData: [{}],
-            status: "request"
+            feedbacks: {}
         };
     },
     mounted() {
-        // this.getQuotes();
+        this.getAllFeedbacks();
         this.datepicker();
-        this.getQuotes();
     },
     methods: {
         datepicker() {
@@ -188,16 +161,12 @@ export default {
                 //change date event goes here
             }
         },
-        getQuotes() {
+        getAllFeedbacks() {
             axios
-                .get("/api/admin/getallpackagebookings", {
-                    params: {
-                        status: this.status
-                    }
-                })
+                .get("/api/admin/getallfeedbacks")
                 .then(res => {
-                    //console.log(res.data.packages);
-                    this.packageData = res.data.packages;
+                    console.log(res.data.feedbacks);
+                    this.feedbacks = res.data.feedbacks;
                 })
                 .catch(err => {
                     console.log(err.response);

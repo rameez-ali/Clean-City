@@ -98,5 +98,16 @@ class PackageController extends Controller
     }
 
 
-   
+   public function packagestatus(Request $request)
+   {
+       $package=Package::find($request->id);
+       if($request->status=='inactive')
+       {
+           $package->status=$request->status;
+           return response()->json(["status"=>$package->save()],200);
+       }
+        $package->status=$request->status;
+        return response()->json(["status"=>$package->save()],200);
+
+   }
 }
