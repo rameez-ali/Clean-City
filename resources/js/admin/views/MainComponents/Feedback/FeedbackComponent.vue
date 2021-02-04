@@ -14,15 +14,6 @@
                                             Feedbacks
                                         </h1>
                                     </div>
-                                    <div class="right">
-                                        <a href="admin#/home/addpackage"
-                                            ><i
-                                                class="fa fa-ban"
-                                                aria-hidden="true"
-                                            ></i>
-                                            Add Package</a
-                                        >
-                                    </div>
                                 </div>
                             </div>
                             <div
@@ -153,19 +144,37 @@ export default {
             });
         },
         changeDate() {
-            if (
-                document.getElementById("select-date").value == "" ||
-                document.getElementById("select-date2").value == ""
-            ) {
-            } else {
-                //change date event goes here
-            }
+            setTimeout(() => {
+                if (
+                    document.getElementById("select-date").value == "" ||
+                    document.getElementById("select-date2").value == ""
+                ) {
+                } else {
+                    //console.log("event fired");
+                    axios
+                        .get("/api/admin/getfeedbackToFrom", {
+                            params: {
+                                from: document.getElementById("select-date")
+                                    .value,
+                                to: document.getElementById("select-date2")
+                                    .value
+                            }
+                        })
+                        .then(res => {
+                            this.feedbacks = res.data.feedbacks;
+                        })
+                        .catch(err => {
+                            console.log(err.status);
+                        });
+                    //axios request according to date
+                }
+            }, 100);
         },
         getAllFeedbacks() {
             axios
                 .get("/api/admin/getallfeedbacks")
                 .then(res => {
-                    console.log(res.data.feedbacks);
+                    //console.log(res.data.feedbacks);
                     this.feedbacks = res.data.feedbacks;
                 })
                 .catch(err => {

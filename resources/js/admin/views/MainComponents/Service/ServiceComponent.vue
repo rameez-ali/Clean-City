@@ -115,7 +115,9 @@ export default {
     created() {
         this.getServices();
     },
-    mounted() {},
+    mounted() {
+        this.datepicker();
+    },
     methods: {
         datepicker() {
             $("#select-date").datepicker({
@@ -128,27 +130,31 @@ export default {
         },
 
         changeDate() {
-            if (
-                document.getElementById("select-date").value == "" ||
-                document.getElementById("select-date2").value == ""
-            ) {
-            } else {
-                console.log("event fired");
-                axios
-                    .get("/api/admin/getalluserstofrom", {
-                        params: {
-                            from: document.getElementById("select-date").value,
-                            to: document.getElementById("select-date2").value
-                        }
-                    })
-                    .then(res => {
-                        this.users = res.data.users;
-                    })
-                    .catch(err => {
-                        console.log(err.status);
-                    });
-                //axios request according to date
-            }
+            setTimeout(() => {
+                if (
+                    document.getElementById("select-date").value == "" ||
+                    document.getElementById("select-date2").value == ""
+                ) {
+                } else {
+                    console.log("event fired");
+                    axios
+                        .get("/api/admin/servicetofrom", {
+                            params: {
+                                from: document.getElementById("select-date")
+                                    .value,
+                                to: document.getElementById("select-date2")
+                                    .value
+                            }
+                        })
+                        .then(res => {
+                            this.services = res.data.services;
+                        })
+                        .catch(err => {
+                            console.log(err.status);
+                        });
+                    //axios request according to date
+                }
+            }, 100);
         },
 
         getServices() {

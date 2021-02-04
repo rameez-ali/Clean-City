@@ -39,12 +39,15 @@ class UserController extends Controller
 
     public function indexToFrom(Request $request)
     {
-        $from = $request->from;
-        $to = $request->to;
+       
+        $from = explode("/", $request->from);
+        $to = explode("/", $request->to);
+        $from=$from[2]."-".$from[1]."-".$from[0];
+        $to=$to[2]."-".$to[1]."-".$to[0];
         
 
         $users=User::where('role_id','!=','1')->whereBetween('created_at', [$from, $to])->get();
-        error_log($users);
+       // error_log($users);
         return response()->json(["users"=>$users],200);
     }
 

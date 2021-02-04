@@ -28,6 +28,23 @@ class PackageBookingController extends Controller
 
     }
 
+    public function indexToFrom(Request $request)
+    {
+        $from = explode("/", $request->from);
+        $to = explode("/", $request->to);
+        $from=$from[2]."-".$from[1]."-".$from[0];
+        $to=$to[2]."-".$to[1]."-".$to[0];
+
+
+        if($request->status=='request')
+        {
+            $packageBookings=PackageBooking::with('user','service')->whereNull('quote')->whereBetween('created_at', [$from, $to])->get();
+            return \response()->json(["packages"=>$packageBookings],200);
+        }
+        $packageBookings=PackageBooking::with('user','service')->whereNotNull('quote')->whereBetween('created_at', [$from, $to])->get();
+        return \response()->json(["packages"=>$packageBookings],200);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

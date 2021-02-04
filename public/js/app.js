@@ -2135,8 +2135,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {};
   },
-  mounted: function mounted() {
-    console.log(this.$route);
+  mounted: function mounted() {//console.log(this.$route);
   },
   methods: {
     changeclass: function changeclass() {//if(this.$route.path=="/home/feedbacks")
@@ -2157,6 +2156,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
+//
+//
+//
 //
 //
 //
@@ -3185,15 +3187,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -3216,15 +3209,30 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     changeDate: function changeDate() {
-      if (document.getElementById("select-date").value == "" || document.getElementById("select-date2").value == "") {} else {//change date event goes here
-      }
-    },
-    getAllFeedbacks: function getAllFeedbacks() {
       var _this = this;
 
+      setTimeout(function () {
+        if (document.getElementById("select-date").value == "" || document.getElementById("select-date2").value == "") {} else {
+          //console.log("event fired");
+          axios.get("/api/admin/getfeedbackToFrom", {
+            params: {
+              from: document.getElementById("select-date").value,
+              to: document.getElementById("select-date2").value
+            }
+          }).then(function (res) {
+            _this.feedbacks = res.data.feedbacks;
+          })["catch"](function (err) {
+            console.log(err.status);
+          }); //axios request according to date
+        }
+      }, 100);
+    },
+    getAllFeedbacks: function getAllFeedbacks() {
+      var _this2 = this;
+
       axios.get("/api/admin/getallfeedbacks").then(function (res) {
-        console.log(res.data.feedbacks);
-        _this.feedbacks = res.data.feedbacks;
+        //console.log(res.data.feedbacks);
+        _this2.feedbacks = res.data.feedbacks;
       })["catch"](function (err) {
         console.log(err.response);
       });
@@ -3796,7 +3804,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   watch: {},
-  computed: function computed() {},
+  computed: {},
   mounted: function mounted() {
     this.datepicker();
     this.getPackages();
@@ -3811,14 +3819,30 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     changeDate: function changeDate() {
-      if (document.getElementById("select-date").value == "" || document.getElementById("select-date2").value == "") {} else {//change date event goes here
-      }
-    },
-    getPackages: function getPackages() {
       var _this = this;
 
+      setTimeout(function () {
+        if (document.getElementById("select-date").value == "" || document.getElementById("select-date2").value == "") {} else {
+          console.log("event fired");
+          axios.get("/api/admin/packageToFrom", {
+            params: {
+              from: document.getElementById("select-date").value,
+              to: document.getElementById("select-date2").value,
+              status: _this.status
+            }
+          }).then(function (res) {
+            _this.packages = res.data.packages;
+          })["catch"](function (err) {
+            console.log(err.status);
+          }); //axios request according to date
+        }
+      }, 100);
+    },
+    getPackages: function getPackages() {
+      var _this2 = this;
+
       axios.get("/api/admin/getallpackages", {}).then(function (res) {
-        _this.packages = res.data.packages;
+        _this2.packages = res.data.packages;
       })["catch"](function (err) {});
     },
     hello: function hello(id) {
@@ -4230,11 +4254,27 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     changeDate: function changeDate() {
-      if (document.getElementById("select-date").value == "" || document.getElementById("select-date2").value == "") {} else {//change date event goes here
-      }
+      var _this = this;
+
+      setTimeout(function () {
+        if (document.getElementById("select-date").value == "" || document.getElementById("select-date2").value == "") {} else {
+          console.log("event fired");
+          axios.get("/api/admin/getpackagequoteToFrom", {
+            params: {
+              from: document.getElementById("select-date").value,
+              to: document.getElementById("select-date2").value,
+              status: _this.status
+            }
+          }).then(function (res) {
+            _this.packageData = res.data.packages;
+          })["catch"](function (err) {
+            console.log(err.status);
+          }); //axios request according to date
+        }
+      }, 100);
     },
     getQuotes: function getQuotes() {
-      var _this = this;
+      var _this2 = this;
 
       axios.get("/api/admin/getallpackagebookings", {
         params: {
@@ -4242,7 +4282,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (res) {
         //console.log(res.data.packages);
-        _this.packageData = res.data.packages;
+        _this2.packageData = res.data.packages;
       })["catch"](function (err) {
         console.log(err.response);
       });
@@ -4589,8 +4629,23 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     changeDate: function changeDate() {
-      if (document.getElementById("select-date").value == "" || document.getElementById("select-date2").value == "") {} else {//change date event goes here
-      }
+      var _this2 = this;
+
+      setTimeout(function () {
+        if (document.getElementById("select-date").value == "" || document.getElementById("select-date2").value == "") {} else {
+          console.log("event fired");
+          axios.get("/api/admin/PackageRequeststofrom", {
+            params: {
+              from: document.getElementById("select-date").value,
+              to: document.getElementById("select-date2").value
+            }
+          }).then(function (res) {
+            _this2.packageRequests = res.data.packageRequests;
+          })["catch"](function (err) {
+            console.log(err.status);
+          }); //axios request according to date
+        }
+      }, 100);
     }
   }
 });
@@ -5454,7 +5509,9 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     this.getServices();
   },
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    this.datepicker();
+  },
   methods: {
     datepicker: function datepicker() {
       $("#select-date").datepicker({
@@ -5467,19 +5524,21 @@ __webpack_require__.r(__webpack_exports__);
     changeDate: function changeDate() {
       var _this = this;
 
-      if (document.getElementById("select-date").value == "" || document.getElementById("select-date2").value == "") {} else {
-        console.log("event fired");
-        axios.get("/api/admin/getalluserstofrom", {
-          params: {
-            from: document.getElementById("select-date").value,
-            to: document.getElementById("select-date2").value
-          }
-        }).then(function (res) {
-          _this.users = res.data.users;
-        })["catch"](function (err) {
-          console.log(err.status);
-        }); //axios request according to date
-      }
+      setTimeout(function () {
+        if (document.getElementById("select-date").value == "" || document.getElementById("select-date2").value == "") {} else {
+          console.log("event fired");
+          axios.get("/api/admin/servicetofrom", {
+            params: {
+              from: document.getElementById("select-date").value,
+              to: document.getElementById("select-date2").value
+            }
+          }).then(function (res) {
+            _this.services = res.data.services;
+          })["catch"](function (err) {
+            console.log(err.status);
+          }); //axios request according to date
+        }
+      }, 100);
     },
     getServices: function getServices() {
       var _this2 = this;
@@ -5811,6 +5870,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {},
   mounted: function mounted() {
     this.getServiceRequests();
+    this.datepicker();
   },
   methods: {
     getServiceRequests: function getServiceRequests() {
@@ -5831,8 +5891,23 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     changeDate: function changeDate() {
-      if (document.getElementById("select-date").value == "" || document.getElementById("select-date2").value == "") {} else {//change date event goes here
-      }
+      var _this2 = this;
+
+      setTimeout(function () {
+        if (document.getElementById("select-date").value == "" || document.getElementById("select-date2").value == "") {} else {
+          console.log("event fired");
+          axios.get("/api/admin/ServiceRequeststofrom", {
+            params: {
+              from: document.getElementById("select-date").value,
+              to: document.getElementById("select-date2").value
+            }
+          }).then(function (res) {
+            _this2.serviceBookings = res.data.services;
+          })["catch"](function (err) {
+            console.log(err.status);
+          }); //axios request according to date
+        }
+      }, 100);
     }
   }
 });
@@ -6207,12 +6282,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       datefrom: "",
       dateto: "",
+      dataTable: null,
       users: [],
       thead: ["id", "First Name", "Last Name", "Email", "Registration Date", "Actions"],
       actions: [{
@@ -6230,18 +6307,28 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   beforeCreate: function beforeCreate() {},
-  created: function created() {
-    this.getUsers();
-  },
+  created: function created() {},
   components: {
     TableComponent: _components_App_TableComponent_vue__WEBPACK_IMPORTED_MODULE_0__.default
   },
   mounted: function mounted() {
-    setTimeout(function () {
-      $(document).ready(function () {
-        $(".dataTables_filter input").attr("placeholder", "Search");
-      });
-    }, 2000);
+    $(document).ready(function () {
+      $(".dataTables_filter input").attr("placeholder", "Search");
+    });
+    this.getUsers(); // this.dataTable = $("#test-table").DataTable({});
+    // this.users.forEach(user => {
+    //     this.dataTable.row
+    //         .add([
+    //             user.id,
+    //             user.first_name,
+    //             user.last_name,
+    //             user.email,
+    //             user.last_name,
+    //             user.created_at
+    //         ])
+    //         .draw(true);
+    // });
+
     this.datepicker();
   },
   methods: {
@@ -6259,19 +6346,22 @@ __webpack_require__.r(__webpack_exports__);
     changeDate: function changeDate() {
       var _this = this;
 
-      if (document.getElementById("select-date").value == "" || document.getElementById("select-date2").value == "") {} else {
-        console.log("event fired");
-        axios.get("/api/admin/getalluserstofrom", {
-          params: {
-            from: document.getElementById("select-date").value,
-            to: document.getElementById("select-date2").value
-          }
-        }).then(function (res) {
-          _this.users = res.data.users;
-        })["catch"](function (err) {
-          console.log(err.status);
-        }); //axios request according to date
-      }
+      setTimeout(function () {
+        if (document.getElementById("select-date").value == "" || document.getElementById("select-date2").value == "") {} else {
+          //console.log("event fired");
+          axios.get("/api/admin/getalluserstofrom", {
+            params: {
+              from: document.getElementById("select-date").value,
+              to: document.getElementById("select-date2").value
+            }
+          }).then(function (res) {
+            //console.log(res.data.users);
+            _this.users = res.data.users;
+          })["catch"](function (err) {
+            console.log(err.status);
+          }); //axios request according to date
+        }
+      }, 100);
     },
     getUsers: function getUsers() {
       var _this2 = this;
@@ -46701,7 +46791,10 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "table",
-    { staticClass: "table table-striped table-bordered zero-configuration" },
+    {
+      staticClass: "table table-striped table-bordered zero-configuration",
+      attrs: { id: "test-table" }
+    },
     [
       _c("thead", [
         _c(
@@ -48228,16 +48321,6 @@ var staticRenderFns = [
               _vm._v(
                 "\n                                        Feedbacks\n                                    "
               )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "right" }, [
-            _c("a", { attrs: { href: "admin#/home/addpackage" } }, [
-              _c("i", {
-                staticClass: "fa fa-ban",
-                attrs: { "aria-hidden": "true" }
-              }),
-              _vm._v("\n                                        Add Package")
             ])
           ])
         ]

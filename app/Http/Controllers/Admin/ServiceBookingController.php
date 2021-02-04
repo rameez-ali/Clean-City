@@ -22,6 +22,20 @@ class ServiceBookingController extends Controller
         return \response()->json(["services"=>$serviceBooking],200);
     }
 
+
+    public function indextofrom(Request $request)
+    {
+
+        $from = explode("/", $request->from);
+        $to = explode("/", $request->to);
+        $from=$from[2]."-".$from[1]."-".$from[0];
+        $to=$to[2]."-".$to[1]."-".$to[0];
+
+
+        $serviceBooking= ServiceBooking::with('user','service')->whereBetween('created_at', [$from, $to])->get();
+        return \response()->json(["services"=>$serviceBooking],200);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

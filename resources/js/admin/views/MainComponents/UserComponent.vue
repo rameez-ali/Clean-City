@@ -56,6 +56,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="row maain-tabble mt-2">
                                 <table-component
                                     :tHead="thead"
@@ -174,6 +175,7 @@ export default {
         return {
             datefrom: "",
             dateto: "",
+            dataTable: null,
             users: [],
             thead: [
                 "id",
@@ -201,19 +203,31 @@ export default {
         };
     },
     beforeCreate() {},
-    created() {
-        this.getUsers();
-    },
+    created() {},
 
     components: {
         TableComponent
     },
     mounted() {
-        setTimeout(() => {
-            $(document).ready(() => {
-                $(".dataTables_filter input").attr("placeholder", "Search");
-            });
-        }, 2000);
+        $(document).ready(() => {
+            $(".dataTables_filter input").attr("placeholder", "Search");
+        });
+        this.getUsers();
+
+        // this.dataTable = $("#test-table").DataTable({});
+
+        // this.users.forEach(user => {
+        //     this.dataTable.row
+        //         .add([
+        //             user.id,
+        //             user.first_name,
+        //             user.last_name,
+        //             user.email,
+        //             user.last_name,
+        //             user.created_at
+        //         ])
+        //         .draw(true);
+        // });
 
         this.datepicker();
     },
@@ -233,27 +247,33 @@ export default {
         },
 
         changeDate() {
-            if (
-                document.getElementById("select-date").value == "" ||
-                document.getElementById("select-date2").value == ""
-            ) {
-            } else {
-                console.log("event fired");
-                axios
-                    .get("/api/admin/getalluserstofrom", {
-                        params: {
-                            from: document.getElementById("select-date").value,
-                            to: document.getElementById("select-date2").value
-                        }
-                    })
-                    .then(res => {
-                        this.users = res.data.users;
-                    })
-                    .catch(err => {
-                        console.log(err.status);
-                    });
-                //axios request according to date
-            }
+            setTimeout(() => {
+                if (
+                    document.getElementById("select-date").value == "" ||
+                    document.getElementById("select-date2").value == ""
+                ) {
+                } else {
+                    //console.log("event fired");
+
+                    axios
+                        .get("/api/admin/getalluserstofrom", {
+                            params: {
+                                from: document.getElementById("select-date")
+                                    .value,
+                                to: document.getElementById("select-date2")
+                                    .value
+                            }
+                        })
+                        .then(res => {
+                            //console.log(res.data.users);
+                            this.users = res.data.users;
+                        })
+                        .catch(err => {
+                            console.log(err.status);
+                        });
+                    //axios request according to date
+                }
+            }, 100);
         },
 
         getUsers() {

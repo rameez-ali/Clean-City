@@ -19,6 +19,20 @@ class FeedbackController extends Controller
         return response()->json(["feedbacks"=>Feedback::with('user')->get()],200);
     }
 
+
+    public function indexToFrom(Request $request)
+    {
+
+        $from = explode("/", $request->from);
+        $to = explode("/", $request->to);
+        $from=$from[2]."-".$from[1]."-".$from[0];
+        $to=$to[2]."-".$to[1]."-".$to[0];
+
+
+        return response()->json(["feedbacks"=>Feedback::with('user')->whereBetween('created_at', [$from, $to])->get()],200);
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *

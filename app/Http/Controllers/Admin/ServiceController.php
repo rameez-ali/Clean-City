@@ -22,6 +22,18 @@ class ServiceController extends Controller
         return response()->json(["services"=>$services],200);
     }
 
+    public function indexToFrom(Request $request)
+    {
+        $from = explode("/", $request->from);
+        $to = explode("/", $request->to);
+        $from=$from[2]."-".$from[1]."-".$from[0];
+        $to=$to[2]."-".$to[1]."-".$to[0];
+
+        $services=Service::select('id','name','created_at','status')->whereBetween('created_at', [$from, $to])->get();
+        return response()->json(["services"=>$services],200);
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *

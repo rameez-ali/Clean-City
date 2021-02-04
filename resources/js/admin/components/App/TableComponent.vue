@@ -1,5 +1,8 @@
 <template>
-    <table class="table table-striped table-bordered zero-configuration">
+    <table
+        class="table table-striped table-bordered zero-configuration"
+        id="test-table"
+    >
         <thead>
             <tr>
                 <th v-for="head in tHead" :key="head.id">{{ head }}</th>

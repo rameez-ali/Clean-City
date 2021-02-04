@@ -46,11 +46,13 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/service', 'ServiceController@show');
         Route::post('/addservice', 'ServiceController@store');
         Route::post('/updateService', 'ServiceController@update');
+        Route::get('/servicetofrom', 'ServiceController@indexToFrom');
 
         //Package
         Route::get('/getallpackages', 'PackageController@index');
         Route::post('/addpackage', 'PackageController@store');
         Route::get('/package', 'PackageController@show');
+        Route::get('/packageToFrom', 'PackageController@indexToFrom');
         Route::put('/package', 'PackageController@update');
         Route::post('/packagestatus', 'PackageController@packagestatus');
 
@@ -58,22 +60,28 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/getallPackageRequests','PackageRequestController@index');
         Route::get('/PackageRequests','PackageRequestController@show');
         Route::post('/approveRejectPackage','PackageRequestController@acceptOrReject');
+        Route::get('/PackageRequeststofrom','PackageRequestController@indexToFrom');
 
         //ServiceBooking
         Route::get('/getallServiceRequests','ServiceBookingController@index');
         Route::get('/ServiceRequests','ServiceBookingController@show');
         Route::post('/approveRejectService','ServiceBookingController@approveReject');
+        Route::get('/ServiceRequeststofrom','ServiceBookingController@indextofrom');
 
         //PackageBookings
         Route::get('/getallpackagebookings','PackageBookingController@index');
         Route::get('/getpackagequote','PackageBookingController@show');
         Route::post('/rejectQuote','PackageBookingController@reject');
         Route::post('/generateQuote','PackageBookingController@generateQuote');
+        Route::get('/getpackagequoteToFrom','PackageBookingController@indexToFrom');
+
 
         //Feedback
         Route::get('/getallfeedbacks','FeedbackController@index');
         Route::get('/getfeedback','FeedbackController@show');
         Route::post('/deletefeedback','FeedbackController@destroy');
+        Route::get('/getfeedbackToFrom','FeedbackController@indexToFrom');
+
 
 
 

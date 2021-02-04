@@ -142,6 +142,7 @@ export default {
     created() {},
     mounted() {
         this.getServiceRequests();
+        this.datepicker();
     },
     methods: {
         getServiceRequests() {
@@ -165,13 +166,31 @@ export default {
             });
         },
         changeDate() {
-            if (
-                document.getElementById("select-date").value == "" ||
-                document.getElementById("select-date2").value == ""
-            ) {
-            } else {
-                //change date event goes here
-            }
+            setTimeout(() => {
+                if (
+                    document.getElementById("select-date").value == "" ||
+                    document.getElementById("select-date2").value == ""
+                ) {
+                } else {
+                    console.log("event fired");
+                    axios
+                        .get("/api/admin/ServiceRequeststofrom", {
+                            params: {
+                                from: document.getElementById("select-date")
+                                    .value,
+                                to: document.getElementById("select-date2")
+                                    .value
+                            }
+                        })
+                        .then(res => {
+                            this.serviceBookings = res.data.services;
+                        })
+                        .catch(err => {
+                            console.log(err.status);
+                        });
+                    //axios request according to date
+                }
+            }, 100);
         }
     }
 };

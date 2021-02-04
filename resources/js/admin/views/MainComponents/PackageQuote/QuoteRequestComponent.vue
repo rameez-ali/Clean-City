@@ -180,13 +180,32 @@ export default {
             });
         },
         changeDate() {
-            if (
-                document.getElementById("select-date").value == "" ||
-                document.getElementById("select-date2").value == ""
-            ) {
-            } else {
-                //change date event goes here
-            }
+            setTimeout(() => {
+                if (
+                    document.getElementById("select-date").value == "" ||
+                    document.getElementById("select-date2").value == ""
+                ) {
+                } else {
+                    console.log("event fired");
+                    axios
+                        .get("/api/admin/getpackagequoteToFrom", {
+                            params: {
+                                from: document.getElementById("select-date")
+                                    .value,
+                                to: document.getElementById("select-date2")
+                                    .value,
+                                status: this.status
+                            }
+                        })
+                        .then(res => {
+                            this.packageData = res.data.packages;
+                        })
+                        .catch(err => {
+                            console.log(err.status);
+                        });
+                    //axios request according to date
+                }
+            }, 100);
         },
         getQuotes() {
             axios

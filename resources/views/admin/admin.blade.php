@@ -36,8 +36,8 @@
 
 
 <script src="app-assets/vendors/js/vendors.min.js" type="text/javascript"></script>
-<script src="app-assets/vendors/js/tables/datatable/datatables.min.js" type="text/javascript"></script>
-<script src="app-assets/js/scripts/tables/datatables/datatable-basic.js" type="text/javascript"></script>
+{{-- <script src="app-assets/vendors/js/tables/datatable/datatables.min.js" type="text/javascript"></script>
+<script src="app-assets/js/scripts/tables/datatables/datatable-basic.js" type="text/javascript"></script> --}}
 {{-- <script src="app-assets/vendors/js/charts/echarts/echarts.js" type="text/javascript"></script>
 <script src="app-assets/js/scripts/charts/echarts/bar-column/basic-column.js" type="text/javascript"></script> --}}
 <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>

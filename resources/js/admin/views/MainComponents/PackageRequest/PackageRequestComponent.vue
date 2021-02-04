@@ -199,13 +199,31 @@ export default {
             });
         },
         changeDate() {
-            if (
-                document.getElementById("select-date").value == "" ||
-                document.getElementById("select-date2").value == ""
-            ) {
-            } else {
-                //change date event goes here
-            }
+            setTimeout(() => {
+                if (
+                    document.getElementById("select-date").value == "" ||
+                    document.getElementById("select-date2").value == ""
+                ) {
+                } else {
+                    console.log("event fired");
+                    axios
+                        .get("/api/admin/PackageRequeststofrom", {
+                            params: {
+                                from: document.getElementById("select-date")
+                                    .value,
+                                to: document.getElementById("select-date2")
+                                    .value
+                            }
+                        })
+                        .then(res => {
+                            this.packageRequests = res.data.packageRequests;
+                        })
+                        .catch(err => {
+                            console.log(err.status);
+                        });
+                    //axios request according to date
+                }
+            }, 100);
         }
     }
 };
