@@ -3778,6 +3778,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -3785,6 +3820,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      searchText: "",
       datefrom: "",
       dateto: "",
       packages: [],
@@ -3841,7 +3877,11 @@ __webpack_require__.r(__webpack_exports__);
     getPackages: function getPackages() {
       var _this2 = this;
 
-      axios.get("/api/admin/getallpackages", {}).then(function (res) {
+      axios.get("/api/admin/getallpackages", {
+        params: {
+          search: this.searchText
+        }
+      }).then(function (res) {
         _this2.packages = res.data.packages;
       })["catch"](function (err) {});
     },
@@ -5480,6 +5520,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -5487,6 +5562,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      searchText: "",
       datefrom: "",
       dateto: "",
       services: [],
@@ -5543,7 +5619,11 @@ __webpack_require__.r(__webpack_exports__);
     getServices: function getServices() {
       var _this2 = this;
 
-      axios.get("/api/admin/getallservices", {}).then(function (res) {
+      axios.get("/api/admin/getallservices", {
+        params: {
+          search: this.searchText
+        }
+      }).then(function (res) {
         //console.log(res.data.users);
         _this2.services = res.data.services;
       })["catch"](function (err) {});
@@ -5859,9 +5939,58 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      searchText: "",
       datefrom: "",
       dateto: "",
       serviceBookings: []
@@ -5876,7 +6005,11 @@ __webpack_require__.r(__webpack_exports__);
     getServiceRequests: function getServiceRequests() {
       var _this = this;
 
-      axios.get("/api/admin/getallServiceRequests").then(function (res) {
+      axios.get("/api/admin/getallServiceRequests", {
+        params: {
+          search: this.searchText
+        }
+      }).then(function (res) {
         _this.serviceBookings = res.data.services; //console.dir(res.data.services);
       })["catch"](function (err) {
         console.log(err.response);
@@ -6283,10 +6416,46 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      searchText: "",
       datefrom: "",
       dateto: "",
       dataTable: null,
@@ -6352,7 +6521,8 @@ __webpack_require__.r(__webpack_exports__);
           axios.get("/api/admin/getalluserstofrom", {
             params: {
               from: document.getElementById("select-date").value,
-              to: document.getElementById("select-date2").value
+              to: document.getElementById("select-date2").value,
+              blocked: false
             }
           }).then(function (res) {
             //console.log(res.data.users);
@@ -6372,18 +6542,32 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (res) {
         //console.log(res.data.users);
-        _this2.users = res.data.users;
+        _this2.users = res.data.users.data;
       })["catch"](function (err) {});
+    },
+    blockUser: function blockUser(id) {
+      axios.post("api/admin/blockuser", {
+        id: id
+      }).then(function (res) {
+        console.log(res.data.status);
+      })["catch"](function (err) {
+        console.log(err.response);
+      });
+    },
+    searchme: function searchme() {
+      var _this3 = this;
+
+      axios.get("/api/admin/searchUser", {
+        params: {
+          search: this.searchText,
+          blocked: false
+        }
+      }).then(function (res) {
+        _this3.users = res.data.users;
+      })["catch"](function (err) {
+        console.log(err.response);
+      });
     }
-  },
-  blockUser: function blockUser(id) {
-    axios.post("api/admin/blockuser", {
-      id: id
-    }).then(function (res) {
-      console.log(res.data.status);
-    })["catch"](function (err) {
-      console.log(err.response);
-    });
   }
 });
 
@@ -49230,20 +49414,82 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "row maain-tabble mt-2" },
-                    [
-                      _c("table-component", {
-                        attrs: {
-                          tHead: _vm.thead,
-                          tRows: _vm.packages,
-                          actions: _vm.actions
-                        }
-                      })
-                    ],
-                    1
-                  )
+                  _c("div", { staticClass: "row maain-tabble mt-2" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "dataTables_wrapper container-fluid dt-bootstrap4 no-footer",
+                        attrs: { id: "DataTables_Table_0_wrapper" }
+                      },
+                      [
+                        _c("div", { staticClass: "row" }, [
+                          _vm._m(2),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-sm-12 col-md-6" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass: "dataTables_filter",
+                                attrs: { id: "DataTables_Table_0_filter" }
+                              },
+                              [
+                                _c("label", [
+                                  _vm._v("Search:"),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.searchText,
+                                        expression: "searchText"
+                                      }
+                                    ],
+                                    staticClass: "form-control form-control-sm",
+                                    attrs: {
+                                      spellcheck: "true",
+                                      type: "search",
+                                      placeholder: "Search",
+                                      "aria-controls": "DataTables_Table_0"
+                                    },
+                                    domProps: { value: _vm.searchText },
+                                    on: {
+                                      input: [
+                                        function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.searchText = $event.target.value
+                                        },
+                                        _vm.getPackages
+                                      ]
+                                    }
+                                  })
+                                ])
+                              ]
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row" }, [
+                          _c(
+                            "div",
+                            { staticClass: "col-sm-12" },
+                            [
+                              _c("table-component", {
+                                attrs: {
+                                  tHead: _vm.thead,
+                                  tRows: _vm.packages,
+                                  actions: _vm.actions
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ])
+                      ]
+                    )
+                  ])
                 ]
               )
             ])
@@ -49290,6 +49536,17 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-12" }, [
       _c("label", [_vm._v("Sort By:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-12 col-md-6" }, [
+      _c("div", {
+        staticClass: "dataTables_length",
+        attrs: { id: "DataTables_Table_0_length" }
+      })
     ])
   }
 ]
@@ -51680,20 +51937,82 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "row maain-tabble mt-2" },
-                    [
-                      _c("table-component", {
-                        attrs: {
-                          tHead: _vm.thead,
-                          tRows: _vm.services,
-                          actions: _vm.actions
-                        }
-                      })
-                    ],
-                    1
-                  )
+                  _c("div", { staticClass: "row maain-tabble mt-2" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "dataTables_wrapper container-fluid dt-bootstrap4 no-footer",
+                        attrs: { id: "DataTables_Table_0_wrapper" }
+                      },
+                      [
+                        _c("div", { staticClass: "row" }, [
+                          _vm._m(2),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-sm-12 col-md-6" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass: "dataTables_filter",
+                                attrs: { id: "DataTables_Table_0_filter" }
+                              },
+                              [
+                                _c("label", [
+                                  _vm._v("Search:"),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.searchText,
+                                        expression: "searchText"
+                                      }
+                                    ],
+                                    staticClass: "form-control form-control-sm",
+                                    attrs: {
+                                      spellcheck: "true",
+                                      type: "search",
+                                      placeholder: "Search",
+                                      "aria-controls": "DataTables_Table_0"
+                                    },
+                                    domProps: { value: _vm.searchText },
+                                    on: {
+                                      input: [
+                                        function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.searchText = $event.target.value
+                                        },
+                                        _vm.getServices
+                                      ]
+                                    }
+                                  })
+                                ])
+                              ]
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row" }, [
+                          _c(
+                            "div",
+                            { staticClass: "col-sm-12" },
+                            [
+                              _c("table-component", {
+                                attrs: {
+                                  tHead: _vm.thead,
+                                  tRows: _vm.services,
+                                  actions: _vm.actions
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ])
+                      ]
+                    )
+                  ])
                 ]
               )
             ])
@@ -51740,6 +52059,17 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-12" }, [
       _c("label", [_vm._v("Sort By:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-12 col-md-6" }, [
+      _c("div", {
+        staticClass: "dataTables_length",
+        attrs: { id: "DataTables_Table_0_length" }
+      })
     ])
   }
 ]
@@ -52130,86 +52460,178 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "row maain-tabble mt-2" }, [
                     _c(
-                      "table",
+                      "div",
                       {
                         staticClass:
-                          "table table-striped table-bordered zero-configuration"
+                          "dataTables_wrapper container-fluid dt-bootstrap4 no-footer",
+                        attrs: { id: "DataTables_Table_0_wrapper" }
                       },
                       [
-                        _vm._m(2),
-                        _vm._v(" "),
-                        _c(
-                          "tbody",
-                          _vm._l(_vm.serviceBookings, function(data) {
-                            return _c("tr", { key: data.id }, [
-                              _c("td", [_vm._v(_vm._s(data.id))]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _vm._v(
-                                  "\n                                            " +
-                                    _vm._s(data.first_name) +
-                                    "\n                                        "
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(data.last_name))]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(data.email))]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(data.created_at))]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(data.status))]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  { staticClass: "btn-group mr-1 mb-1 show" },
-                                  [
-                                    _vm._m(3, true),
-                                    _vm._v(" "),
-                                    _c(
-                                      "div",
+                        _c("div", { staticClass: "row" }, [
+                          _vm._m(2),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-sm-12 col-md-6" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass: "dataTables_filter",
+                                attrs: { id: "DataTables_Table_0_filter" }
+                              },
+                              [
+                                _c("label", [
+                                  _vm._v("Search:"),
+                                  _c("input", {
+                                    directives: [
                                       {
-                                        staticClass: "dropdown-menu",
-                                        staticStyle: {
-                                          position: "absolute",
-                                          transform:
-                                            "translate3d(4px, 23px, 0px)",
-                                          top: "0px",
-                                          left: "0px",
-                                          "will-change": "transform"
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.searchText,
+                                        expression: "searchText"
+                                      }
+                                    ],
+                                    staticClass: "form-control form-control-sm",
+                                    attrs: {
+                                      spellcheck: "true",
+                                      type: "search",
+                                      placeholder: "Search",
+                                      "aria-controls": "DataTables_Table_0"
+                                    },
+                                    domProps: { value: _vm.searchText },
+                                    on: {
+                                      input: [
+                                        function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.searchText = $event.target.value
                                         },
-                                        attrs: { "x-placement": "bottom-start" }
-                                      },
-                                      [
+                                        _vm.getServiceRequests
+                                      ]
+                                    }
+                                  })
+                                ])
+                              ]
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-sm-12" }, [
+                            _c(
+                              "table",
+                              {
+                                staticClass:
+                                  "table table-striped table-bordered zero-configuration"
+                              },
+                              [
+                                _vm._m(3),
+                                _vm._v(" "),
+                                _c(
+                                  "tbody",
+                                  _vm._l(_vm.serviceBookings, function(data) {
+                                    return _c("tr", { key: data.id }, [
+                                      _c("td", [_vm._v(_vm._s(data.id))]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          "\n                                                        " +
+                                            _vm._s(data.first_name) +
+                                            "\n                                                    "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          "\n                                                        " +
+                                            _vm._s(data.last_name) +
+                                            "\n                                                    "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          "\n                                                        " +
+                                            _vm._s(data.email) +
+                                            "\n                                                    "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          "\n                                                        " +
+                                            _vm._s(data.created_at) +
+                                            "\n                                                    "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          "\n                                                        " +
+                                            _vm._s(data.status) +
+                                            "\n                                                    "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
                                         _c(
-                                          "a",
+                                          "div",
                                           {
-                                            staticClass: "dropdown-item",
-                                            attrs: {
-                                              href:
-                                                "#/home/viewservicebookings/" +
-                                                data.id
-                                            }
+                                            staticClass:
+                                              "btn-group mr-1 mb-1 show"
                                           },
                                           [
-                                            _c("i", {
-                                              staticClass: "fa fa-eye"
-                                            }),
-                                            _vm._v(
-                                              "View\n                                                    "
+                                            _vm._m(4, true),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass: "dropdown-menu",
+                                                staticStyle: {
+                                                  position: "absolute",
+                                                  transform:
+                                                    "translate3d(4px, 23px, 0px)",
+                                                  top: "0px",
+                                                  left: "0px",
+                                                  "will-change": "transform"
+                                                },
+                                                attrs: {
+                                                  "x-placement": "bottom-start"
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "a",
+                                                  {
+                                                    staticClass:
+                                                      "dropdown-item",
+                                                    attrs: {
+                                                      href:
+                                                        "#/home/viewservicebookings/" +
+                                                        data.id
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("i", {
+                                                      staticClass: "fa fa-eye"
+                                                    }),
+                                                    _vm._v(
+                                                      "View\n                                                                "
+                                                    )
+                                                  ]
+                                                )
+                                              ]
                                             )
                                           ]
                                         )
-                                      ]
-                                    )
-                                  ]
+                                      ])
+                                    ])
+                                  }),
+                                  0
                                 )
-                              ])
-                            ])
-                          }),
-                          0
-                        )
+                              ]
+                            )
+                          ])
+                        ])
                       ]
                     )
                   ])
@@ -52251,6 +52673,17 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-12" }, [
       _c("label", [_vm._v("Sort By:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-12 col-md-6" }, [
+      _c("div", {
+        staticClass: "dataTables_length",
+        attrs: { id: "DataTables_Table_0_length" }
+      })
     ])
   },
   function() {
@@ -52677,22 +53110,84 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "row maain-tabble mt-2" },
-                    [
-                      _c("table-component", {
-                        attrs: {
-                          tHead: _vm.thead,
-                          tRows: _vm.users,
-                          actions: _vm.actions
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm._m(2)
-                    ],
-                    1
-                  )
+                  _c("div", { staticClass: "row maain-tabble mt-2" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "dataTables_wrapper container-fluid dt-bootstrap4 no-footer",
+                        attrs: { id: "DataTables_Table_0_wrapper" }
+                      },
+                      [
+                        _c("div", { staticClass: "row" }, [
+                          _vm._m(2),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-sm-12 col-md-6" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass: "dataTables_filter",
+                                attrs: { id: "DataTables_Table_0_filter" }
+                              },
+                              [
+                                _c("label", [
+                                  _vm._v("Search:"),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.searchText,
+                                        expression: "searchText"
+                                      }
+                                    ],
+                                    staticClass: "form-control form-control-sm",
+                                    attrs: {
+                                      spellcheck: "true",
+                                      type: "search",
+                                      placeholder: "Search",
+                                      "aria-controls": "DataTables_Table_0"
+                                    },
+                                    domProps: { value: _vm.searchText },
+                                    on: {
+                                      input: [
+                                        function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.searchText = $event.target.value
+                                        },
+                                        _vm.searchme
+                                      ]
+                                    }
+                                  })
+                                ])
+                              ]
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row" }, [
+                          _c(
+                            "div",
+                            { staticClass: "col-sm-12" },
+                            [
+                              _c("table-component", {
+                                attrs: {
+                                  tHead: _vm.thead,
+                                  tRows: _vm.users,
+                                  actions: _vm.actions
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _vm._m(3)
+                  ])
                 ]
               )
             ])
@@ -52735,6 +53230,17 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-12" }, [
       _c("label", [_vm._v("Sort By:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-12 col-md-6" }, [
+      _c("div", {
+        staticClass: "dataTables_length",
+        attrs: { id: "DataTables_Table_0_length" }
+      })
     ])
   },
   function() {

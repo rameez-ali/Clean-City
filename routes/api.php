@@ -37,6 +37,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/changepassword', 'UserController@changepassword');
         Route::post('/profilephoto', 'UserController@profilephoto');
         Route::get('/getallusers', 'UserController@index');
+        Route::get('/searchUser', 'UserController@searchUser');
         Route::get('/getalluserstofrom', 'UserController@indexToFrom');
         Route::post('/blockuser', 'UserController@blockuser');
         Route::get('/user', 'UserController@singleUser');

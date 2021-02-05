@@ -29,8 +29,8 @@ class PackageRequestController extends Controller
     {
         $from = explode("/", $request->from);
         $to = explode("/", $request->to);
-        $from=$from[2]."-".$from[1]."-".$from[0];
-        $to=$to[2]."-".$to[1]."-".$to[0];
+        $from=$from[2]."-".$from[0]."-".$from[1];
+        $to=$to[2]."-".$to[0]."-".$to[1];
 
         $packageRequest=PackageRequest::with(['user','package'])->whereBetween('created_at', [$from, $to])->get();
         return response()->json(["packageRequests"=>$packageRequest],200);

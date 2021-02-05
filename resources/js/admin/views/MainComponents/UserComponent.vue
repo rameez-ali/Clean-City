@@ -58,11 +58,46 @@
                             </div>
 
                             <div class="row maain-tabble mt-2">
-                                <table-component
-                                    :tHead="thead"
-                                    :tRows="users"
-                                    :actions="actions"
-                                />
+                                <div
+                                    id="DataTables_Table_0_wrapper"
+                                    class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer"
+                                >
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-6">
+                                            <div
+                                                class="dataTables_length"
+                                                id="DataTables_Table_0_length"
+                                            ></div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <div
+                                                id="DataTables_Table_0_filter"
+                                                class="dataTables_filter"
+                                            >
+                                                <label
+                                                    >Search:<input
+                                                        v-model="searchText"
+                                                        spellcheck="true"
+                                                        type="search"
+                                                        class="form-control form-control-sm"
+                                                        placeholder="Search"
+                                                        aria-controls="DataTables_Table_0"
+                                                        @input="searchme"
+                                                /></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table-component
+                                                :tHead="thead"
+                                                :tRows="users"
+                                                :actions="actions"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <!-- Modal -->
                                 <div class="login-fail-main user">
                                     <div class="featured inner">
@@ -173,6 +208,7 @@ import TableComponent from "../../components/App/TableComponent.vue";
 export default {
     data() {
         return {
+            searchText: "",
             datefrom: "",
             dateto: "",
             dataTable: null,
@@ -261,7 +297,8 @@ export default {
                                 from: document.getElementById("select-date")
                                     .value,
                                 to: document.getElementById("select-date2")
-                                    .value
+                                    .value,
+                                blocked: false
                             }
                         })
                         .then(res => {
@@ -285,23 +322,37 @@ export default {
                 })
                 .then(res => {
                     //console.log(res.data.users);
-                    this.users = res.data.users;
+                    this.users = res.data.users.data;
                 })
                 .catch(err => {});
+        },
+        blockUser(id) {
+            axios
+                .post("api/admin/blockuser", {
+                    id: id
+                })
+                .then(res => {
+                    console.log(res.data.status);
+                })
+                .catch(err => {
+                    console.log(err.response);
+                });
+        },
+        searchme() {
+            axios
+                .get("/api/admin/searchUser", {
+                    params: {
+                        search: this.searchText,
+                        blocked: false
+                    }
+                })
+                .then(res => {
+                    this.users = res.data.users;
+                })
+                .catch(err => {
+                    console.log(err.response);
+                });
         }
-    },
-
-    blockUser(id) {
-        axios
-            .post("api/admin/blockuser", {
-                id: id
-            })
-            .then(res => {
-                console.log(res.data.status);
-            })
-            .catch(err => {
-                console.log(err.response);
-            });
     }
 };
 </script>

@@ -25,8 +25,8 @@ class FeedbackController extends Controller
 
         $from = explode("/", $request->from);
         $to = explode("/", $request->to);
-        $from=$from[2]."-".$from[1]."-".$from[0];
-        $to=$to[2]."-".$to[1]."-".$to[0];
+        $from=$from[2]."-".$from[0]."-".$from[1];
+        $to=$to[2]."-".$to[0]."-".$to[1];
 
 
         return response()->json(["feedbacks"=>Feedback::with('user')->whereBetween('created_at', [$from, $to])->get()],200);

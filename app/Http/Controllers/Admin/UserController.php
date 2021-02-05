@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
-
+use Carbon\Carbon;
 
 
 class UserController extends Controller
@@ -30,7 +30,7 @@ class UserController extends Controller
         else
         {
             
-            $users=User::select('id','first_name','last_name','email','created_at')->where('role_id','!=','1')->where('status','=','active')->get();
+            $users=User::select('id','first_name','last_name','email','created_at')->where('role_id','!=','1')->where('status','=','active')->paginate(10);
 
 
         }
@@ -42,13 +42,25 @@ class UserController extends Controller
        
         $from = explode("/", $request->from);
         $to = explode("/", $request->to);
-        $from=$from[2]."-".$from[1]."-".$from[0];
-        $to=$to[2]."-".$to[1]."-".$to[0];
-        
+        $from=$from[2]."-".$from[0]."-".$from[1];
+        $to=$to[2]."-".$to[0]."-".$to[1];
+ 
+        $user="";
+       
+        if($request->blocked=='true')
+        {
+          
+            $users=User::select('id','first_name','last_name','email','created_at')->where('role_id','!=','1')->where('status','=','blocked')->whereBetween('created_at', [$from, $to])->get();
+        }
+        else
+        {
+            $users=User::select('id','first_name','last_name','email','created_at')->whereBetween('created_at', [new Carbon($from), new Carbon($to)])->where('role_id','!=','1')->where('status','=','active')->get();
+            error_log($users);  
 
-        $users=User::where('role_id','!=','1')->whereBetween('created_at', [$from, $to])->get();
-       // error_log($users);
+        }
         return response()->json(["users"=>$users],200);
+
+
     }
 
     /**
@@ -201,9 +213,26 @@ class UserController extends Controller
             $user->save();
             return response()->json(["status"=>"User Unblocked"],200);
     
-        
-      
        
-       
+    }
+
+
+    public function searchUser(Request $request)
+    {
+
+        if($request->blocked=='true')
+        {
+           
+            $users=User::select('id','first_name','last_name','email','created_at')->where('first_name','LIKE',"%$request->search%")->where('role_id','!=','1')->where('status','=','blocked')->get();
+        }
+        else
+        {
+            
+            $users=User::select('id','first_name','last_name','email','created_at')->where('first_name','LIKE',"%$request->search%")->where('role_id','!=','1')->where('status','=','active')->get();
+
+
+        }
+        return response()->json(["users"=>$users],200);
+
     }
 }

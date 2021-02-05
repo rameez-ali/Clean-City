@@ -16,9 +16,9 @@ class ServiceBookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $serviceBooking= ServiceBooking::with('user','service')->get();
+        $serviceBooking= ServiceBooking::with('user','service')->where('first_name','LIKE',"%$request->search%")->get();
         return \response()->json(["services"=>$serviceBooking],200);
     }
 
@@ -28,9 +28,8 @@ class ServiceBookingController extends Controller
 
         $from = explode("/", $request->from);
         $to = explode("/", $request->to);
-        $from=$from[2]."-".$from[1]."-".$from[0];
-        $to=$to[2]."-".$to[1]."-".$to[0];
-
+        $from=$from[2]."-".$from[0]."-".$from[1];
+        $to=$to[2]."-".$to[0]."-".$to[1];
 
         $serviceBooking= ServiceBooking::with('user','service')->whereBetween('created_at', [$from, $to])->get();
         return \response()->json(["services"=>$serviceBooking],200);

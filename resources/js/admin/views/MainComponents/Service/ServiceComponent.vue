@@ -59,11 +59,46 @@
                                 </div>
                             </div>
                             <div class="row maain-tabble mt-2">
-                                <table-component
-                                    :tHead="thead"
-                                    :tRows="services"
-                                    :actions="actions"
-                                />
+                                <div
+                                    id="DataTables_Table_0_wrapper"
+                                    class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer"
+                                >
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-6">
+                                            <div
+                                                class="dataTables_length"
+                                                id="DataTables_Table_0_length"
+                                            ></div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <div
+                                                id="DataTables_Table_0_filter"
+                                                class="dataTables_filter"
+                                            >
+                                                <label
+                                                    >Search:<input
+                                                        v-model="searchText"
+                                                        spellcheck="true"
+                                                        type="search"
+                                                        class="form-control form-control-sm"
+                                                        placeholder="Search"
+                                                        aria-controls="DataTables_Table_0"
+                                                        @input="getServices"
+                                                /></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table-component
+                                                :tHead="thead"
+                                                :tRows="services"
+                                                :actions="actions"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <!-- Modal -->
 
                                 <!--modal end here-->
@@ -83,6 +118,7 @@ export default {
     components: { TableComponent },
     data() {
         return {
+            searchText: "",
             datefrom: "",
             dateto: "",
             services: [],
@@ -159,7 +195,11 @@ export default {
 
         getServices() {
             axios
-                .get("/api/admin/getallservices", {})
+                .get("/api/admin/getallservices", {
+                    params: {
+                        search: this.searchText
+                    }
+                })
                 .then(res => {
                     //console.log(res.data.users);
                     this.services = res.data.services;

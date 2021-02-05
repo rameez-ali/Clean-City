@@ -16,9 +16,9 @@ class PackageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $packages=Package::select('id','name','created_at','status')->get();
+        $packages=Package::select('id','name','created_at','status')->where('name','LIKE',"%$request->search%")->get();
         return response()->json(["packages"=>$packages],200);
 
     }
@@ -29,8 +29,8 @@ class PackageController extends Controller
 
         $from = explode("/", $request->from);
         $to = explode("/", $request->to);
-        $from=$from[2]."-".$from[1]."-".$from[0];
-        $to=$to[2]."-".$to[1]."-".$to[0];
+        $from=$from[2]."-".$from[0]."-".$from[1];
+        $to=$to[2]."-".$to[0]."-".$to[1];
 
 
         $packages=Package::select('id','name','created_at','status')->whereBetween('created_at', [$from, $to])->get();
