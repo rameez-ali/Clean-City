@@ -52,6 +52,15 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'photo'=>'required',
+            'name'=>'required',
+            'description'=>'required',
+            'validity'=>'required',
+            
+        ]);
+
+
         $ext = $request->photo->extension();
         $photo = $request->photo->storeAs('images', Str::random(24) . ".{$ext}", 'public');
        
@@ -100,12 +109,22 @@ class ServiceController extends Controller
      */
     public function update(Request $request)
     {
+
+        $request->validate([
+            'photo'=>'required',
+            'name'=>'required',
+            'description'=>'required',
+            'validity'=>'required',
+            
+        ]);
+
+        
         $service=Service::find($request->id);
         $ext = $request->photo->extension();
         $photo = $request->photo->storeAs('images', Str::random(24) . ".{$ext}", 'public');
         $service->name=$request->name;
-        $service->name=$request->validity;
-        $service->name=$request->name;
+        $service->validity=$request->validity;
+        $service->description=$request->description;
         $service->image="storage/" . $photo;
         $service->save();
         return response()->json(["status"=>"Fields updated"],200);

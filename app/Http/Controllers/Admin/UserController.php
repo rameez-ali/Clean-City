@@ -39,6 +39,12 @@ class UserController extends Controller
 
     public function indexToFrom(Request $request)
     {
+
+        $request->validate([
+            'to'=>'required',
+            'from'=>'required',
+            
+        ]);
        
         $from = explode("/", $request->from);
         $to = explode("/", $request->to);
@@ -115,6 +121,13 @@ class UserController extends Controller
      */
     public function update(Request $request)
     {
+
+        $request->validate([
+            'first_name'=>'required',
+            'phone'=>'required',
+            'address'=>'required',
+            'price'=>'required'
+        ]);
         $user=User::find(Auth::user()->id);
         $user->first_name=$request->first_name;
         $user->phone=$request->phone;
@@ -136,6 +149,13 @@ class UserController extends Controller
 
     public function changepassword(Request $request)
     {
+
+        $request->validate([
+            'current_password'=>'required',
+            'new_password'=>'required',
+            'retype_password'=>'required',
+            
+        ]);
         $user=User::find(Auth::user()->id);
         if(Hash::check($request->current_password,$user->password))
         {
@@ -153,6 +173,11 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
+
+        $request->validate([
+            'email'=>'required',
+            'password'=>'required',
+            ]);
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             //$photo = Profile::where('user_id', Auth::user()->id)->first();
@@ -189,6 +214,10 @@ class UserController extends Controller
 
     public function profilephoto(Request $request)
     {
+        $request->validate([
+            'photo'=>'required',
+            
+        ]);
         $user = User::find(Auth::user()->id);
         //$profile = Profile::where('user_id', $request->user)->first();
         $ext = $request->photo->extension();

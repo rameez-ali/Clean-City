@@ -6,6 +6,10 @@ use App\Models\ServiceBooking;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
+// use App\Mail\ServiceApproved;
+use App\Notifications\ServiceApproved;
+use Illuminate\Support\Facades\Mail;
+
 
 
 
@@ -25,6 +29,13 @@ class ServiceBookingController extends Controller
 
     public function indextofrom(Request $request)
     {
+
+        $request->validate([
+            'to'=>'required',
+            'from'=>'required',
+            
+        ]);
+
 
         $from = explode("/", $request->from);
         $to = explode("/", $request->to);
@@ -110,6 +121,7 @@ class ServiceBookingController extends Controller
             $serviceBooking->status=$request->status;
             $serviceBooking->quote=$request->quote;
             $serviceBooking->reason=null;
+            Mail::to('batman123@mailinator.com')->send(new ServiceApproved($serviceBooking));
 
             return response()->json(["status"=>$serviceBooking->save()],200);
 
@@ -119,6 +131,8 @@ class ServiceBookingController extends Controller
         $serviceBooking->quote=null;
         $serviceBooking->status=$request->status;
         $serviceBooking->reason=$request->reason;
+        //Mail::to($request->user()->email)->send(new ServiceApproved($serviceBooking));
+        $request->user()->notify(new ServiceApproved($serviceBooking));
         return response()->json(["status"=>$serviceBooking->save()],200);
 
         

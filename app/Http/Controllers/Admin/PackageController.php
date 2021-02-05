@@ -33,6 +33,12 @@ class PackageController extends Controller
         $to=$to[2]."-".$to[0]."-".$to[1];
 
 
+        $request->validate([
+            'from'=>'required',
+            'to'=>'required',
+        ]);
+
+
         $packages=Package::select('id','name','created_at','status')->whereBetween('created_at', [$from, $to])->get();
         return response()->json(["packages"=>$packages],200);
     }
@@ -55,6 +61,12 @@ class PackageController extends Controller
      */
     public function store(Request $request, Package $package)
     {
+        $request->validate([
+            'name'=>'required',
+            'description'=>'required',
+            'recurrency'=>'required',
+            'price'=>'required'
+        ]);
         
         return response()->json(["status"=>$package->fill($request->only($package->getFillable()))->save()],200);
         
@@ -91,6 +103,14 @@ class PackageController extends Controller
      */
     public function update(Request $request)
     {
+        $request->validate([
+            'name'=>'required',
+            'description'=>'required',
+            'recurrency'=>'required',
+            'price'=>'required'
+        ]);
+
+
         $package= Package::find($request->id);
         $package->name=$request->name;
         $package->description=$request->description;
@@ -114,6 +134,10 @@ class PackageController extends Controller
 
    public function packagestatus(Request $request)
    {
+    $request->validate([
+        'status'=>'required',
+       
+    ]);
        $package=Package::find($request->id);
        if($request->status=='inactive')
        {

@@ -67,7 +67,7 @@
                 <li
                     class="nav-item"
                     :class="{
-                        active: this.$route.path == '/home/packageRequests  '
+                        active: this.$route.path == '/home/packageRequests'
                     }"
                 >
                     <a href="admin#/home/packageRequests"

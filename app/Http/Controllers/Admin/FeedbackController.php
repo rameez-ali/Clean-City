@@ -23,6 +23,11 @@ class FeedbackController extends Controller
     public function indexToFrom(Request $request)
     {
 
+        $request->validate([
+            'to'=>'required',
+            'from'=>'required',
+        ]);
+
         $from = explode("/", $request->from);
         $to = explode("/", $request->to);
         $from=$from[2]."-".$from[0]."-".$from[1];

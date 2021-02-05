@@ -76,6 +76,12 @@
                                                         id=""
                                                         class="form-control"
                                                     />
+                                                    <span
+                                                        v-if="error.recurrency"
+                                                        >{{
+                                                            error.recurrency[0]
+                                                        }}</span
+                                                    >
                                                 </div>
                                             </div>
                                         </form>
@@ -101,6 +107,7 @@
 export default {
     data() {
         return {
+            error: [{}],
             name: "",
             description: "",
             price: "",
@@ -120,7 +127,8 @@ export default {
                     if (res.data.status == 1) alert("Successfully Added");
                 })
                 .catch(err => {
-                    console.log(err.response);
+                    this.error = err.response.data.errors;
+                    console.log(err.response.data.errors.recurrency[0]);
                 });
         }
     }

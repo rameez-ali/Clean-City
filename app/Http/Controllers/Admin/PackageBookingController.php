@@ -30,6 +30,12 @@ class PackageBookingController extends Controller
 
     public function indexToFrom(Request $request)
     {
+
+        $request->validate([
+            'to'=>'required',
+            'from'=>'required',
+            
+        ]);
         $from = explode("/", $request->from);
         $to = explode("/", $request->to);
         $from=$from[2]."-".$from[0]."-".$from[1];
@@ -114,6 +120,12 @@ class PackageBookingController extends Controller
 
     public function reject(Request $request)
     {
+
+        $request->validate([
+            'reason'=>'required',
+            
+        ]);
+
         $package=PackageBooking::find($request->id);
         $package->status="rejected";
         $package->reason=$request->reason;
@@ -125,6 +137,12 @@ class PackageBookingController extends Controller
 
     public function generateQuote(Request $request)
     {
+        $request->validate([
+            'quote'=>'required',
+            'date'=>'required',
+            'time'=>'required',
+            
+        ]);
         $package=PackageBooking::find($request->id);
         $package->quote=$request->quote;
         $package->status="approved";

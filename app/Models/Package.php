@@ -14,7 +14,7 @@ class Package extends Model
         'name',
         'description',
         'recurrency',
-        'staus',
+        'status',
         'price'
     ];
 

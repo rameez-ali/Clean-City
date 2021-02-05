@@ -3469,9 +3469,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      error: [{}],
       name: "",
       description: "",
       price: "",
@@ -3480,6 +3487,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     addPackage: function addPackage() {
+      var _this = this;
+
       axios.post("api/admin/addpackage", {
         name: this.name,
         description: this.description,
@@ -3488,7 +3497,8 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (res) {
         if (res.data.status == 1) alert("Successfully Added");
       })["catch"](function (err) {
-        console.log(err.response);
+        _this.error = err.response.data.errors;
+        console.log(err.response.data.errors.recurrency[0]);
       });
     }
   }
@@ -46839,7 +46849,7 @@ var render = function() {
               {
                 staticClass: "nav-item",
                 class: {
-                  active: this.$route.path == "/home/packageRequests  "
+                  active: this.$route.path == "/home/packageRequests"
                 }
               },
               [_vm._m(4)]
@@ -48934,7 +48944,13 @@ var render = function() {
                                         _vm.recurrency = $event.target.value
                                       }
                                     }
-                                  })
+                                  }),
+                                  _vm._v(" "),
+                                  _vm.error.recurrency
+                                    ? _c("span", [
+                                        _vm._v(_vm._s(_vm.error.recurrency[0]))
+                                      ])
+                                    : _vm._e()
                                 ]
                               )
                             ])
