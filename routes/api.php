@@ -27,6 +27,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('/login', 'App\Http\Controllers\Admin\UserController@login')->name('login');
     Route::post('/login', 'App\Http\Controllers\Admin\UserController@login')->name('login');
 
+
     Route::group(['middleware' => ['auth:api'], 'namespace' => 'App\Http\Controllers\Admin'], function () {
 
 
@@ -83,21 +84,15 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/deletefeedback','FeedbackController@destroy');
         Route::get('/getfeedbackToFrom','FeedbackController@indexToFrom');
 
+        //Notifications
+        Route::get('/getunreadnotifications','NotificationController@adminNotification');
+        Route::post('/markAsRead','NotificationController@markAsRead');
 
 
 
-
-
-
-
-
-        
-
-
-
-
-        
 
 
     });
+
+
 });

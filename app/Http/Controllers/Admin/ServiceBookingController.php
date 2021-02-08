@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\ServiceBooking;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
-// use App\Mail\ServiceApproved;
+ use App\Mail\ServiceApproved as ServiceApprovedMail ;
 use App\Notifications\ServiceApproved;
 use Illuminate\Support\Facades\Mail;
+
 
 
 
@@ -116,6 +118,7 @@ class ServiceBookingController extends Controller
     public function approveReject(Request $request)
     {
         $serviceBooking=ServiceBooking::find($request->id);
+        $user=User::find($serviceBooking->user_id);
         if($request->status=='approve')
         {
             $serviceBooking->status=$request->status;
@@ -127,13 +130,17 @@ class ServiceBookingController extends Controller
 
 
         }
+       // error_log($serviceBooking->user_id);
 
         $serviceBooking->quote=null;
         $serviceBooking->status=$request->status;
         $serviceBooking->reason=$request->reason;
-        //Mail::to($request->user()->email)->send(new ServiceApproved($serviceBooking));
+       
+        Mail::to($serviceBooking->email)->send(new ServiceApprovedMail($serviceBooking));
+        $user->notify(new ServiceApproved($serviceBooking));
         $request->user()->notify(new ServiceApproved($serviceBooking));
         return response()->json(["status"=>$serviceBooking->save()],200);
+        //\Notification::send($request);
 
         
 

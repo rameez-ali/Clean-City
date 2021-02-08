@@ -67,6 +67,7 @@ class ServiceApproved extends Notification
             'id'=>$this->data->id,
             'status'=>$this->data->status,
             'url'=>"route/notification/".$this->data->id,
+            
         ];
     }
 }

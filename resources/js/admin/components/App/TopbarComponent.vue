@@ -52,38 +52,17 @@
                                     class="scrollable-container media-list ps-container ps-theme-dark ps-active-y"
                                     data-ps-id="cbae8718-1b84-97ac-6bfa-47d792d8ad89"
                                 >
-                                    <a href="javascript:void(0)">
+                                    <a
+                                        v-for="data in NotificationData"
+                                        :key="data.id"
+                                        @click="markAsRead(data.id)"
+                                    >
                                         <div class="media">
                                             <div class="media-body">
                                                 <p
                                                     class="notification-text font-small-3 text-muted"
                                                 >
-                                                    Lorem ipsum dolor sit amet,
-                                                    consectetuer elit.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="javascript:void(0)">
-                                        <div class="media">
-                                            <div class="media-body">
-                                                <p
-                                                    class="notification-text font-small-3 text-muted"
-                                                >
-                                                    Aliquam tincidunt mauris eu
-                                                    risus.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="javascript:void(0)">
-                                        <div class="media">
-                                            <div class="media-body">
-                                                <p
-                                                    class="notification-text font-small-3 text-muted"
-                                                >
-                                                    Vestibulum auctor dapibus
-                                                    neque.
+                                                    {{ data.data.status }}
                                                 </p>
                                             </div>
                                         </div>
@@ -180,8 +159,12 @@ export default {
     data() {
         return {
             NavbarMenu: false,
-            Notification: false
+            Notification: false,
+            NotificationData: []
         };
+    },
+    mounted() {
+        this.getNotifications();
     },
     methods: {
         NavbarMenuChange() {
@@ -194,6 +177,32 @@ export default {
         logout() {
             localStorage.removeItem("token");
             this.$router.push("/");
+        },
+
+        getNotifications() {
+            axios
+                .get("/api/admin/getunreadnotifications")
+                .then(res => {
+                    //console.log(res.data.notifications);
+                    this.NotificationData = res.data.notifications;
+                })
+                .catch(err => {
+                    console.log(err.response.data);
+                });
+        },
+
+        markAsRead(id) {
+            axios
+                .post("/api/admin/markAsRead", {
+                    id: id
+                })
+                .then(res => {
+                    //console.log(res.data.status);
+                    this.getNotifications();
+                })
+                .catch(err => {
+                    console.log(err.response);
+                });
         }
     }
 };
