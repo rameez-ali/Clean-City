@@ -67,6 +67,22 @@
                                             </div>
                                         </div>
                                     </a>
+
+                                    <!-- <a
+                                        v-for="data in NotificationData.message"
+                                        :key="data"
+                                        @click="markAsRead()"
+                                    >
+                                        <div class="media">
+                                            <div class="media-body">
+                                                <p
+                                                    class="notification-text font-small-3 text-muted"
+                                                >
+                                                    {{ data }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a> -->
                                 </li>
                                 <li class="dropdown-menu-footer">
                                     <a
@@ -164,7 +180,9 @@ export default {
         };
     },
     mounted() {
-        this.getNotifications();
+        window.Echo.channel("test").listen(".newMessage", message => {
+            this.getNotifications();
+        });
     },
     methods: {
         NavbarMenuChange() {

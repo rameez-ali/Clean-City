@@ -18,11 +18,7 @@ import SidebarComponent from "../components/App/SidebarComponent.vue";
 import TopbarComponent from "../components/App/TopbarComponent.vue";
 export default {
     components: { SidebarComponent, TopbarComponent },
-    mounted() {
-        window.Echo.channel("Channel").listen(".Hello", e => {
-            console.log(e);
-        });
-    },
+    mounted() {},
 
     created() {}
 };

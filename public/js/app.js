@@ -2385,6 +2385,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2394,7 +2410,11 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    this.getNotifications();
+    var _this = this;
+
+    window.Echo.channel("test").listen(".newMessage", function (message) {
+      _this.getNotifications();
+    });
   },
   methods: {
     NavbarMenuChange: function NavbarMenuChange() {
@@ -2408,23 +2428,23 @@ __webpack_require__.r(__webpack_exports__);
       this.$router.push("/");
     },
     getNotifications: function getNotifications() {
-      var _this = this;
+      var _this2 = this;
 
       axios.get("/api/admin/getunreadnotifications").then(function (res) {
         //console.log(res.data.notifications);
-        _this.NotificationData = res.data.notifications;
+        _this2.NotificationData = res.data.notifications;
       })["catch"](function (err) {
         console.log(err.response.data);
       });
     },
     markAsRead: function markAsRead(id) {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.post("/api/admin/markAsRead", {
         id: id
       }).then(function (res) {
         //console.log(res.data.status);
-        _this2.getNotifications();
+        _this3.getNotifications();
       })["catch"](function (err) {
         console.log(err.response);
       });
@@ -2886,11 +2906,7 @@ __webpack_require__.r(__webpack_exports__);
     SidebarComponent: _components_App_SidebarComponent_vue__WEBPACK_IMPORTED_MODULE_0__.default,
     TopbarComponent: _components_App_TopbarComponent_vue__WEBPACK_IMPORTED_MODULE_1__.default
   },
-  mounted: function mounted() {
-    window.Echo.channel("Channel").listen(".Hello", function (e) {
-      console.log(e);
-    });
-  },
+  mounted: function mounted() {},
   created: function created() {}
 });
 
@@ -7026,7 +7042,12 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__.default({
   wsHost: "localhost",
   wsPort: 6001,
   forceTLS: false,
-  disableStats: false
+  disableStats: false // auth: {
+  //     headers: {
+  //         Authorization: "Bearer " + localStorage.getItem("token")
+  //     }
+  // }
+
 });
 
 /***/ }),

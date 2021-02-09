@@ -14,6 +14,8 @@ class Hello implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+   // public $message;
+
     /**
      * Create a new event instance.
      *
@@ -21,23 +23,31 @@ class Hello implements ShouldBroadcast
      */
     public function __construct()
     {
-        //
+       // $this->message=$message;
+     //  \array_push($this->message,"New");
+
     }
 
     public function broadcastWith()
     {
-       return [
-        "hello"=>"there"
-       ];
+        return [
+            
+            'message'=>"New Notification",
+        ];
+    }
+
+    public function broadcastAs()
+    {
+        return 'newMessage';
     }
 
     /**
      * Get the channels the event should broadcast on.
-     *
+     *  
      * @return \Illuminate\Broadcasting\Channel|array
      */
     public function broadcastOn()
     {
-        return new Channel('Channel');
+        return new Channel('test');
     }
 }

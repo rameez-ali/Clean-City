@@ -49,4 +49,9 @@ window.Echo = new Echo({
     wsPort: 6001,
     forceTLS: false,
     disableStats: false
+    // auth: {
+    //     headers: {
+    //         Authorization: "Bearer " + localStorage.getItem("token")
+    //     }
+    // }
 });
