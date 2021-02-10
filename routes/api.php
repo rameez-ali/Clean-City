@@ -30,6 +30,8 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::group(['middleware' => ['auth:api'], 'namespace' => 'App\Http\Controllers\Admin'], function () {
 
+        //FCM
+        Route::post('/storeFCM', 'UserController@storeFCM');
 
         //UserManagement
         Route::get('/verify', 'UserController@verify');

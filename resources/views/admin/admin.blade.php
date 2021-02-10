@@ -24,6 +24,44 @@
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
   <!-- END Custom CSS-->
+
+
+
+  {{-- <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
+<script src='https://www.gstatic.com/firebasejs/8.2.5/firebase-messaging.js'></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyCzoHgPfuY-tHj0Y4mSuSUxIrPmjI1ZlQ4",
+    authDomain: "test-8aab5.firebaseapp.com",
+    projectId: "test-8aab5",
+    storageBucket: "test-8aab5.appspot.com",
+    messagingSenderId: "772462251047",
+    appId: "1:772462251047:web:7bfe57d7c8902472359202",
+    measurementId: "G-GS7BD7QQZH"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
+
+   
+
+
+</script> --}}
+
+{{-- <link rel="manifest" href="{{request()->root()}}/manifest.json"> --}}
+
+
+
+
 </head>
 <body class="vertical-layout vertical-menu 2-columns menu-expanded fixed-navbar" data-open="click" data-menu="vertical-menu" data-col="2-columns">
     <div id="app">
@@ -32,6 +70,7 @@
   </div>
   <script src="{{asset('js/app.js')}}">
   </script>
+  
 
 
 

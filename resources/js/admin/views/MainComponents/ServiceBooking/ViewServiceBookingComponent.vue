@@ -163,7 +163,7 @@ export default {
                 })
                 .then(res => {
                     if (res.data.status) {
-                        alert(res.data.status);
+                        //alert(res.data.status);
                         this.$router.push("/home/servicebookings");
                     }
                 })

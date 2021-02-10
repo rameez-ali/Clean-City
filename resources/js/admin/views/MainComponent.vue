@@ -18,7 +18,12 @@ import SidebarComponent from "../components/App/SidebarComponent.vue";
 import TopbarComponent from "../components/App/TopbarComponent.vue";
 export default {
     components: { SidebarComponent, TopbarComponent },
-    mounted() {},
+    mounted() {
+        Vue.prototype.$messaging.onMessage(payload => {
+            console.log("Message received. ", payload);
+            // ...
+        });
+    },
 
     created() {}
 };

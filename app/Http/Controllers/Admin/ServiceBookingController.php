@@ -11,9 +11,7 @@ use App\Mail\ServiceApproved as ServiceApprovedMail ;
 use App\Notifications\ServiceApproved;
 use Illuminate\Support\Facades\Mail;
 use App\Events\Hello;
-
-
-
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -126,7 +124,9 @@ class ServiceBookingController extends Controller
             $serviceBooking->status=$request->status;
             $serviceBooking->quote=$request->quote;
             $serviceBooking->reason=null;
-            Mail::to($serviceBooking->email)->send(new ServiceApprovedMail($serviceBooking));
+          //  Mail::to($serviceBooking->email)->send(new ServiceApprovedMail($serviceBooking));
+          \Notification::route('mail', $serviceBooking->email)->notify(new ServiceApproved($serviceBooking));
+
             $user->notify(new ServiceApproved($serviceBooking));
             broadcast(new Hello());
             return response()->json(["status"=>$serviceBooking->save()],200);
@@ -140,11 +140,18 @@ class ServiceBookingController extends Controller
         $serviceBooking->status=$request->status;
         $serviceBooking->reason=$request->reason;
        
-        Mail::to($serviceBooking->email)->send(new ServiceApprovedMail($serviceBooking));
+        //Mail::to($serviceBooking->email)->send(new ServiceApprovedMail($serviceBooking));
+
+
+        \Notification::route('mail', $serviceBooking->email)->notify(new ServiceApproved($serviceBooking));
+        
+
         $user->notify(new ServiceApproved($serviceBooking));
-        $request->user()->notify(new ServiceApproved($serviceBooking));
+        //$request->user()->notify(new ServiceApproved($serviceBooking));
         broadcast(new Hello());
-        return response()->json(["status"=>$serviceBooking->save()],200);
+        $test= new NotificationController();
+        $test->sendToDesktop(Auth::user(),"Testing notification");
+        return response()->json(["status"=>$serviceBooking->save()."--",$test ],200);
         //\Notification::send($request);
 
         

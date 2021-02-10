@@ -27,6 +27,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "firebase": "^8.2.6",
         "vee-validate": "^3.4.5",
         "vue-router": "^3.5.1"
     }

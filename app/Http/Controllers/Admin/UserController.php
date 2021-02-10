@@ -264,4 +264,12 @@ class UserController extends Controller
         return response()->json(["users"=>$users],200);
 
     }
+
+
+    public function storeFCM(Request $request)
+    {
+        $user=User::find($request->user()->id);
+        $user->FCM_token=$request->fcm;
+        return \response()->json(["status"=>$user->save()],200);
+    }
 }
