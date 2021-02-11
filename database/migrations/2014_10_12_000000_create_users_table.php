@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->bigInteger('role_id')->default(2);
             $table->string('status');
+            $table->string('FCM_token');
             $table->rememberToken();
             $table->timestamps();
         });
