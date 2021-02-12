@@ -20,7 +20,7 @@ class CreatePackagesTable extends Migration
             $table->string('status')->default('active');
             $table->string('price');
             $table->string('recurrency');
-            $table->string('image')->nullable;
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

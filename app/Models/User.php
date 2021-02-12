@@ -8,7 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Role;
 use App\Models\PackageRequest;
-
+use App\Models\PackageBooking;
+use App\Models\ServiceBooking;
 
 
 
@@ -55,20 +56,20 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
-    // public function profile()
-    // {
-    //     return $this->hasOne(Profile::class)->withDefault();
-    // }
     public function isAdmin()
     {
 
         return strtolower($this->role->id) == 1;
     }
 
+    public function services()
+    {
+        return $this->hasMany(ServiceBooking::class);
+    }
 
-    // public function packagerequest()
-    // {
-    //     return $this->hasMany(PackageRequest::class);
-    // }
+    public function packages()
+    {
+        return $this->hasMany(PackageRequest::class);
+    }
     
 }

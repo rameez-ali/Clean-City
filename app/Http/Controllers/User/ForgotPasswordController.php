@@ -41,12 +41,37 @@ class ForgotPasswordController extends Controller
         ])->first();
         if($user)
         {
-            $user->remember_token="";
+            $user->remember_token=Hash::make($user->remember_token);
             $user->save();
-            return \response()->json(["status"=>"verified"],200);
+            return \response()->json(["status"=>"verified", "token"=>$user->remember_token],200);
         }
         return \response()->json(["status"=>"UnVerified"],403);
+       
+    }
 
+    public function updatePassword(Request $request)
+    {
+
+        $validation =$request->validate([
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'password' => ['required', 'string', 'min:8'],
+            'token' => 'required',
+         ]);
+
+         $user=User::where([
+            ["email",'=',$request->email],
+            ["remember_token",'=',$request->token],
+        ])->first();
+
+        if($user)
+        {
+            $user->password=Hash::make($request->password);
+            $user->remember_token="";
+            $user->save();
+            return \response()->json(["status"=>"Password has been Updated"],200);
+
+        }
+        return \response()->json(["status"=>"Email doesn't exist"],403);
 
        
     }

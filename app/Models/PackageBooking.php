@@ -11,6 +11,8 @@ class PackageBooking extends Model
 {
     use HasFactory;
 
+    
+
 
 
     public function user(){

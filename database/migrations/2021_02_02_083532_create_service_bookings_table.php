@@ -21,7 +21,8 @@ class CreateServiceBookingsTable extends Migration
             $table->string('selected_date');
             $table->string('time_required');
             $table->string('time_slot');
-            $table->string('quote');
+            $table->string('quote')->nullable();
+            $table->string('recurrency');
             $table->string('reason')->nullable();
             $table->string('first_name');
             $table->string('last_name');

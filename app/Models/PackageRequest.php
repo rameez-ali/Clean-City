@@ -12,6 +12,21 @@ class PackageRequest extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+            'package_id',
+            'selected_date',
+            'time_required',
+            'time_slot',
+            'recurrency',
+            'first_name',
+            'last_name',
+            'email',
+            'phone',
+            'address',
+
+    ];
+
 
     public function user(){
         return $this->belongsTo(User::class);
@@ -20,8 +35,5 @@ class PackageRequest extends Model
     public function package(){
         return $this->belongsTo(Package::class);
     }
-
-
-
 
 }

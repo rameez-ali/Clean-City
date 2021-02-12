@@ -17,14 +17,18 @@ class CreatePackageRequestsTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('package_id');
-            $table->string('status');
+            $table->string('status')->default("pending");
             $table->string('selected_date');
             $table->string('time_required');
             $table->string('time_slot');
             $table->string('recurrency');
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('email');
+            $table->string('phone');
+            $table->string('address');
             $table->string('reason')->nullable();
             $table->string('payment_status')->default("unpaid");
-
             $table->timestamps();
         });
     }

@@ -100,14 +100,40 @@ Route::group(['prefix' => 'admin'], function () {
 
 
 Route::group(['prefix' => 'user'], function () {
-    //Auth::routes();
+
+    //Authenticaton
     Route::post('/signup','App\Http\Controllers\User\UserController@signup');
     Route::post('/login','App\Http\Controllers\User\UserController@login');
     Route::post('/forgotPassword','App\Http\Controllers\User\ForgotPasswordController@forgotPassword');
     Route::post('/verifyCode','App\Http\Controllers\User\ForgotPasswordController@verifyCode');
+    Route::post('/updatePassword','App\Http\Controllers\User\ForgotPasswordController@updatePassword');
+    
+    //General
+    Route::post('/contactUs','App\Http\Controllers\User\GeneralController@contactUs');
+
+
+    //Services
+    Route::get('/services','App\Http\Controllers\User\ServiceController@allServices');
+
     
 
     Route::group(['middleware' => ['auth:api'], 'namespace' => 'App\Http\Controllers\User'], function () {
+
+        //User
+        Route::get('/userInfo','UserController@index');
+        Route::post('/updateProfile','UserController@editUser');
+        Route::post('/changePassowrd','UserController@changePassword');
+
+
+        //Service
+        Route::get('/myservices','ServiceController@index');
+        Route::get('/myserviceDetail','ServiceController@serviceBookingDetail');
+        Route::post('/bookservice','ServiceController@bookservice');
+        
+        //Package
+        Route::get('/mypackages','PackageController@index');
+        Route::get('/mypackageDetail','PackageController@packageBookingDetail');
+        Route::post('/bookpackage','PackageController@bookPackage');
 
       
 
