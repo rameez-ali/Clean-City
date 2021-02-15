@@ -18,6 +18,10 @@ Route::get('/admin', function () {
     return view('admin.admin');
 });
 
+Route::get('/', function () {
+    return response()->json("home");;
+});
+
 //Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

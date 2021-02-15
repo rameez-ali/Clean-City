@@ -180,9 +180,9 @@ export default {
         };
     },
     mounted() {
-        window.Echo.channel("test").listen(".newMessage", message => {
-            this.getNotifications();
-        });
+        // window.Echo.channel("test").listen(".newMessage", message => {
+        //     this.getNotifications();
+        // });
     },
     methods: {
         NavbarMenuChange() {

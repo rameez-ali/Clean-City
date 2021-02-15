@@ -20,6 +20,7 @@ try {
  */
 
 window.axios = require("axios");
+axios.defaults.baseURL = "http://localhost/cleancity/";
 
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
@@ -42,16 +43,16 @@ window.Pusher = require("pusher-js");
 //     disbaleStats: true
 // });
 
-window.Echo = new Echo({
-    broadcaster: "pusher",
-    key: "local",
-    wsHost: "localhost",
-    wsPort: 6001,
-    forceTLS: false,
-    disableStats: false
-    // auth: {
-    //     headers: {
-    //         Authorization: "Bearer " + localStorage.getItem("token")
-    //     }
-    // }
-});
+// window.Echo = new Echo({
+//     broadcaster: "pusher",
+//     key: "local",
+//     wsHost: "localhost",
+//     wsPort: 6001,
+//     forceTLS: false,
+//     disableStats: false
+//     // auth: {
+//     //     headers: {
+//     //         Authorization: "Bearer " + localStorage.getItem("token")
+//     //     }
+//     // }
+// });
