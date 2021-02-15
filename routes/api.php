@@ -101,6 +101,9 @@ Route::group(['prefix' => 'admin'], function () {
 
 Route::group(['prefix' => 'user'], function () {
 
+
+    
+
     //Authenticaton
     Route::post('/signup','App\Http\Controllers\User\UserController@signup');
     Route::post('/login','App\Http\Controllers\User\UserController@login');
@@ -110,6 +113,9 @@ Route::group(['prefix' => 'user'], function () {
     
     //General
     Route::post('/contactUs','App\Http\Controllers\User\GeneralController@contactUs');
+    Route::get('/faqs','App\Http\Controllers\User\GeneralController@faqs');
+    Route::get('/home','App\Http\Controllers\User\GeneralController@home');
+    
 
 
     //Services
@@ -146,6 +152,10 @@ Route::group(['prefix' => 'user'], function () {
         Route::get('/ownpackageDetail','PackageBookingController@getOwnPackageBookingDetail');
         Route::post('/approvequote','PackageBookingController@approve');
         Route::post('/rejectquote','PackageBookingController@reject');
+
+
+        //Notificaiton
+        Route::get('/notifications','NotificationController@index');
 
       
 
