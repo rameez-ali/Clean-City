@@ -129,11 +129,23 @@ Route::group(['prefix' => 'user'], function () {
         Route::get('/myservices','ServiceController@index');
         Route::get('/myserviceDetail','ServiceController@serviceBookingDetail');
         Route::post('/bookservice','ServiceController@bookservice');
+        Route::post('/rejectservice','ServiceController@reject');
+        Route::post('/cancelservice','ServiceController@cancel');
+
         
         //Package
         Route::get('/mypackages','PackageController@index');
         Route::get('/mypackageDetail','PackageController@packageBookingDetail');
         Route::post('/bookpackage','PackageController@bookPackage');
+        Route::post('/resubpackage','PackageController@resubPackage');
+        Route::post('/cancelpackage','PackageController@cancelPackage');
+
+
+        //Own Package Booking
+        Route::post('/bookownPackage','PackageBookingController@book');
+        Route::get('/ownpackageDetail','PackageBookingController@getOwnPackageBookingDetail');
+        Route::post('/approvequote','PackageBookingController@approve');
+        Route::post('/rejectquote','PackageBookingController@reject');
 
       
 

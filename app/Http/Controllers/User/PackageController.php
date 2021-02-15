@@ -74,6 +74,46 @@ class PackageController extends Controller
     }
 
 
+    public function cancelPackage(Request $request)
+    {
+        error_log($request->id);
+
+        $package=PackageRequest::whereId($request->id)->whereUser_id(auth()->user()->id)->first();
+        $package->status="canceled";
+        return response()->json(["status"=>$package->save(),"message"=>"Subscription has been canceled"]);
+    }
+
+
+    public function resubPackage(Request $request)
+    {
+        $validation =$request->validate([
+            'id'=>['required'],
+            'selected_date'=>['required'],
+            'time_slot'=>['required'],
+            'recurrency'=>['required'],
+            
+         ]);
+
+         $oldPackage=PackageRequest::whereId($request->id)->whereUser_id(auth()->user()->id)->first();
+        
+        $packageBooking= new PackageRequest([
+            'user_id'=>auth()->user()->id,
+            'package_id'=>$oldPackage->package_id,
+            'selected_date'=>$request->selected_date,
+            'time_required'=>$oldPackage->time_required,
+            'time_slot'=>$request->time_slot,
+            'recurrency'=>$request->recurrency,
+            'first_name'=>$oldPackage->first_name,
+            'last_name'=>$oldPackage->last_name,
+            'email'=>$oldPackage->email,
+            'phone'=>$oldPackage->phone,
+            'address'=>$oldPackage->address,
+        ]);
+
+        return response()->json($packageBooking->save());
+    }
+
+
 
 }
 

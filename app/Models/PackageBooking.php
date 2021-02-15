@@ -10,6 +10,19 @@ use App\Models\User;
 class PackageBooking extends Model
 {
     use HasFactory;
+    protected $fillable=['user_id',
+        'service_id',
+        'selected_date',
+        'time_slot',
+        'time_required',
+        'area',
+        'recurrency',
+        'first_name',
+        'last_name',
+        'phone',
+        'address',
+        'email'
+    ];
 
     
 

@@ -100,4 +100,21 @@ class ServiceController extends Controller
 
     }
 
+    public function reject(Request $request)
+    {
+        $serviceBooking=ServiceBooking::whereId($request->id)->whereUser_id(auth()->user()->id)->first();
+        $serviceBooking->status="rejected by customer";
+        $serviceBooking->reason=$request->reason;
+        return \response()->json(["status"=>$serviceBooking->save(),"message"=>"service has been rejected"]);
+    }
+
+
+    public function cancel(Request $request)
+    {
+        $serviceBooking=ServiceBooking::whereId($request->id)->whereUser_id(auth()->user()->id)->first();
+        $serviceBooking->status="canceled by customer";
+        $serviceBooking->reason="canceled by customer";
+        return \response()->json(["status"=>$serviceBooking->save(),"message"=>"service has been canceled"]);
+    }
+
 }
