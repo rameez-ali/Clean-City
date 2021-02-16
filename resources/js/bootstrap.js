@@ -20,7 +20,7 @@ try {
  */
 
 window.axios = require("axios");
-axios.defaults.baseURL = "http://localhost/cleancity/";
+axios.defaults.baseURL = "http://dev71.onlinetestingserver.com/Clean-City-LLC";
 
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
