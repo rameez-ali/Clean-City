@@ -19,10 +19,10 @@ import TopbarComponent from "../components/App/TopbarComponent.vue";
 export default {
     components: { SidebarComponent, TopbarComponent },
     mounted() {
-        Vue.prototype.$messaging.onMessage(payload => {
-            console.log("Message received. ", payload);
-            // ...
-        });
+        // Vue.prototype.$messaging.onMessage(payload => {
+        //     console.log("Message received. ", payload);
+        //     // ...
+        // });
     },
 
     created() {}
