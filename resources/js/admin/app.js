@@ -10,73 +10,73 @@ window.Vue = require("vue").default;
 
 import VueRouter from "./router";
 
-import firebase from "firebase";
-import messaging from "firebase/messaging";
-// Your web app's Firebase configuration
-var firebaseConfig = {
-    databaseURL: "https://test-8aab5-default-rtdb.firebaseio.com/",
-    apiKey: "AIzaSyCzoHgPfuY-tHj0Y4mSuSUxIrPmjI1ZlQ4",
-    authDomain: "test-8aab5.firebaseapp.com",
-    projectId: "test-8aab5",
-    storageBucket: "test-8aab5.appspot.com",
-    messagingSenderId: "772462251047",
-    appId: "1:772462251047:web:7bfe57d7c8902472359202",
-    measurementId: "G-GS7BD7QQZH"
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-Vue.prototype.$messaging = firebase.messaging();
-//
+// import firebase from "firebase";
+// import messaging from "firebase/messaging";
+// // Your web app's Firebase configuration
+// var firebaseConfig = {
+//     databaseURL: "https://test-8aab5-default-rtdb.firebaseio.com/",
+//     apiKey: "AIzaSyCzoHgPfuY-tHj0Y4mSuSUxIrPmjI1ZlQ4",
+//     authDomain: "test-8aab5.firebaseapp.com",
+//     projectId: "test-8aab5",
+//     storageBucket: "test-8aab5.appspot.com",
+//     messagingSenderId: "772462251047",
+//     appId: "1:772462251047:web:7bfe57d7c8902472359202",
+//     measurementId: "G-GS7BD7QQZH"
+// };
+// // Initialize Firebase
+// firebase.initializeApp(firebaseConfig);
+// Vue.prototype.$messaging = firebase.messaging();
+// //
 
-Vue.prototype.$messaging
-    .getToken({
-        vapidKey:
-            "BCgOZ-7JxGkksM8vFNgmJ9Fkohw9oB1_tbnQYZTqufyzrT65sx3cYBTYr8oYsOEGcF0bLuKI7dpgl02YHAllmrI"
-    })
-    .then(currentToken => {
-        if (currentToken) {
-            // Send the token to your server and update the UI if necessary
-            // ...
-            // console.log(currentToken);
-            if (localStorage.getItem("FCM") != "1")
-                axios
-                    .post("/api/admin/storeFCM", {
-                        fcm: currentToken
-                    })
-                    .then(res => {
-                        console.log(res.data.status);
-                        localStorage.setItem("FCM", "1");
-                    })
-                    .catch(err => {
-                        console.log(err.response);
-                        localStorage.setItem("FCM", "0");
-                    });
-        } else {
-            // Show permission request UI
-            console.log(
-                "No registration token available. Request permission to generate one."
-            );
-            localStorage.setItem("FCM", "0");
+// Vue.prototype.$messaging
+//     .getToken({
+//         vapidKey:
+//             "BCgOZ-7JxGkksM8vFNgmJ9Fkohw9oB1_tbnQYZTqufyzrT65sx3cYBTYr8oYsOEGcF0bLuKI7dpgl02YHAllmrI"
+//     })
+//     .then(currentToken => {
+//         if (currentToken) {
+//             // Send the token to your server and update the UI if necessary
+//             // ...
+//             // console.log(currentToken);
+//             if (localStorage.getItem("FCM") != "1")
+//                 axios
+//                     .post("/api/admin/storeFCM", {
+//                         fcm: currentToken
+//                     })
+//                     .then(res => {
+//                         console.log(res.data.status);
+//                         localStorage.setItem("FCM", "1");
+//                     })
+//                     .catch(err => {
+//                         console.log(err.response);
+//                         localStorage.setItem("FCM", "0");
+//                     });
+//         } else {
+//             // Show permission request UI
+//             console.log(
+//                 "No registration token available. Request permission to generate one."
+//             );
+//             localStorage.setItem("FCM", "0");
 
-            // ...
-        }
-    })
-    .catch(err => {
-        console.log("An error occurred while retrieving token. ", err);
-        localStorage.setItem("FCM", "0");
+//             // ...
+//         }
+//     })
+//     .catch(err => {
+//         console.log("An error occurred while retrieving token. ", err);
+//         localStorage.setItem("FCM", "0");
 
-        // ...
-    });
+//         // ...
+//     });
 
-// PrismJS
-navigator.serviceWorker
-    .register("/firebase-messaging-sw.js")
-    .then(registration => {
-        Vue.prototype.$messaging.useServiceWorker(registration);
-    })
-    .catch(err => {
-        console.log(err);
-    });
+// // PrismJS
+// navigator.serviceWorker
+//     .register("/firebase-messaging-sw.js")
+//     .then(registration => {
+//         Vue.prototype.$messaging.useServiceWorker(registration);
+//     })
+//     .catch(err => {
+//         console.log(err);
+//     });
 
 // window.Echo = new Echo({
 //     broadcaster: "pusher",
