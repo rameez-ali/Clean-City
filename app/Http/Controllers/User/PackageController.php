@@ -27,21 +27,39 @@ class PackageController extends Controller
 
     }
 
+
+    public function packageDetail(Request $request)
+    {
+        $package=Package::find($request->id);
+        if($package)
+        {
+            return \response()->json(["Package"=>$package]);
+        }
+        return \response()->json(["message"=>"Package doesn't exist"],404);
+        
+
+    }
+
     public function bookPackage(Request $request)
     {
+      
 
         $validation =$request->validate([
             'package_id'=>['required'],
             'selected_date'=>['required'],
             'time_required'=>['required'],
             'time_slot'=>['required'],
-            'recurrency'=>['required'],
             'first_name'=>['required'],
             'last_name'=>['required'],
             'email'=>['required'],
             'phone'=>['required'],
             'address'=>['required'],
          ]);
+
+         if($request->recurrency=="")
+         {
+             $request->recurrency="none";
+         }
         
         $packageBooking= new PackageRequest([
             'user_id'=>auth()->user()->id,
@@ -111,6 +129,12 @@ class PackageController extends Controller
         ]);
 
         return response()->json($packageBooking->save());
+    }
+
+
+    public function allPackages(Request $request)
+    {
+        return response()->json(["packages"=>Package::all()]);
     }
 
 

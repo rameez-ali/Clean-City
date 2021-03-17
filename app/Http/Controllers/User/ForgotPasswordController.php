@@ -29,7 +29,7 @@ class ForgotPasswordController extends Controller
              });
             return \response()->json(["mail sent"],200);
         }
-        return \response()->json(["user not registered"],200);
+        return \response()->json(["user not registered"],404);
 
     }
 

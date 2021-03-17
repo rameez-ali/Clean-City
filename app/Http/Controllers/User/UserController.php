@@ -70,14 +70,23 @@ class UserController extends Controller
             'password' => ['required', 'string', 'min:8'],
          ]);
 
-            $user= new User([
-                "first_name"=>$request->first_name,
-                "last_name"=>$request->last_name,
-                "address"=>$request->address,
-                "phone"=>$request->phone,
-                "email"=>$request->email,
-                "password"=>Hash::make($request->password),
-            ]);
+        $user= new User([
+            "first_name"=>$request->first_name,
+            "last_name"=>$request->last_name,
+            "address"=>$request->address,
+            "phone"=>$request->phone,
+            "email"=>$request->email,
+            "password"=>Hash::make($request->password),
+        ]);
+        
+        if($request->image)
+        {
+            $ext = $request->image->extension();
+            $photo = $request->image->storeAs('images', Str::random(24) . ".{$ext}", 'public');
+            $user->image = "storage/" . $photo;
+        }
+
+
             return \response()->json(["status"=>$user->save(),"user"=>$user],200);
     }
 
@@ -129,7 +138,7 @@ class UserController extends Controller
     
 
 
-
+    
 
 
 

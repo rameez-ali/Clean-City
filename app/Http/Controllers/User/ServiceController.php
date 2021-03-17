@@ -25,6 +25,19 @@ class ServiceController extends Controller
     }
 
 
+    public function serviceDetail(Request $request)
+    {
+        $service=Service::find($request->id);
+        if($service)
+        {
+            return \response()->json(["Service"=>$service]);
+        }
+        return \response()->json(["message"=>"Service doesn't exist"],404);
+        
+
+    }
+
+
 
     public function index(Request $request)
     {

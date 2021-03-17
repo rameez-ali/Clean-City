@@ -120,6 +120,11 @@ Route::group(['prefix' => 'user'], function () {
 
     //Services
     Route::get('/services','App\Http\Controllers\User\ServiceController@allServices');
+    Route::get('/serviceDetail','App\Http\Controllers\User\ServiceController@serviceDetail');
+
+    //Packages
+    Route::get('/packages','App\Http\Controllers\User\PackageController@allPackages');
+    Route::get('/packageDetail','App\Http\Controllers\User\PackageController@packageDetail');
 
     
 
