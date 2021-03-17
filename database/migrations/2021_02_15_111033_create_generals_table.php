@@ -16,6 +16,7 @@ class CreateGeneralsTable extends Migration
         Schema::create('generals', function (Blueprint $table) {
             $table->id();
             $table->string("banner");
+            $table->string("image");
             $table->timestamps();
         });
     }

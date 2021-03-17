@@ -18,9 +18,15 @@ use Illuminate\Support\Facades\Mail;
 class ServiceController extends Controller
 {
 
-    public function allServices()
+    public function allServices(Request $request)
     {
+        if($request->name!="")
+        {
+            return \response()->json(["services"=>Service::select('id','name','description','validity','image','status','created_at','updated_at')->where('name','LIKE',"%$request->name%")->get()]);
+
+        }
         return \response()->json(["services"=>Service::all()]);
+
 
     }
 
