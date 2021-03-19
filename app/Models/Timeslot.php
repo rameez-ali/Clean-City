@@ -16,6 +16,6 @@ class Timeslot extends Model
 
     public function timeslotBooking()
     {
-        return $this->hasMany(TimeslotBooking::class,);
+        return $this->hasMany(TimeslotBooking::class);
     }
 }
