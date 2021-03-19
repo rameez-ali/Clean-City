@@ -12,6 +12,7 @@ use App\Models\PackageRequest;
 use App\Models\Package;
 use Illuminate\Support\Facades\Validator; 
 use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon;
 
 
 class PackageController extends Controller
@@ -37,6 +38,8 @@ class PackageController extends Controller
         }
         return \response()->json(["message"=>"Package doesn't exist"],404);
         
+
+
 
     }
 
@@ -135,6 +138,14 @@ class PackageController extends Controller
     public function allPackages(Request $request)
     {
         return response()->json(["packages"=>Package::with('packageservice.service.timeslot')->get()]);
+    }
+
+
+    public function availableSlots()
+    {
+        $current_date= Carbon::now();
+        $service_duration=60;
+        return $current_date;
     }
 
 
