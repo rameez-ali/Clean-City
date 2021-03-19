@@ -13,7 +13,9 @@ class Service extends Model
         'name',
         'description',
         'image',
-        'validity'
+        'validity',
+        'time_required',
+        'amount'
     ];
 
 

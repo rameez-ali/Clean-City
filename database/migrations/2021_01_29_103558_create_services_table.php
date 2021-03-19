@@ -19,6 +19,7 @@ class CreateServicesTable extends Migration
             $table->string('description');
             $table->string('validity');
             $table->string('time_required')->nullable();
+            $table->string('amount')->nullable();
             $table->string('image');
             $table->string('status')->default('active');
 

@@ -30,8 +30,8 @@ class PackageController extends Controller
 
     public function packageDetail(Request $request)
     {
-        $package=Package::find($request->id);
-        if($package)
+        $package=Package::with('packageservice.service.timeslot')->whereId($request->id)->get();
+        if($package!="[]")
         {
             return \response()->json(["Package"=>$package]);
         }
@@ -134,7 +134,7 @@ class PackageController extends Controller
 
     public function allPackages(Request $request)
     {
-        return response()->json(["packages"=>Package::all()]);
+        return response()->json(["packages"=>Package::with('packageservice.service.timeslot')->get()]);
     }
 
 

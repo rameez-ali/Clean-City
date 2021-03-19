@@ -21,12 +21,20 @@ class ServiceController extends Controller
 
     public function allServices(Request $request)
     {
+        // if($request->name!="")
+        // {
+        //     return \response()->json(["services"=>Service::with('timeslot')->where('name','LIKE',"%$request->name%")->get()]);
+
+        // }
+        // return \response()->json(["services"=>Service::with('timeslot')->get()]);
+
+
         if($request->name!="")
         {
-            return \response()->json(["services"=>Service::with('timeslot')->where('name','LIKE',"%$request->name%")->get()]);
+            return \response()->json(["services"=>Service::where('name','LIKE',"%$request->name%")->get()]);
 
         }
-        return \response()->json(["services"=>Service::with('timeslot')->get()]);
+        return \response()->json(["services"=>Service::get()]);
 
 
     }

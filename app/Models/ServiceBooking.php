@@ -18,7 +18,7 @@ class ServiceBooking extends Model
         'selected_date',
         //'time_required',
         'time_slot',
-        'quote',
+        //'quote',
         'recurrency',
         'reason',
         'first_name',

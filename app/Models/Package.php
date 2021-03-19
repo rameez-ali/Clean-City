@@ -23,4 +23,9 @@ class Package extends Model
     {
         return $this->hasMany(PackageRequest::class);
     }
+
+    public function packageservice()
+    {
+        return $this->hasMany(PackageService::class);
+    }
 }
