@@ -15,4 +15,10 @@ class Service extends Model
         'image',
         'validity'
     ];
+
+
+    public function timeslot()
+    {
+        return $this->hasMany(Timeslot::class,);
+    }
 }

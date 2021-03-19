@@ -114,6 +114,7 @@ export default {
     data() {
         return {
             id: "",
+            file: "",
             service: {
                 id: "",
                 name: "",
@@ -150,7 +151,7 @@ export default {
         },
 
         updateService() {
-            console.log(this.service.name);
+            //console.log(this.service.name);
             //this.service.id = this.id;
             this.file = this.$refs.file.files[0];
             let formData = new FormData();

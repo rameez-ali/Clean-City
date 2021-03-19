@@ -15,7 +15,7 @@ class CreatePackageBookingsTable extends Migration
     {
         Schema::create('package_bookings', function (Blueprint $table) {
             $table->id();
-            $table->integer('service_id');
+            //$table->integer('service_id');
             $table->integer('user_id');
             $table->string('status')->default('pending');
             $table->string('selected_date');

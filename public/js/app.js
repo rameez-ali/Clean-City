@@ -5466,6 +5466,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       id: "",
+      file: "",
       service: {
         id: "",
         name: "",
@@ -5500,8 +5501,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     updateService: function updateService() {
-      console.log(this.service.name); //this.service.id = this.id;
-
+      //console.log(this.service.name);
+      //this.service.id = this.id;
       this.file = this.$refs.file.files[0];
       var formData = new FormData();
       formData.append("photo", this.file);

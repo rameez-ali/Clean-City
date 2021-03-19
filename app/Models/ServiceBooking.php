@@ -16,7 +16,7 @@ class ServiceBooking extends Model
         'service_id',
         'status',
         'selected_date',
-        'time_required',
+        //'time_required',
         'time_slot',
         'quote',
         'recurrency',
@@ -35,6 +35,10 @@ class ServiceBooking extends Model
 
     public function service(){
         return $this->belongsTo(Service::class);
+    }
+
+    public function timeslot(){
+        return $this->belongsTo(Timeslot::class,"time_slot");
     }
 
     

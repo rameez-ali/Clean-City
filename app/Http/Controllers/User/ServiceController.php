@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator; 
 use Illuminate\Support\Facades\Mail;
+use App\Models\Timeslot;
 
 
 
@@ -22,10 +23,10 @@ class ServiceController extends Controller
     {
         if($request->name!="")
         {
-            return \response()->json(["services"=>Service::select('id','name','description','validity','image','status','created_at','updated_at')->where('name','LIKE',"%$request->name%")->get()]);
+            return \response()->json(["services"=>Service::with('timeslot')->where('name','LIKE',"%$request->name%")->get()]);
 
         }
-        return \response()->json(["services"=>Service::all()]);
+        return \response()->json(["services"=>Service::with('timeslot')->get()]);
 
 
     }
@@ -33,7 +34,7 @@ class ServiceController extends Controller
 
     public function serviceDetail(Request $request)
     {
-        $service=Service::find($request->id);
+        $service=Service::with("timeslot")->find($request->id);
         if($service)
         {
             return \response()->json(["Service"=>$service]);
@@ -61,7 +62,7 @@ class ServiceController extends Controller
         $validation =$request->validate([
             'service_id'=>['required'],
             'selected_date'=>['required'],
-            'time_required'=>['required'],
+            //'time_required'=>['required'],
             'time_slot'=>['required'],
             'recurrency'=>['required'],
             'first_name'=>['required'],
@@ -70,23 +71,36 @@ class ServiceController extends Controller
             'phone'=>['required'],
             'address'=>['required'],
          ]);
-        $serviceBooking= new ServiceBooking([
-            'user_id'=>auth()->user()->id,
-            'service_id'=>$request->service_id,
-            'selected_date'=>$request->selected_date,
-            'time_required'=>$request->time_required,
-            'time_slot'=>$request->time_slot,
-            'recurrency'=>$request->recurrency,
-            'first_name'=>$request->first_name,
-            'last_name'=>$request->last_name,
-            'email'=>$request->email,
-            'phone'=>$request->phone,
-            'address'=>$request->address,
 
-        ]);
+         if(Timeslot::where("service_id",$request->service_id)->where("id",$request->time_slot)->first() !=null)
+         {
+            $serviceBooking= new ServiceBooking([
+                'user_id'=>auth()->user()->id,
+                'service_id'=>$request->service_id,
+                'selected_date'=>$request->selected_date,
+                'time_required'=>$request->time_required,
+                'time_slot'=>$request->time_slot,
+                'recurrency'=>$request->recurrency,
+                'first_name'=>$request->first_name,
+                'last_name'=>$request->last_name,
+                'email'=>$request->email,
+                'phone'=>$request->phone,
+                'address'=>$request->address,
+    
+            ]);
+
+            return \response()->json($serviceBooking->save());
+
+
+         }
+
+         return \response()->json(["message"=>"Invalid Timeslot"],404);
+
 
         
-        return \response()->json($serviceBooking->save());
+       
+
+        
 
     }
 
@@ -96,7 +110,7 @@ class ServiceController extends Controller
         $validation =$request->validate([
             'id'=>['required'],
          ]);
-         $service=ServiceBooking::with('service')->where('user_id',auth()->user()->id)->where("id",$request->id)->get();
+         $service=ServiceBooking::with('service','timeslot')->where('user_id',auth()->user()->id)->where("id",$request->id)->get();
          return \response()->json($service);
 
     }

@@ -11,7 +11,7 @@ class PackageBooking extends Model
 {
     use HasFactory;
     protected $fillable=['user_id',
-        'service_id',
+       // 'service_id',
         'selected_date',
         'time_slot',
         'time_required',
@@ -32,7 +32,15 @@ class PackageBooking extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function service(){
-        return $this->belongsTo(Service::class);
+   // public function service(){
+   //     return $this->belongsTo(Service::class);
+   // }
+
+
+    public function packageBookingService()
+    {
+        return $this->hasMany(PackageBookingService::class,"packageBooking_id");
     }
+
+
 }

@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\PackageBooking;
+use App\Models\PackageBookingService;
 use Illuminate\Support\Facades\Validator; 
 use Illuminate\Support\Facades\Mail;
 
@@ -18,7 +19,7 @@ class PackageBookingController extends Controller
     public function book(Request $request)
     {
         $validation =$request->validate([
-            'service_id' => ['required'],
+            'service_ids' => ['required'],
             'selected_date' => ['required', 'string', 'max:255'],
             'time_slot' => ['required', 'string', 'max:255'],
             'time_required' => ['required', 'string', 'max:255'],
@@ -34,7 +35,7 @@ class PackageBookingController extends Controller
 
          $packageBooking= new PackageBooking([
             'user_id' => auth()->user()->id, 
-            'service_id' => $request->service_id,
+            //'service_id' => $request->service_id,
             'selected_date' => $request->selected_date,
             'time_slot' => $request->time_slot,
             'time_required' => $request->time_required,
@@ -47,6 +48,8 @@ class PackageBookingController extends Controller
             'email' => $request->email
          ]);
 
+        // $packageBooking->
+
          return \response()->json(["status"=>$packageBooking->save(),"message"=>"Your Quote Has Been Sent To Admin, We Will Get Back To You After The Review"]);
  
     }
@@ -54,7 +57,7 @@ class PackageBookingController extends Controller
 
     public function getOwnPackageBookingDetail(Request $request)
     {
-        $packageBooking=PackageBooking::with('service')->whereId($request->id)->whereUser_id(auth()->user()->id)->first();
+        $packageBooking=PackageBooking::with('packageBookingService.service')->whereId($request->id)->whereUser_id(auth()->user()->id)->first();
         return \response()->json(["data"=>$packageBooking]);
 
     }

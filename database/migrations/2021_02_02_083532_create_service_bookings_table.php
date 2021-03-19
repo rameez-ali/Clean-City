@@ -19,7 +19,6 @@ class CreateServiceBookingsTable extends Migration
             $table->integer('service_id');
             $table->string('status')->default('pending');
             $table->string('selected_date');
-            $table->string('time_required');
             $table->string('time_slot');
             $table->string('quote')->nullable();
             $table->string('recurrency');
