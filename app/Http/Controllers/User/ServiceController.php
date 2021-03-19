@@ -88,8 +88,8 @@ class ServiceController extends Controller
                 'address'=>$request->address,
     
             ]);
-
-            return \response()->json($serviceBooking->save());
+            $serviceBooking->save();
+            return \response()->json( ["message"=>"Your Service request has been submitted!"]);
 
 
          }
