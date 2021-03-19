@@ -19,6 +19,6 @@ class Service extends Model
 
     public function timeslot()
     {
-        return $this->hasMany(Timeslot::class,);
+        return $this->hasMany(Timeslot::class);
     }
 }
