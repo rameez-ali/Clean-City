@@ -31,7 +31,7 @@ class PackageController extends Controller
 
     public function packageDetail(Request $request)
     {
-        $package=Package::with('packageservice.service.timeslot')->whereId($request->id)->get();
+        $package=Package::with('packageservice.service')->whereId($request->id)->get();
         if($package!="[]")
         {
             return \response()->json(["Package"=>$package]);
@@ -50,13 +50,15 @@ class PackageController extends Controller
         $validation =$request->validate([
             'package_id'=>['required'],
             'selected_date'=>['required'],
-            'time_required'=>['required'],
-            'time_slot'=>['required'],
+            //'time_required'=>['required'],
+            //'time_slot'=>['required'],
             'first_name'=>['required'],
             'last_name'=>['required'],
             'email'=>['required'],
             'phone'=>['required'],
             'address'=>['required'],
+            'book_from'=>['required'],
+            'book_to'=>['required'],
          ]);
 
          if($request->recurrency=="")
@@ -68,14 +70,16 @@ class PackageController extends Controller
             'user_id'=>auth()->user()->id,
             'package_id'=>$request->package_id,
             'selected_date'=>$request->selected_date,
-            'time_required'=>$request->time_required,
-            'time_slot'=>$request->time_slot,
+            //'time_required'=>$request->time_required,
+            //'time_slot'=>$request->time_slot,
             'recurrency'=>$request->recurrency,
             'first_name'=>$request->first_name,
             'last_name'=>$request->last_name,
             'email'=>$request->email,
             'phone'=>$request->phone,
             'address'=>$request->address,
+            'book_from'=>$request->book_from,
+            'book_to'=>$request->book_to,
         ]);
 
         return response()->json($packageBooking->save());
@@ -137,15 +141,56 @@ class PackageController extends Controller
 
     public function allPackages(Request $request)
     {
-        return response()->json(["packages"=>Package::with('packageservice.service.timeslot')->get()]);
+        if($request->name)
+        {
+            return response()->json(["packages"=>Package::with('packageservice.service')->where('name','LIKE',"%$request->name%")->get()]);
+
+        }
+        return response()->json(["packages"=>Package::with('packageservice.service')->get()]);
     }
 
 
-    public function availableSlots()
+    public function TimeSlot(Request $request,$datenow="2021-03-22",$package_id=1)
     {
-        $current_date= Carbon::now();
-        $service_duration=60;
-        return $current_date;
+        $datenow=$request->datenow;
+        $package_id=$request->package_id;
+
+        $package=Package::with('packageservice.service')->whereId($package_id)->get()->toArray();
+
+        $slotTime=0;
+
+            foreach ($package[0]['packageservice'] as $service ){ 
+                
+                $slotTime+= $service['service']["time_required"];
+            }
+
+         $today=Carbon::createFromFormat('Y-m-d', $datenow);
+         $current_date=Carbon::createFromFormat('Y-m-d H:i:s', $datenow.' 00:00:00');
+         $toDate=Carbon::createFromFormat('Y-m-d H:i:s', $datenow.' 00:00:00');
+         $bookings=PackageRequest::wherePackage_id($package_id)->get();
+
+         $timeslot=[];
+       
+
+          while($today->format('Y-m-d')==$current_date->format('Y-m-d'))
+          {
+            $toDate->addMinutes($slotTime);
+            array_push($timeslot,$current_date." ".$toDate);
+            $current_date->addMinutes($slotTime);
+            
+          }
+
+          foreach ($bookings as $booking){ 
+            $removeDate=$booking->book_from." ".$booking->book_to;
+
+            if (($key = array_search($removeDate, $timeslot)) !== false) {
+              unset($timeslot[$key]);
+              }
+
+            }
+
+        return $timeslot;
+        
     }
 
 

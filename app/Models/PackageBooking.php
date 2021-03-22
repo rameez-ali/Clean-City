@@ -13,15 +13,17 @@ class PackageBooking extends Model
     protected $fillable=['user_id',
        // 'service_id',
         'selected_date',
-        'time_slot',
-        'time_required',
+        //'time_slot',
+        //'time_required',
         'area',
         'recurrency',
         'first_name',
         'last_name',
         'phone',
         'address',
-        'email'
+        'email',
+        'book_from',
+        'book_to',
     ];
 
     

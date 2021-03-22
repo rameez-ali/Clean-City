@@ -16,14 +16,16 @@ class PackageRequest extends Model
         'user_id',
             'package_id',
             'selected_date',
-            'time_required',
-            'time_slot',
+            //'time_required',
+            //'time_slot',
             'recurrency',
             'first_name',
             'last_name',
             'email',
             'phone',
             'address',
+            'book_from',
+            'book_to',
 
     ];
 

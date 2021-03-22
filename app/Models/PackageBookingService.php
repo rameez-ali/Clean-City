@@ -10,6 +10,9 @@ class PackageBookingService extends Model
     use HasFactory;
 
 
+    protected $fillable=['packageBooking_id','service_id'];
+
+
     public function packageBooking()
     {
         return $this->belongsTo(PackageBooking::class,"packageBooking_id","id");

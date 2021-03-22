@@ -46,7 +46,7 @@ class GeneralController extends Controller
 
     public function home()
     {
-        $banner=General::find(1)->select("banner")->first();
+        $banner=General::find(1)->select("banner","image")->first();
         $service=Service::whereStatus("active")->get();
         $package=Package::whereStatus("active")->get();
         return \response()->json(["banner"=>$banner,"services"=>$service,"packages"=>$package]);

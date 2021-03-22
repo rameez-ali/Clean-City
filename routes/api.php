@@ -142,6 +142,10 @@ Route::group(['prefix' => 'user'], function () {
         Route::post('/bookservice','ServiceController@bookservice');
         Route::post('/rejectservice','ServiceController@reject');
         Route::post('/cancelservice','ServiceController@cancel');
+        Route::get('/serviceSlots','ServiceController@TimeSlot');
+        
+
+
 
         
         //Package
@@ -150,6 +154,8 @@ Route::group(['prefix' => 'user'], function () {
         Route::post('/bookpackage','PackageController@bookPackage');
         Route::post('/resubpackage','PackageController@resubPackage');
         Route::post('/cancelpackage','PackageController@cancelPackage');
+        Route::get('/packageSlots','PackageController@TimeSlot');
+
 
 
         //Own Package Booking
@@ -157,6 +163,8 @@ Route::group(['prefix' => 'user'], function () {
         Route::get('/ownpackageDetail','PackageBookingController@getOwnPackageBookingDetail');
         Route::post('/approvequote','PackageBookingController@approve');
         Route::post('/rejectquote','PackageBookingController@reject');
+        Route::get('/ownPackageSlots','PackageBookingController@TimeSlot');
+
 
 
         //Notificaiton

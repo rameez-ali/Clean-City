@@ -17,7 +17,7 @@ class ServiceBooking extends Model
         'status',
         'selected_date',
         //'time_required',
-        'time_slot',
+        //'time_slot',
         //'quote',
         'recurrency',
         'reason',
@@ -26,6 +26,8 @@ class ServiceBooking extends Model
         'email',
         'phone',
         'address',
+        'book_from',
+        'book_to'
 
     ];
 
