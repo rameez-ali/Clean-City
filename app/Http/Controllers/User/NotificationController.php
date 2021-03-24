@@ -12,7 +12,6 @@ class NotificationController extends Controller
     public function index(Request $request)
     {
         //$user=User::find(4);
-        return response()->json(["notifications"=>$request->user()->notifications],200); 
-
+        return response()->json(["notifications" => $request->user()->notifications], 200);
     }
 }
