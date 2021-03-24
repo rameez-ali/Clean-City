@@ -10,17 +10,17 @@ class PackageBookingService extends Model
     use HasFactory;
 
 
-    protected $fillable=['packageBooking_id','service_id'];
+    protected $fillable = ['packageBooking_id', 'service_id'];
 
 
     public function packageBooking()
     {
-        return $this->belongsTo(PackageBooking::class,"packageBooking_id","id");
+        return $this->belongsTo(PackageBooking::class, "packageBooking_id", "id");
     }
 
 
     public function service()
     {
-        return $this->belongsTo(Service::class,);
+        return $this->belongsTo(Service::class);
     }
 }
