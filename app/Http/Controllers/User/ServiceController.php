@@ -188,6 +188,7 @@ class ServiceController extends Controller
                 unset($timeslot[$key]);
             }
         }
+
         $timeslot = array_values($timeslot);
         $all_slots = [];
         foreach ($timeslot as $time) {

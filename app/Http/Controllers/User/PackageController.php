@@ -30,7 +30,7 @@ class PackageController extends Controller
 
     public function packageDetail(Request $request)
     {
-        $package = Package::with('packageservice.service')->whereId($request->id)->get();
+        $package = Package::with('packageservice.service')->whereId($request->id)->first();
         if ($package != "[]") {
             return \response()->json(["Package" => $package]);
         }
@@ -184,6 +184,9 @@ class PackageController extends Controller
             $final_slot = [$time_from, $time_to];
             array_push($all_slots, $final_slot);
         }
+
+        // $all_slots = json_encode($all_slots);
+
 
 
 
