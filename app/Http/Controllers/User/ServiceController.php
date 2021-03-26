@@ -48,12 +48,23 @@ class ServiceController extends Controller
 
 
 
+    // public function index(Request $request)
+    // {
+    //     $user = auth()->user();
+
+    //     $services = $user->services('service')->latest()->get();
+
+    //     return response()->json($services);
+    // }
+
     public function index(Request $request)
     {
-        $user = auth()->user();
 
-        $services = $user->services('service')->latest()->get();
-
+        if ($request->id) {
+            $services = ServiceBooking::with('service')->where('user_id', auth()->user()->id)->where('service_id', $request->id)->get();
+        } else {
+            $services = ServiceBooking::with('service')->where('user_id', auth()->user()->id)->get();
+        }
         return response()->json($services);
     }
 

@@ -19,11 +19,11 @@ class PackageController extends Controller
 {
     public function index(Request $request)
     {
-        //$user = auth()->user();
-
-        //$packages = $user->packages()->latest()->get();
-        $packages = PackageRequest::with('package')->where('user_id', auth()->user()->id)->get();
-
+        if ($request->id) {
+            $packages = PackageRequest::with('package')->where('user_id', auth()->user()->id)->where('package_id', $request->id)->get();
+        } else {
+            $packages = PackageRequest::with('package')->where('user_id', auth()->user()->id)->get();
+        }
         return response()->json($packages);
     }
 
@@ -187,9 +187,17 @@ class PackageController extends Controller
 
         // $all_slots = json_encode($all_slots);
 
-
-
-
         return $all_slots;
+    }
+
+
+    public function myPackageBookings(Request $request)
+    {
+        $request->validate([
+            'id' => 'required'
+        ]);
+
+        $bookings = PackageRequest::with('package')->where('user_id', auth()->user()->id)->where('package_id', $request->id)->get();
+        return \response()->json(['bookings' => $bookings]);
     }
 }

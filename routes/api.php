@@ -25,7 +25,7 @@ Auth::routes();
 Route::group(['prefix' => 'admin'], function () {
 
     Route::post('/login', 'App\Http\Controllers\Admin\UserController@login')->name('login');
-   // Route::post('/login', 'App\Http\Controllers\Admin\UserController@login')->name('login');
+    // Route::post('/login', 'App\Http\Controllers\Admin\UserController@login')->name('login');
 
 
     Route::group(['middleware' => ['auth:api'], 'namespace' => 'App\Http\Controllers\Admin'], function () {
@@ -61,38 +61,35 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/packagestatus', 'PackageController@packagestatus');
 
         //PackageRequests
-        Route::get('/getallPackageRequests','PackageRequestController@index');
-        Route::get('/PackageRequests','PackageRequestController@show');
-        Route::post('/approveRejectPackage','PackageRequestController@acceptOrReject');
-        Route::get('/PackageRequeststofrom','PackageRequestController@indexToFrom');
+        Route::get('/getallPackageRequests', 'PackageRequestController@index');
+        Route::get('/PackageRequests', 'PackageRequestController@show');
+        Route::post('/approveRejectPackage', 'PackageRequestController@acceptOrReject');
+        Route::get('/PackageRequeststofrom', 'PackageRequestController@indexToFrom');
 
         //ServiceBooking
-        Route::get('/getallServiceRequests','ServiceBookingController@index');
-        Route::get('/ServiceRequests','ServiceBookingController@show');
-        Route::post('/approveRejectService','ServiceBookingController@approveReject');
-        Route::get('/ServiceRequeststofrom','ServiceBookingController@indextofrom');
+        Route::get('/getallServiceRequests', 'ServiceBookingController@index');
+        Route::get('/ServiceRequests', 'ServiceBookingController@show');
+        Route::post('/approveRejectService', 'ServiceBookingController@approveReject');
+        Route::get('/ServiceRequeststofrom', 'ServiceBookingController@indextofrom');
 
         //PackageBookings
-        Route::get('/getallpackagebookings','PackageBookingController@index');
-        Route::get('/getpackagequote','PackageBookingController@show');
-        Route::post('/rejectQuote','PackageBookingController@reject');
-        Route::post('/generateQuote','PackageBookingController@generateQuote');
-        Route::get('/getpackagequoteToFrom','PackageBookingController@indexToFrom');
+        Route::get('/getallpackagebookings', 'PackageBookingController@index');
+        Route::get('/getpackagequote', 'PackageBookingController@show');
+        Route::post('/rejectQuote', 'PackageBookingController@reject');
+        Route::post('/generateQuote', 'PackageBookingController@generateQuote');
+        Route::get('/getpackagequoteToFrom', 'PackageBookingController@indexToFrom');
 
 
         //Feedback
-        Route::get('/getallfeedbacks','FeedbackController@index');
-        Route::get('/getfeedback','FeedbackController@show');
-        Route::post('/deletefeedback','FeedbackController@destroy');
-        Route::get('/getfeedbackToFrom','FeedbackController@indexToFrom');
+        Route::get('/getallfeedbacks', 'FeedbackController@index');
+        Route::get('/getfeedback', 'FeedbackController@show');
+        Route::post('/deletefeedback', 'FeedbackController@destroy');
+        Route::get('/getfeedbackToFrom', 'FeedbackController@indexToFrom');
 
         //Notifications
-        Route::get('/getunreadnotifications','NotificationController@adminNotification');
-        Route::post('/markAsRead','NotificationController@markAsRead');
-
+        Route::get('/getunreadnotifications', 'NotificationController@adminNotification');
+        Route::post('/markAsRead', 'NotificationController@markAsRead');
     });
-
-
 });
 
 
@@ -102,77 +99,72 @@ Route::group(['prefix' => 'admin'], function () {
 Route::group(['prefix' => 'user'], function () {
 
 
-    
+
 
     //Authenticaton
-    Route::post('/signup','App\Http\Controllers\User\UserController@signup');
-    Route::post('/login','App\Http\Controllers\User\UserController@login');
-    Route::post('/forgotPassword','App\Http\Controllers\User\ForgotPasswordController@forgotPassword');
-    Route::post('/verifyCode','App\Http\Controllers\User\ForgotPasswordController@verifyCode');
-    Route::post('/updatePassword','App\Http\Controllers\User\ForgotPasswordController@updatePassword');
-    
+    Route::post('/signup', 'App\Http\Controllers\User\UserController@signup');
+    Route::post('/login', 'App\Http\Controllers\User\UserController@login');
+    Route::post('/forgotPassword', 'App\Http\Controllers\User\ForgotPasswordController@forgotPassword');
+    Route::post('/verifyCode', 'App\Http\Controllers\User\ForgotPasswordController@verifyCode');
+    Route::post('/updatePassword', 'App\Http\Controllers\User\ForgotPasswordController@updatePassword');
+
     //General
-    Route::post('/contactUs','App\Http\Controllers\User\GeneralController@contactUs');
-    Route::get('/faqs','App\Http\Controllers\User\GeneralController@faqs');
-    Route::get('/home','App\Http\Controllers\User\GeneralController@home');
-    
+    Route::post('/contactUs', 'App\Http\Controllers\User\GeneralController@contactUs');
+    Route::get('/faqs', 'App\Http\Controllers\User\GeneralController@faqs');
+    Route::get('/home', 'App\Http\Controllers\User\GeneralController@home');
+
 
 
     //Services
-    Route::get('/services','App\Http\Controllers\User\ServiceController@allServices');
-    Route::get('/serviceDetail','App\Http\Controllers\User\ServiceController@serviceDetail');
+    Route::get('/services', 'App\Http\Controllers\User\ServiceController@allServices');
+    Route::get('/serviceDetail', 'App\Http\Controllers\User\ServiceController@serviceDetail');
 
     //Packages
-    Route::get('/packages','App\Http\Controllers\User\PackageController@allPackages');
-    Route::get('/packageDetail','App\Http\Controllers\User\PackageController@packageDetail');
+    Route::get('/packages', 'App\Http\Controllers\User\PackageController@allPackages');
+    Route::get('/packageDetail', 'App\Http\Controllers\User\PackageController@packageDetail');
 
-    
+
 
     Route::group(['middleware' => ['auth:api'], 'namespace' => 'App\Http\Controllers\User'], function () {
 
         //User
-        Route::get('/userInfo','UserController@index');
-        Route::post('/updateProfile','UserController@editUser');
-        Route::post('/changePassowrd','UserController@changePassword');
+        Route::get('/userInfo', 'UserController@index');
+        Route::post('/updateProfile', 'UserController@editUser');
+        Route::post('/changePassowrd', 'UserController@changePassword');
 
 
         //Service
-        Route::get('/myservices','ServiceController@index');
-        Route::get('/myserviceDetail','ServiceController@serviceBookingDetail');
-        Route::post('/bookservice','ServiceController@bookservice');
-        Route::post('/rejectservice','ServiceController@reject');
-        Route::post('/cancelservice','ServiceController@cancel');
-        Route::get('/serviceSlots','ServiceController@TimeSlot');
-        
+        Route::get('/myservices', 'ServiceController@index');
+        Route::get('/myserviceDetail', 'ServiceController@serviceBookingDetail');
+        Route::post('/bookservice', 'ServiceController@bookservice');
+        Route::post('/rejectservice', 'ServiceController@reject');
+        Route::post('/cancelservice', 'ServiceController@cancel');
+        Route::get('/serviceSlots', 'ServiceController@TimeSlot');
 
 
 
-        
+
+
         //Package
-        Route::get('/mypackages','PackageController@index');
-        Route::get('/mypackageDetail','PackageController@packageBookingDetail');
-        Route::post('/bookpackage','PackageController@bookPackage');
-        Route::post('/resubpackage','PackageController@resubPackage');
-        Route::post('/cancelpackage','PackageController@cancelPackage');
-        Route::get('/packageSlots','PackageController@TimeSlot');
+        Route::get('/mypackages', 'PackageController@index');
+        Route::get('/mypackageDetail', 'PackageController@packageBookingDetail');
+        Route::post('/bookpackage', 'PackageController@bookPackage');
+        Route::post('/resubpackage', 'PackageController@resubPackage');
+        Route::post('/cancelpackage', 'PackageController@cancelPackage');
+        Route::get('/packageSlots', 'PackageController@TimeSlot');
 
 
 
         //Own Package Booking
-        Route::post('/bookownPackage','PackageBookingController@book');
-        Route::get('/ownpackageDetail','PackageBookingController@getOwnPackageBookingDetail');
-        Route::post('/approvequote','PackageBookingController@approve');
-        Route::post('/rejectquote','PackageBookingController@reject');
-        Route::get('/ownPackageSlots','PackageBookingController@TimeSlot');
+        Route::post('/bookownPackage', 'PackageBookingController@book');
+        Route::get('/ownpackageDetail', 'PackageBookingController@getOwnPackageBookingDetail');
+        Route::post('/approvequote', 'PackageBookingController@approve');
+        Route::post('/rejectquote', 'PackageBookingController@reject');
+        Route::get('/ownPackageSlots', 'PackageBookingController@TimeSlot');
 
 
 
         //Notificaiton
-        Route::get('/notifications','NotificationController@index');
-
-      
-
+        Route::get('/notifications', 'NotificationController@index');
     });
-
-
 });
