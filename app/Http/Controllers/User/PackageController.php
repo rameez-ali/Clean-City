@@ -85,7 +85,7 @@ class PackageController extends Controller
         $validation = $request->validate([
             'id' => ['required'],
         ]);
-        $package = PackageRequest::with('package')->where('user_id', auth()->user()->id)->where("id", $request->id)->get();
+        $package = PackageRequest::with('package')->where('user_id', auth()->user()->id)->where("id", $request->id)->first();
         return \response()->json($package);
     }
 

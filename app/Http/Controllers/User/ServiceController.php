@@ -127,7 +127,7 @@ class ServiceController extends Controller
         $validation = $request->validate([
             'id' => ['required'],
         ]);
-        $service = ServiceBooking::with('service')->where('user_id', auth()->user()->id)->where("id", $request->id)->get();
+        $service = ServiceBooking::with('service')->where('user_id', auth()->user()->id)->where("id", $request->id)->first();
         return \response()->json($service);
     }
 
