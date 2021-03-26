@@ -121,8 +121,8 @@ class UserController extends Controller
                 $user->save();
                 return response()->json(["status" => "Password Updated"], 200);
             }
-            return response()->json(["status" => "New Password and Confirm password must match"], 401);
+            return response()->json(["status" => "New Password and Confirm password must match"], 406);
         }
-        return response()->json(["status" => "incorrect current password"], 401);
+        return response()->json(["status" => "incorrect current password"], 406);
     }
 }
