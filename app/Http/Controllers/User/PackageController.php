@@ -105,8 +105,10 @@ class PackageController extends Controller
         $validation = $request->validate([
             'id' => ['required'],
             'selected_date' => ['required'],
-            'time_slot' => ['required'],
+            //'time_slot' => ['required'],
             'recurrency' => ['required'],
+            'book_from' => 'required',
+            'book_to' => 'required'
 
         ]);
 
@@ -116,17 +118,20 @@ class PackageController extends Controller
             'user_id' => auth()->user()->id,
             'package_id' => $oldPackage->package_id,
             'selected_date' => $request->selected_date,
-            'time_required' => $oldPackage->time_required,
-            'time_slot' => $request->time_slot,
+            //'time_required' => $oldPackage->time_required,
+            //'time_slot' => $request->time_slot,
             'recurrency' => $request->recurrency,
             'first_name' => $oldPackage->first_name,
             'last_name' => $oldPackage->last_name,
             'email' => $oldPackage->email,
             'phone' => $oldPackage->phone,
             'address' => $oldPackage->address,
+            'book_from' => $request->book_from,
+            'book_to' => $request->book_to
         ]);
+        $packageBooking->save();
 
-        return response()->json($packageBooking->save());
+        return response()->json(["message" => "Your request to Re-Subscribe the package has been submitted"]);
     }
 
 

@@ -126,6 +126,12 @@ Route::group(['prefix' => 'user'], function () {
 
 
     Route::group(['middleware' => ['auth:api'], 'namespace' => 'App\Http\Controllers\User'], function () {
+        //General
+        Route::post('/changeRecurrency', 'GeneralController@change_Recurrency');
+
+
+
+
 
         //User
         Route::get('/userInfo', 'UserController@index');

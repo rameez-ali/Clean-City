@@ -12,6 +12,8 @@ use App\Models\FAQ;
 use App\Models\Package;
 use App\Models\Service;
 use App\Models\General;
+use App\Models\PackageRequest;
+use App\Models\ServiceBooking;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 
@@ -49,5 +51,26 @@ class GeneralController extends Controller
         $service = Service::whereStatus("active")->get();
         $package = Package::whereStatus("active")->get();
         return \response()->json(["banner" => $banner, "services" => $service, "packages" => $package]);
+    }
+
+
+    public function change_Recurrency(Request $request)
+    {
+        $request->validate([
+            'id' => 'required',
+            'type' => 'required',
+            'recurrency' => 'required'
+        ]);
+        $type = $request->type;
+        if ($type == 'service') {
+            $service = ServiceBooking::find($request->id);
+            $service->recurrency = $request->recurrency;
+            $service->save();
+        } else if ($type == 'package') {
+            $package = PackageRequest::find($request->id);
+            $package->recurrency = $request->recurrency;
+            $package->save();
+        }
+        return response()->json(['message' => 'Recurrency status has been changed']);
     }
 }
