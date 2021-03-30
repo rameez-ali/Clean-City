@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
 
@@ -30,6 +31,16 @@ Route::post('/contactUs_demo', function (Request $request) {
         'subject.required'  => 'Please provide subject',
         'message.required'  => 'Please provide message'
     ]);
+
+    if ($validator->fails()) {
+        return response()->json(
+            [
+                'error' => $validator->errors()->messages(),
+                'msg' => 'Please fill all the required fields.'
+            ],
+            401
+        );
+    }
 
 
     Mail::raw("Name: " . $request->fullName . "\nMessage: " . $request->message, function ($message) use ($request) {
