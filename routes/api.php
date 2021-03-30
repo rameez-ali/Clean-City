@@ -43,8 +43,8 @@ Route::post('/contactUs_demo', function (Request $request) {
     }
 
 
-    Mail::raw("Name: " . $request->fullName . "\nMessage: " . $request->message, function ($message) use ($request) {
-        $message->to($request->email)->subject("Contact Us (" . $request->subject . ")");
+    Mail::raw("Name: " . $request->fullName . "\nMessage: " . $request->message . "\nEmail: " . $request->email, function ($message) use ($request) {
+        $message->to('support@majesticares.com')->subject("Contact Us (" . $request->subject . ")");
     });
     return \response()->json(["message" => "Your message has been sent."], 200);
 });
