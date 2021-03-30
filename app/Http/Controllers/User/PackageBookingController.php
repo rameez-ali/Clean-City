@@ -81,8 +81,12 @@ class PackageBookingController extends Controller
     public function approve(Request $request)
     {
         $packageBooking = PackageBooking::whereId($request->id)->whereUser_id(auth()->user()->id)->first();
-        $packageBooking->status = "approved by customer";
-        return \response()->json(["status" => $packageBooking->save(), "message" => "Quote has been approved"]);
+        if ($packageBooking != []) {
+            $packageBooking->status = "approved by customer";
+            return \response()->json(["status" => $packageBooking->save(), "message" => "Quote has been approved"]);
+        }
+
+        return \response()->json(["message" => "Booking not found"], 404);
     }
 
     public function reject(Request $request)
