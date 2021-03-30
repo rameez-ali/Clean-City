@@ -29,24 +29,7 @@ class PackageController extends Controller
         }
 
         $mybookings = [];
-        // foreach ($packages as $data) {
-        //     $booking = [
-        //         'type' => 'pre-defined',
-        //         'id' => $data->id,
-        //         'package_id' => $data->id,
-        //         'selected_date' => $data->selected_date
-        //     ];
-        //     array_push($mybookings, $booking);
-        // }
 
-        // foreach ($packagerequests as $data) {
-        //     $booking = [
-        //         'type' => 'my-own-package',
-        //         'id' => $data->id,
-        //         'selected_date' => $data->selected_date
-        //     ];
-        //     array_push($mybookings, $booking);
-        // }
 
         foreach ($packages as $data) {
             $data->type = "pre-defined";
