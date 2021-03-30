@@ -103,19 +103,10 @@ class PackageBookingController extends Controller
     public function TimeSlot(Request $request, $datenow = "2021-03-22")
     {
         $datenow = $request->datenow;
-        //$package_id=$request->package_id;
-        //$limit=240;
-
-        //$packageBooking=PackageBooking::with('packageBookingService.service')->get()->toArray();
 
         $slotTime = 240;
 
-        // foreach ($packageBooking as $service ){ 
 
-        //     //$slotTime+= $service['service']["time_required"];
-        //     array_push($slotTime,$service['package_booking_service']);
-
-        // }
 
         $today = Carbon::createFromFormat('Y-m-d', $datenow);
         $current_date = Carbon::createFromFormat('Y-m-d H:i:s', $datenow . ' 00:00:00');
