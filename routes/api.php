@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//public testing api
+
+Route::post('/contactUs', 'App\Http\Controllers\User\GeneralController@contactUs');
+
+//
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
