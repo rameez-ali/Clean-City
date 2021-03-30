@@ -16,7 +16,23 @@ use Illuminate\Support\Facades\Route;
 
 //public testing api
 
-Route::post('/contactUs', 'App\Http\Controllers\User\GeneralController@contactUs_demo');
+Route::post('/contactUs_demo', function (Request $request) {
+
+    // $request->validate([
+
+    //     'full_name' => ['required', 'string', 'max:255'],
+    //     'subject' => ['required', 'string', 'max:255'],
+
+    //     'message' => ['required', 'string', 'max:255'],
+    //     'email' => ['required', 'string', 'email', 'max:255'],
+    // ]);
+
+
+    Mail::raw("Name: " . $request->full_name . "\nMessage: " . $request->message, function ($message) use ($request) {
+        $message->to($request->email)->subject("Contact Us (" . $request->subject . ")");
+    });
+    return \response()->json(["message" => "Your message has been sent."], 200);
+});
 
 //
 
