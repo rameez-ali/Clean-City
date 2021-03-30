@@ -56,6 +56,14 @@ class PackageController extends Controller
         foreach ($packagerequests as $data) {
 
             $data->type = "my-own-package";
+            $data->package = [
+                'id' => $data->id,
+                'name' => "My Own Package",
+                'description' => 'Own Package',
+                'status' => $data->status,
+                'price' => $data->quote,
+                'recurrency' => $data->recurrency,
+            ];
             array_push($mybookings, $data);
         }
 
