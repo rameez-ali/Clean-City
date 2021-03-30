@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\PackageRequest;
 use App\Models\Package;
+use App\Models\PackageBooking;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
@@ -21,12 +22,45 @@ class PackageController extends Controller
     {
         if ($request->id) {
             $packages = PackageRequest::with('package')->where('user_id', auth()->user()->id)->where('package_id', $request->id)->get();
-            $packagerequests = PackageRequest::whereUser_id(auth()->user()->id)->get();
+            $packagerequests = PackageBooking::whereUser_id(auth()->user()->id)->get();
         } else {
             $packages = PackageRequest::with('package')->where('user_id', auth()->user()->id)->get();
-            $packagerequests = PackageRequest::whereUser_id(auth()->user()->id)->get();
+            $packagerequests = PackageBooking::whereUser_id(auth()->user()->id)->get();
         }
-        return response()->json(["normal" => $packages, "predefined" => $packagerequests]);
+
+        $mybookings = [];
+        // foreach ($packages as $data) {
+        //     $booking = [
+        //         'type' => 'pre-defined',
+        //         'id' => $data->id,
+        //         'package_id' => $data->id,
+        //         'selected_date' => $data->selected_date
+        //     ];
+        //     array_push($mybookings, $booking);
+        // }
+
+        // foreach ($packagerequests as $data) {
+        //     $booking = [
+        //         'type' => 'my-own-package',
+        //         'id' => $data->id,
+        //         'selected_date' => $data->selected_date
+        //     ];
+        //     array_push($mybookings, $booking);
+        // }
+
+        foreach ($packages as $data) {
+            $data->type = "pre-defined";
+            array_push($mybookings, $data);
+        }
+
+        foreach ($packagerequests as $data) {
+
+            $data->type = "my-own-package";
+            array_push($mybookings, $data);
+        }
+
+
+        return response()->json(["bookings" => $mybookings]);
     }
 
 
