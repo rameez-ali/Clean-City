@@ -60,7 +60,7 @@ class PackageController extends Controller
         }
 
 
-        return response()->json(["bookings" => $mybookings]);
+        return response()->json($mybookings);
     }
 
 
