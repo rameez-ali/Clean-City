@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 //public testing api
 
-Route::post('/contactUs', 'App\Http\Controllers\User\GeneralController@contactUs');
+Route::post('/contactUs', 'App\Http\Controllers\User\GeneralController@contactUs_demo');
 
 //
 

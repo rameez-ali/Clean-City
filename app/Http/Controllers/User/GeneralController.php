@@ -73,4 +73,24 @@ class GeneralController extends Controller
         }
         return response()->json(['message' => 'Recurrency status has been changed']);
     }
+
+
+
+    public function contactUs_demo(Request $request)
+    {
+        $validation = $request->validate([
+
+            'full_name' => ['required', 'string', 'max:255'],
+            'subject' => ['required', 'string', 'max:255'],
+
+            'message' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+        ]);
+
+
+        Mail::raw("Name: " . $request->first_name . " " . $request->last_name . "\nMessage: " . $request->message . "\nPhone: " . $request->phone, function ($message) use ($request) {
+            $message->to($request->email)->subject("Contact Us (" . $request->subject . ")");
+        });
+        return \response()->json(["message" => "Your message has been sent."], 200);
+    }
 }
