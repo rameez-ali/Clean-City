@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Validator;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,15 +18,18 @@ use Illuminate\Support\Facades\Route;
 //public testing api
 
 Route::post('/contactUs_demo', function (Request $request) {
-    //dd($request);
-    // $request->validate([
-
-    //     'full_name' => ['required', 'string', 'max:255'],
-    //     'subject' => ['required', 'string', 'max:255'],
-
-    //     'message' => ['required', 'string', 'max:255'],
-    //     'email' => ['required', 'string', 'email', 'max:255'],
-    // ]);
+    $validator = Validator::make($request->all(), [
+        'fullName'      => 'required|',
+        'email'     => 'required|email',
+        'subject'   => 'required',
+        'message'   => 'required',
+    ], [
+        'fullName.required'     => 'Please provide name',
+        'email.required'         => 'Please provide email',
+        'email.email'       => 'Please provide valid email',
+        'subject.required'  => 'Please provide subject',
+        'message.required'  => 'Please provide message'
+    ]);
 
 
     Mail::raw("Name: " . $request->fullName . "\nMessage: " . $request->message, function ($message) use ($request) {
