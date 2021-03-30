@@ -92,8 +92,11 @@ class PackageBookingController extends Controller
     public function reject(Request $request)
     {
         $packageBooking = PackageBooking::whereId($request->id)->whereUser_id(auth()->user()->id)->first();
-        $packageBooking->status = "rejected by customer";
-        return \response()->json(["status" => $packageBooking->save(), "message" => "Quote has been rejected"]);
+        if ($packageBooking != []) {
+            $packageBooking->status = "rejected by customer";
+            return \response()->json(["status" => $packageBooking->save(), "message" => "Quote has been rejected"]);
+        }
+        return \response()->json(["message" => "Booking not found"], 404);
     }
 
 
