@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 //public testing api
 
 Route::middleware('cors')->post('/contactUs_demo', function (Request $request) {
-    dd($request);
+    //dd($request);
     // $request->validate([
 
     //     'full_name' => ['required', 'string', 'max:255'],
