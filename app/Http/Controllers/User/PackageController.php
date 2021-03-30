@@ -21,10 +21,12 @@ class PackageController extends Controller
     {
         if ($request->id) {
             $packages = PackageRequest::with('package')->where('user_id', auth()->user()->id)->where('package_id', $request->id)->get();
+            $packagerequests = PackageRequest::whereUser_id(auth()->user()->id)->get();
         } else {
             $packages = PackageRequest::with('package')->where('user_id', auth()->user()->id)->get();
+            $packagerequests = PackageRequest::whereUser_id(auth()->user()->id)->get();
         }
-        return response()->json($packages);
+        return response()->json(["normal" => $packages, "predefined" => $packagerequests]);
     }
 
 
