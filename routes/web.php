@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Events\Hello;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
